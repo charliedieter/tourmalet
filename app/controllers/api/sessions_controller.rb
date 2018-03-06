@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render 'api/users/show.json.jbuilder'
     else
-      render json: ['Invalid Credentials']
+      render json: ['Invalid Credential']
     end
   end
 

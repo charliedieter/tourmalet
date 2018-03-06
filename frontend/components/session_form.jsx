@@ -32,7 +32,7 @@ export default class SessionForm extends React.Component {
           onChange={this.update('email')}
           />
       </label>
-      : ""
+      : null
 
     return (
       <div>
