@@ -1,15 +1,9 @@
-.Sign {
-  background: url("signup") no-repeat;
-}
-
-.Log {
-  background: url("login") no-repeat;
-}
 
 .Sign, .Log {
   background-size: contain;
   display: flex;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   display: flex;
   color: white;
 }

@@ -3,13 +3,16 @@
   <head>
     <title>StravaClone</title>
     <%= csrf_meta_tags %>
-    <script>
-    
-    </script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script>
+    window.splash_bg = "<% asset_path("initial_back.jpg") %>"
+    window.login = "<%=  asset_path("login.jpg") %>"
+    window.signup =  "<%= asset_path("signup.jpg") %>"
+    </script>
   </head>
+
 
   <body>
     <%= yield %>

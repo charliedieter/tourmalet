@@ -42,10 +42,13 @@ export default class SessionForm extends React.Component {
       </label>
       : null
 
+      let imgSrc = (this.props.formType === 'Log In') ? window.login : window.signup
+
     return (
       <div>
         <Header formType={this.props.formType} />
-        <div className={this.props.formType}>
+        <div className={this.props.formType} >
+      
           <div className="session-box">
             <div className="form-title-box">
               <h2 className="form-head" >{this.props.formType}</h2>
