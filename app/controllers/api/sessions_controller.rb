@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render 'api/users/show'
+      render '/'
     else
       render json:
       ['The username or password did not match. Please try again.'], status: 422

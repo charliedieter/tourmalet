@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import Header from './header'
 export default class SessionForm extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      focusedInput: null
     }
     this.update = this.update.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,39 +27,66 @@ export default class SessionForm extends React.Component {
   }
 
   render(){
-    const email = (this.formType === 'Sign Up') ?
-      <label> Create a Username
+    const username = (this.props.formType === 'Sign Up') ?
+      <label>
         <input
           type="text"
           value={this.state.username}
-          onChange={this.update('email')}
+          onChange={this.update('username')}
+          placeholder="   Create a Username"
+          className={this.state.focusedInput === 1 ? 'focused' : ''}
+          onFocus={() => this.setState({focusedInput: 1})}
           />
+        {this.props.errors.username &&
+        <li>Username {this.props.errors.username}</li>}
       </label>
       : null
 
     return (
       <div>
-        <h2>{this.props.formType}</h2>
-        {this.props.errors.length > 0 ? <li>{this.props.errors}</li> : null}
-        <form onSubmit={this.handleSubmit}>
-          {email}
-          <label> Your Email
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              />
-          </label>
-
-          <label> Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              />
-          </label>
-          <button>Log In</button>
-        </form>
+        <Header formType={this.props.formType} />
+        <div className={this.props.formType}>
+          <div className="session-box">
+            <div className="form-title-box">
+              <h2 className="form-head" >{this.props.formType}</h2>
+            </div>
+            <ul className="errors">
+              {typeof this.props.errors[0] === 'string' &&
+                this.props.errors.map((err, i) =>
+                  <li key={i}>{err}</li>)}
+            </ul>
+            <form onSubmit={this.handleSubmit}>
+              {username}
+              <label>
+                <input
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  placeholder="   Email"
+                  className={this.state.focusedInput === 2 ? 'focused' : ''}
+                  onFocus={() => this.setState({focusedInput: 2})}
+                  />
+                {this.props.errors.email &&
+                <li>Email {this.props.errors.email}</li>}
+              </label>
+              <label>
+                <input
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  placeholder="   Password"
+                  className={this.state.focusedInput === 3 ? 'focused' : ''}
+                  onFocus={() => this.setState({focusedInput: 3})}
+                  />
+                {this.props.errors.password &&
+                <li>Password {this.props.errors.password}</li>}
+              </label>
+              <div className="button-holster">
+                <button>Log In</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     )
   }
