@@ -12,7 +12,11 @@ export default class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  update(field){
+  componentWillUnmount(nextProps) {
+    this.props.clearErrors()
+  }
+
+  update(field) {
     return e => this.setState({[field]: e.target.value})
   }
 
@@ -20,8 +24,6 @@ export default class SessionForm extends React.Component {
     e.preventDefault()
     this.props.action(this.state)
   }
-
-
 
   render(){
     const email = (this.formType === 'Sign Up') ?
@@ -37,6 +39,7 @@ export default class SessionForm extends React.Component {
     return (
       <div>
         <h2>{this.props.formType}</h2>
+        {this.props.errors.length > 0 ? <li>{this.props.errors}</li> : null}
         <form onSubmit={this.handleSubmit}>
           {email}
           <label> Your Email
@@ -59,7 +62,4 @@ export default class SessionForm extends React.Component {
       </div>
     )
   }
-
-
-
 }

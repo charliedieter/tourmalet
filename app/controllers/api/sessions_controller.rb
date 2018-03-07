@@ -7,9 +7,10 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render 'api/users/show.json.jbuilder'
+      render 'api/users/show'
     else
-      render json: ['Invalid Credential']
+      render json:
+      ['The username or password did not match. Please try again.'], status: 422
     end
   end
 
