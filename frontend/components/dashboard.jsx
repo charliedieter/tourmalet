@@ -1,23 +1,16 @@
 import React from 'react'
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router-dom';
+import MainHeaderContainer from './main_header_container'
 
 class Dashboard extends React.Component {
-
-  handleLogout(){
-    this.props.logout()
-    debugger
-    this.props.history.push("/login")
-  }
 
   render() {
     return (
       <div>
-        <header className="initial-header">
-          <h1 className="logo">Tourmalet</h1>
-          <div className="header-links">
-            <button onClick={this.handleLogout.bind(this)} >Log Out</button>
-          </div>
-        </header>
+        <MainHeaderContainer />
+        <div className="dash-main">
+          
+        </div>
       </div>
     )
   }

@@ -26,7 +26,6 @@ class User < ApplicationRecord
 
   def self.find_by_creds(email, pwd)
     user = User.find_by(email: email)
-    debugger
     user && user.is_password?(pwd) ? user : nil
   end
 

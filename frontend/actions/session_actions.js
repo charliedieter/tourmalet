@@ -25,9 +25,9 @@ export const login = user => dispatch => (
   )
 );
 
-export const logout = () => dispatch => (
-  API.logout().then(() => receiveCurrentUser(null))
-);
+export const logout = () => dispatch => {
+  return API.logout().then(() => dispatch(receiveCurrentUser(null)))
+};
 
 export const signup = user => dispatch => (
   API.signup(user).then(

@@ -65,7 +65,12 @@ form button {
   color: white;
   width: 300px;
   height: 40px;
-  margin: 20px auto;
+  margin: 20px auto 0;
+}
+
+form button:hover {
+  background: #c93d02;
+  border: 1px solid #c93d02;
 }
 
 li {

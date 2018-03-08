@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SessionHeader from './session_header'
+
 export default class SessionForm extends React.Component {
   constructor(props){
     super(props)
@@ -32,6 +33,14 @@ export default class SessionForm extends React.Component {
     this.props.action(this.state)
   }
 
+  loginGuest(e){
+    e.preventDefault()
+    debugger
+    this.props.login({
+      email: 'email@gmail.com',
+      password: 'password'})
+  }
+
   render(){
     const username = (this.props.formType === 'Sign Up') ?
       <label>
@@ -49,7 +58,12 @@ export default class SessionForm extends React.Component {
       </label>
       : null
 
-      let imgSrc = (this.props.formType === 'Log In') ? window.login : window.signup
+      const imgSrc = (this.props.formType === 'Log In') ? window.login : window.signup
+      const guest = (this.props.formType === 'Log In') ? <div className="button-holster">
+        <button onClick={()=> this.loginGuest.bind(this)}>
+        Log In as Guest</button>
+      </div>
+      :null
 
     return (
       <div>
@@ -95,6 +109,7 @@ export default class SessionForm extends React.Component {
               <div className="button-holster">
                 <button>Log In</button>
               </div>
+              {guest}
             </form>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { signup, clearErrors } from '../actions/session_actions'
+import { signup, login, clearErrors } from '../actions/session_actions'
 import SessionForm from './session_form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -13,7 +13,8 @@ const msp = state => {
 }
 
 const mdp = dispatch => ({
-  action: (user) => dispatch(signup(user)),
+  action: user => dispatch(signup(user)),
+  login: user => dispatch(login(user)),
   clearErrors: () => dispatch(clearErrors())
 })
 
