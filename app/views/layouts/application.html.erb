@@ -3,11 +3,12 @@
   <head>
     <title>StravaClone</title>
     <%= csrf_meta_tags %>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyD9vM0MC6HfsO1SyXr6zCEBCVI0B-2-Lck" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <script>
     window.splash_bg = "<% asset_path("initial_back.jpg") %>"
     window.login = "<%=  asset_path("login.jpg") %>"
