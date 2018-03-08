@@ -1,13 +1,13 @@
 import React from 'react'
-import Header from './header'
+import SessionHeader from './session_header'
 
-const InitialPage = () => (
+const SplashPage = () => (
   <div className="initial-body">
-    <Header />
+    <SessionHeader />
     <div className="init-body">
       <h1 className="tag">The Map for <br/> Runners and Cyclists</h1>
     </div>
   </div>
 )
 
-export default InitialPage;
+export default SplashPage;

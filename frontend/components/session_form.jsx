@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from './header'
+import SessionHeader from './session_header'
 export default class SessionForm extends React.Component {
   constructor(props){
     super(props)
@@ -11,6 +11,12 @@ export default class SessionForm extends React.Component {
     }
     this.update = this.update.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillMount(){
+    if (this.props.formType === 'Sign Up') {
+      this.state.username = ''
+    }
   }
 
   componentWillUnmount(nextProps) {
@@ -34,7 +40,8 @@ export default class SessionForm extends React.Component {
           value={this.state.username}
           onChange={this.update('username')}
           placeholder="   Create a Username"
-          className={this.state.focusedInput === 1 ? 'focused' : ''}
+          className={this.state.focusedInput === 1 ||
+            this.state.username != '' ? 'focused' : ''}
           onFocus={() => this.setState({focusedInput: 1})}
           />
         {this.props.errors.username &&
@@ -46,9 +53,8 @@ export default class SessionForm extends React.Component {
 
     return (
       <div>
-        <Header formType={this.props.formType} />
+        <SessionHeader formType={this.props.formType} />
         <div className={this.props.formType} >
-      
           <div className="session-box">
             <div className="form-title-box">
               <h2 className="form-head" >{this.props.formType}</h2>
@@ -66,7 +72,8 @@ export default class SessionForm extends React.Component {
                   value={this.state.email}
                   onChange={this.update('email')}
                   placeholder="   Email"
-                  className={this.state.focusedInput === 2 ? 'focused' : ''}
+                  className={this.state.focusedInput === 2 ||
+                    this.state.email != '' ? 'focused' : ''}
                   onFocus={() => this.setState({focusedInput: 2})}
                   />
                 {this.props.errors.email &&
@@ -78,7 +85,8 @@ export default class SessionForm extends React.Component {
                   value={this.state.password}
                   onChange={this.update('password')}
                   placeholder="   Password"
-                  className={this.state.focusedInput === 3 ? 'focused' : ''}
+                  className={this.state.focusedInput === 3 ||
+                    this.state.password != '' ? 'focused' : ''}
                   onFocus={() => this.setState({focusedInput: 3})}
                   />
                 {this.props.errors.password &&

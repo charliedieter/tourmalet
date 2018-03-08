@@ -1,13 +1,14 @@
 class Api::SessionsController < ApplicationController
 
   def create
+    debugger
     @user = User.find_by_creds(
-      params[:user][:username],
+      params[:user][:email],
       params[:user][:password])
 
     if @user
       login(@user)
-      render '/'
+      render '/api/users/show'
     else
       render json:
       ['The username or password did not match. Please try again.'], status: 422

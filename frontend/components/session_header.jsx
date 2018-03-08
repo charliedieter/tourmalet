@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Header = props => {
+const SessionHeader = props => {
   let signup =
   <div className="signup-button">
     <Link to='/signup' className="signup-link">Sign Up</Link>
@@ -29,4 +29,4 @@ const Header = props => {
   )
 }
 
-export default Header;
+export default SessionHeader;
