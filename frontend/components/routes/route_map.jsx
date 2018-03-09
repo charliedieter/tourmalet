@@ -6,7 +6,9 @@ export default class RouteMap extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      waypts: []
+      waypts: [],
+      travelMode: 'DRIVING',
+      polyline: new google.maps.Polyline
     }
     this.placeMarker.bind(this)
   }
@@ -28,7 +30,8 @@ export default class RouteMap extends React.Component {
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
-        const initialLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
+        const initialLocation =
+        new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
 
         this.map.panTo(initialLocation)
 
@@ -48,11 +51,53 @@ export default class RouteMap extends React.Component {
 
     const updated = this.state.waypts.concat(marker)
     this.setState({waypts: updated})
+    console.log(this.state.waypts[0])
     if (this.state.waypts.length > 1) this.renderRoute();
   }
 
   renderRoute(){
-    
+    const pts = this.state.waypts
+    const start = pts[0].position
+    const end = pts[pts.length - 1].position
+
+    const waypts = this.makeWayPts(pts.slice(1, -1))
+
+    const directionsService = new google.maps.DirectionsService;
+    const directionsDisplay = new google.maps.DirectionsRenderer
+    directionsDisplay.setMap(this.map)
+
+    directionsService.route({
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      travelMode: this.state.travelMode
+    }, (payload, status) => {
+      if (status === 'OK') {
+        this.clearWayPts()
+        directionsDisplay.setDirections(payload)
+        // look at payload to see elevation etc
+      } else {
+        alert("you done goofed and " + status)
+      }
+    })
+  }
+
+  makeWayPts(waypts) {
+    let result = []
+    for (var i = 0; i < waypts.length; i++) {
+      result.push({
+        location: waypts[i].position,
+        stopover: false
+      })
+    }
+    return result
+  }
+
+  clearWayPts(){
+    const pts = this.state.waypts
+    for (var i = 0; i < pts.length; i++ ) {
+      pts[i].setMap(null)
+    }
   }
 
   render() {
