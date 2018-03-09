@@ -9,8 +9,17 @@ import DashboardDropdown from './dropdown_components/dashboard_dropdown'
 class MainHeader extends React.Component {
 
   render() {
-    return (
-      <div className="main-header">
+
+   return ((this.props.map) ?
+    <div className="main-header">
+      <div className="header-left">
+        <h1 className="logo">Tourmalet</h1>
+      </div>
+      <div className="header-right">
+        <Link to='/dashboard'>Exit Builder</Link>
+      </div>
+    </div>
+  :  <div className="main-header">
         <div className="header-left">
           <h1 className="logo">Tourmalet</h1>
           <DashboardDropdown className="header-link"/>

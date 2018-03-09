@@ -17,7 +17,7 @@ export default class RouteDropdown extends React.Component {
     const items = (this.state.open === true) ?
     <ul className="right-ul">
     <li><Link to='/'>Add Manual Entry</Link></li>
-    <li><Link to='/'>Create a Route</Link></li>
+    <li><Link to='/routes/new'>Create a Route</Link></li>
     <li><Link to='/'>Add a Post</Link></li>
     </ul>
     : null
