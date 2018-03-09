@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 export default class MapHeader extends React.Component {
   constructor(props){
     super(props)
 
   }
+
+
 
   render() {
     return (
@@ -30,20 +33,58 @@ export default class MapHeader extends React.Component {
   }
 }
 
-const MapSearch = props => {
-  const input = <input className="search"
-     type="text" placeholder="Enter a Location"/>
-  const search = new google.maps.places.SearchBox(input)
-  const geocoder = new google.maps.Geocoder()
-  return (
-    <div className="search-div">
-      {input}
-      <div>
-      <button
-        onClick={() => geocoder.geocode(search.value,
-          (data) => props.map.panTo(data))}
-        ><i className="material-icons">search</i></button>
+class MapSearch extends React.Component {
+
+  componentDidMount(){
+    this.initSearchBox()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.map && nextProps.map) {
+      debugger
+      nextProps.map.addListener('bounds_changed', () => {
+        this.search.setBounds(this.props.map.getBounds());
+    })}
+  }
+
+  initSearchBox() {
+    let that = this
+
+    this.search = new google.maps.places.SearchBox(this.input)
+    this.search.addListener('places_changed', () => {
+      console.log(this.props)
+      const places = this.search.getPlaces()
+
+      places[0] ? this.props.map.panTo(places[0].geometry.location)
+      : alert(this.input.value + ' is not a valid location my dude.')
+    })
+  }
+
+  render() {
+    return (
+      <div className="search-div">
+        <div>
+          <input className="search"
+             type="text" placeholder="Enter a Location"
+             ref={(input) => this.input = input }/>
+        <button
+          onClick={() => console.log('hi')}
+          ><i className="material-icons">search</i></button>
+        </div>
       </div>
-    </div>
-  )
-}
+      )
+    }
+  }
+
+// const geocoder = new google.maps.Geocoder()
+// geocoder.geocode(search.value,
+//   (data) => props.map.panTo(data)
+
+// props.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
+// search.addListener('keyPress', () => {
+//         var places = search.getPlaces();
+//         console.log(places)
+//         if (places.length == 0) {
+//           return;
+//         }
+//       })

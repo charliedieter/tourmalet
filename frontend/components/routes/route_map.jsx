@@ -8,13 +8,15 @@ export default class RouteMap extends React.Component {
     super(props)
     this.state = {
       waypts: [],
-      travelMode: 'DRIVING'
+      travelMode: 'DRIVING',
+      map: null
     }
     this.placeMarker.bind(this)
   }
 
   componentDidMount(){
     this.initMap();
+    this.setState({map: this.map})
   }
 
   initMap() {
@@ -29,10 +31,10 @@ export default class RouteMap extends React.Component {
     this.map = new google.maps.Map(this.mapNode, mapOptions)
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     if (navigator.geolocation) {
+      debugger
       navigator.geolocation.getCurrentPosition(pos => {
         const initialLocation =
         new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
-
         this.map.panTo(initialLocation)
 
         google.maps.event.addListener(this.map, 'click', e => {
@@ -135,7 +137,7 @@ export default class RouteMap extends React.Component {
   render() {
     return (
       <div>
-        <MapHeader map={this.props.map}/>
+        <MapHeader map={this.map}/>
         <div id='map-container' ref={map => this.mapNode = map}></div>
       </div>
     )

@@ -35,7 +35,6 @@ export default class SessionForm extends React.Component {
 
   loginGuest(e){
     e.preventDefault()
-    debugger
     this.props.login({
       email: 'email@gmail.com',
       password: 'password'})
