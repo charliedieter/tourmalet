@@ -1,14 +1,14 @@
 import React from 'react'
 import mapStyle from './google_maps_styling.js'
-import MainHeader from '../main_header'
+import MapHeader from './map_header'
+
 export default class RouteMap extends React.Component {
 
   constructor(props){
     super(props)
     this.state = {
       waypts: [],
-      travelMode: 'DRIVING',
-      polyline: new google.maps.Polyline
+      travelMode: 'DRIVING'
     }
     this.placeMarker.bind(this)
   }
@@ -19,7 +19,7 @@ export default class RouteMap extends React.Component {
 
   initMap() {
     const mapOptions = {
-      center: { lat: 37.7758, lng: -122.435 },
+      center: { lat: 42.9149, lng: 0.1863 },
       zoom: 13,
       styles: mapStyle.tourmalet,
       disableDefaultUI: true,
@@ -35,14 +35,18 @@ export default class RouteMap extends React.Component {
 
         this.map.panTo(initialLocation)
 
-        google.maps.event.addListener(this.map, 'click', (event) => {
-          this.placeMarker(event.latLng)
+        google.maps.event.addListener(this.map, 'click', e => {
+          this.placeMarker(e.latLng)
         });
       });
     }
   }
 
   placeMarker(latLng){
+    // const icon = {
+    //   url: "https://image.flaticon.com/icons/svg/69/69434.svg",
+    //   scaledSize: new google.maps.Size(40, 40),
+    //   anchor: new google.maps.Point(25, 36)}
     const marker = new google.maps.Marker({
       position: latLng,
       map: this.map,
@@ -52,7 +56,10 @@ export default class RouteMap extends React.Component {
     const updated = this.state.waypts.concat(marker)
     this.setState({waypts: updated})
     console.log(this.state.waypts[0])
-    if (this.state.waypts.length > 1) this.renderRoute();
+    if (this.state.waypts.length > 1) {
+      this.renderRoute()
+      this.getElevationGain()
+    }
   }
 
   renderRoute(){
@@ -63,7 +70,11 @@ export default class RouteMap extends React.Component {
     const waypts = this.makeWayPts(pts.slice(1, -1))
 
     const directionsService = new google.maps.DirectionsService;
-    const directionsDisplay = new google.maps.DirectionsRenderer
+    const directionsDisplay = new google.maps.DirectionsRenderer({
+      suppressMarkers: true,
+      draggable: true
+    })
+    const polyLine = new google.maps.Polyline
     directionsDisplay.setMap(this.map)
 
     directionsService.route({
@@ -75,7 +86,7 @@ export default class RouteMap extends React.Component {
       if (status === 'OK') {
         this.clearWayPts()
         directionsDisplay.setDirections(payload)
-        // look at payload to see elevation etc
+
       } else {
         alert("you done goofed and " + status)
       }
@@ -95,15 +106,36 @@ export default class RouteMap extends React.Component {
 
   clearWayPts(){
     const pts = this.state.waypts
-    for (var i = 0; i < pts.length; i++ ) {
+    for (var i = 1; i < pts.length - 1; i++ ) {
       pts[i].setMap(null)
     }
+  }
+
+  getElevationGain(){
+    const elevator = new google.maps.ElevationService
+
+    elevator.getElevationAlongPath({
+      path: this.state.waypts.map(pt => pt.position),
+      samples: 256
+    }, (els, response) => {
+        if (response === 'OK'){
+
+          let totalElGain = 0
+          for (var i = 0; i < els.length - 1; i++) {
+            if (els[i].elevation < els[i + 1].elevation) {
+              totalElGain += els[i + 1].elevation - els[i].elevation
+            }
+          }
+          console.log(Math.round(totalElGain * 3.28084))
+        }
+      }
+    )
   }
 
   render() {
     return (
       <div>
-        <MainHeader map={true}/>
+        <MapHeader map={this.props.map}/>
         <div id='map-container' ref={map => this.mapNode = map}></div>
       </div>
     )

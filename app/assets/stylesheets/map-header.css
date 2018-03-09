@@ -1,0 +1,21 @@
+.control-head {
+  height: 50px;
+
+  background: #F1F1F1;
+  display: flex;
+}
+
+.search {
+  height: 45px;
+  width: 185px;
+  margin: auto;
+  margin-left: 50px;
+}
+
+.search-div {
+  display: flex;
+}
+.search-div button {
+  height: 45px;
+  width: 45px;
+}
