@@ -25,7 +25,10 @@ export default class RouteMap extends React.Component {
       zoom: 13,
       styles: mapStyle.tourmalet,
       disableDefaultUI: true,
-      zoomControl: true
+      zoomControl: true,
+      zoomControlOptions: {
+          position: google.maps.ControlPosition.LEFT_TOP
+        }
     }
 
     this.map = new google.maps.Map(this.mapNode, mapOptions)
@@ -56,15 +59,16 @@ export default class RouteMap extends React.Component {
 
     const updated = this.state.waypts.concat(marker)
     this.setState({waypts: updated})
-    console.log(this.state.waypts[0])
+
     if (this.state.waypts.length > 1) {
+      this.setElevationGain()
       this.renderRoute()
-      this.getElevationGain()
     }
   }
 
   renderRoute(){
     const pts = this.state.waypts
+    debugger
     const start = pts[0].position
     const end = pts[pts.length - 1].position
 
@@ -86,10 +90,11 @@ export default class RouteMap extends React.Component {
     }, (payload, status) => {
       if (status === 'OK') {
         this.clearWayPts()
+        this.setTravelTime(payload)
+        this.setDistance(payload)
         directionsDisplay.setDirections(payload)
-
       } else {
-        alert("you done goofed and " + status)
+        alert("I done goofed and " + status)
       }
     })
   }
@@ -112,7 +117,8 @@ export default class RouteMap extends React.Component {
     }
   }
 
-  getElevationGain(){
+  setElevationGain(){
+    debugger
     const elevator = new google.maps.ElevationService
 
     elevator.getElevationAlongPath({
@@ -127,17 +133,65 @@ export default class RouteMap extends React.Component {
               totalElGain += els[i + 1].elevation - els[i].elevation
             }
           }
-          console.log(Math.round(totalElGain * 3.28084))
+          this.setState({ el: Math.round(totalElGain * 3.28084)})
         }
       }
     )
   }
 
+  setTravelTime(payload){
+    const legs = payload.routes[0].legs
+    let secs = 0
+
+    for (var i = 0; i < legs.length; i++) {
+      secs += legs[i].duration.value
+    }
+
+    let hours = Math.floor(secs / 3600);
+    let minutes = Math.floor((secs - (hours * 3600)) / 60);
+    let seconds = secs - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) hours   = "0"+hours;
+    if (minutes < 10) minutes = "0"+minutes;
+    if (seconds < 10) seconds = "0"+seconds;
+
+    if (minutes === "00" && hours === "00" ) {
+      this.setState({time: `${seconds} s`})
+    } else if (hours === "00") {
+      this.setState({time: `${minutes}:${seconds}`})
+    } else {
+      this.setState({time: `${hours}:${minutes}:${seconds}`})
+    }
+  }
+
+  setDistance(payload){
+    debugger
+    const legs = payload.routes[0].legs
+    let meters = 0
+
+    for (var i = 0; i < legs.length; i++) {
+      meters += legs[i].distance.value
+    }
+    this.setState({
+      dist: parseFloat(Math.round((meters / 1609.344) * 100) / 100).toFixed(2)
+    })
+  }
+
+  clearMap() {
+
+  }
+
   render() {
+
     return (
       <div>
-        <MapHeader map={this.map}/>
+        <MapHeader
+          map={this.map}
+          el={this.state.el}
+          time={this.state.time}
+          dist={this.state.dist}/>
         <div id='map-container' ref={map => this.mapNode = map}></div>
+
       </div>
     )
   }
