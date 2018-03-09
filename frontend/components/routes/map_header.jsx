@@ -41,7 +41,7 @@ class MapSearch extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.map && nextProps.map) {
-      debugger
+      // debugger
       nextProps.map.addListener('bounds_changed', () => {
         this.search.setBounds(this.props.map.getBounds());
     })}
@@ -52,7 +52,6 @@ class MapSearch extends React.Component {
 
     this.search = new google.maps.places.SearchBox(this.input)
     this.search.addListener('places_changed', () => {
-      console.log(this.props)
       const places = this.search.getPlaces()
 
       places[0] ? this.props.map.panTo(places[0].geometry.location)
@@ -60,17 +59,40 @@ class MapSearch extends React.Component {
     })
   }
 
+  handleClick(e) {
+    e.preventDefault()
+    const geocoder = new google.maps.Geocoder()
+    const pos = new google.maps.LatLng(this.input.value)
+    debugger
+    this.props.map.panTo(pos)
+    // geocoder.geocode(this.input.value,
+    //   (data) => this.props.map.panTo(data))
+  }
+
   render() {
     return (
-      <div className="search-div">
-        <div>
+      <div className="search-container">
+        
+        <div className="search-div">
           <input className="search"
              type="text" placeholder="Enter a Location"
              ref={(input) => this.input = input }/>
-        <button
-          onClick={() => console.log('hi')}
+          <button
+            onClick={ this.handleClick.bind(this) }
           ><i className="material-icons">search</i></button>
         </div>
+
+        <div className="ride-run-cont">
+            <button className="ride-run">
+              <img src="https://image.flaticon.com/icons/png/128/130/130276.png"/>
+              <a>Ride</a>
+            </button>
+            <button className="ride-run">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"/>
+              <a>Run</a>
+            </button>
+        </div>
+
       </div>
       )
     }

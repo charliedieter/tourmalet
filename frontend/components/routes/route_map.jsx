@@ -31,7 +31,6 @@ export default class RouteMap extends React.Component {
     this.map = new google.maps.Map(this.mapNode, mapOptions)
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     if (navigator.geolocation) {
-      debugger
       navigator.geolocation.getCurrentPosition(pos => {
         const initialLocation =
         new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)

@@ -1,6 +1,6 @@
 .control-head {
-  height: 50px;
-
+  height: 55px;
+  width: 100%;
   background: #F1F1F1;
   display: flex;
 }
@@ -10,12 +10,47 @@
   width: 185px;
   margin: auto;
   margin-left: 50px;
+
+
 }
 
-.search-div {
+.search-container {
   display: flex;
+}
+
+.search-div  {
+  display: flex;
+  margin-top: 4px;
 }
 .search-div button {
   height: 45px;
   width: 45px;
+  color: #F1F1F1;
+  background: lightgrey;
+  border: 1px solid #F1F1F1;
+}
+
+/* .search-div button.ride-run {
+height: 55px;
+width: 55px;
+margin-top: -7px
+} */
+
+.ride-run-cont {
+  display: flex;
+  margin-left: 40px;
+}
+
+.ride-run-cont button {
+  height: 55px;
+  width: 55px;
+  margin-top: -4px
+  color: #F1F1F1;
+  background: lightgrey;
+  border: 1px solid #F1F1F1;
+}
+
+.ride-run-cont button img {
+  width: 30px;
+  margin-bottom: -8px
 }
