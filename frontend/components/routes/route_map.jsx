@@ -118,7 +118,7 @@ export default class RouteMap extends React.Component {
   }
 
   setElevationGain(){
-    debugger
+
     const elevator = new google.maps.ElevationService
 
     elevator.getElevationAlongPath({

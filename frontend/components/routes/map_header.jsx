@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import MapSearch from './map_search'
 import MapFooter from './map_footer'
 
 export default class MapHeader extends React.Component {
@@ -52,17 +53,17 @@ export default class MapHeader extends React.Component {
 
           <div className="ride-run-cont">
 
-              <button className={this.state.sel === 'Ride' ? 'ride selected' : 'ride'}
-                onClick={this.updateSel}>
-                <img src="https://image.flaticon.com/icons/png/128/130/130276.png"/>
-                <a>Ride</a>
-              </button>
+            <button className={this.state.sel === 'Ride' ? 'ride selected' : 'ride'}
+              onClick={this.updateSel}>
+              <img src="https://image.flaticon.com/icons/png/128/130/130276.png"/>
+              <a>Ride</a>
+            </button>
 
-              <button className={this.state.sel === 'Run' ? 'run selected' : 'run'}
-                onClick={this.updateSel}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"/>
-                <a>Run</a>
-              </button>
+            <button className={this.state.sel === 'Run' ? 'run selected' : 'run'}
+              onClick={this.updateSel}>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"/>
+              <a>Run</a>
+            </button>
 
           </div>
           <div className="header-right">
@@ -74,72 +75,12 @@ export default class MapHeader extends React.Component {
         el={this.props.el}
         type={this.state.sel}
         time={this.props.time}
-        dist={this.props.dist}/>
-
+        dist={this.props.dist}
+      />
     </div>
     )
   }
 }
-
-class MapSearch extends React.Component {
-
-  constructor(props){
-    super(props)
-
-    this.handleClick = this.handleClick.bind(this)
-
-  }
-
-  componentDidMount(){
-    this.initSearchBox()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.map && nextProps.map) {
-      nextProps.map.addListener('bounds_changed', () => {
-        this.search.setBounds(this.props.map.getBounds());
-    })}
-  }
-
-  initSearchBox() {
-    let that = this
-
-    this.search = new google.maps.places.SearchBox(this.input)
-    this.search.addListener('places_changed', () => {
-      const places = this.search.getPlaces()
-
-      places[0] ? this.props.map.panTo(places[0].geometry.location)
-      : alert(this.input.value + ' is not a valid location my dude.')
-    })
-  }
-
-  handleClick(e) {
-    e.preventDefault()
-    const pos = new google.maps.LatLng(this.input.value)
-    this.props.map.panTo(pos)
-  }
-
-  render() {
-    return (
-      <div className="search-container">
-
-        <div className="search-div">
-          <input className="search"
-             type="text" placeholder="Enter a Location"
-             ref={(input) => this.input = input }/>
-          <button
-            onClick={ this.handleClick }
-          ><i className="material-icons">search</i></button>
-        </div>
-
-
-
-      </div>
-      )
-    }
-  }
-
-
 
 // const geocoder = new google.maps.Geocoder()
 // geocoder.geocode(search.value,
