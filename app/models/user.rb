@@ -2,6 +2,9 @@ class User < ApplicationRecord
   validates :username, :email, presence: true, uniqueness: true
   validates :password, length: {within: 6..20, allow_nil: true}
 
+  has_many :activities,
+  foreign_key: :athlete_id
+
   attr_reader :password
 
   after_initialize :ensure_session_token

@@ -16,10 +16,13 @@ export default class MapHeader extends React.Component {
   updateSel(e){
     e.preventDefault()
     const sel = this.state.sel === 'Ride' ? 'Run' : 'Ride'
+    const mode = this.state.sel === 'Ride' ? 'WALKING' : 'BICYCLING'
+    this.props.toggleTravelMode(mode)
     this.setState({ sel })
   }
 
   render() {
+
     return (
       <div>
         <div className="main-header">
@@ -27,47 +30,54 @@ export default class MapHeader extends React.Component {
             <h1 className="logo">Tourmalet</h1>
           </div>
           <div className="header-right">
-            <Link to='/dashboard'>Exit Builder</Link>
+            <Link className="exit-link" to='/dashboard'>Exit Builder</Link>
           </div>
         </div>
 
         <div className="control-head">
-
           <div className="search-bar">
             <MapSearch map={this.props.map}/>
           </div>
 
-          <div className="undo-redo-cont">
+          <div className="route-tools">
+            <div className="undo-redo-cont">
 
-            <button className="undo">
-              <i className="material-icons">undo</i>
-              <a>Undo</a>
-            </button>
+              <button
+                onClick={this.props.undoLeg}
+                className="undo">
+                <i className="material-icons">undo</i>
+                <a>Undo</a>
+              </button>
 
-            <button className="clear">
-              <i className="material-icons">close</i>
-              <a>Clear</a>
-            </button>
+              <button
+                onClick={this.props.clearRoute}
+                className="clear">
+                <i className="material-icons">close</i>
+                <a>Clear</a>
+              </button>
 
+            </div>
+
+            <div className="ride-run-cont">
+
+              <button className={this.state.sel === 'Ride' ? 'ride selected' : 'ride'}
+                onClick={this.updateSel}>
+                <img src="https://image.flaticon.com/icons/png/128/130/130276.png"/>
+                <a>Ride</a>
+              </button>
+
+              <button className={this.state.sel === 'Run' ? 'run selected' : 'run'}
+                onClick={this.updateSel}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"/>
+                <a>Run</a>
+              </button>
+
+            </div>
           </div>
-
-          <div className="ride-run-cont">
-
-            <button className={this.state.sel === 'Ride' ? 'ride selected' : 'ride'}
-              onClick={this.updateSel}>
-              <img src="https://image.flaticon.com/icons/png/128/130/130276.png"/>
-              <a>Ride</a>
-            </button>
-
-            <button className={this.state.sel === 'Run' ? 'run selected' : 'run'}
-              onClick={this.updateSel}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"/>
-              <a>Run</a>
-            </button>
-
-          </div>
-          <div className="header-right">
-            <button className="save-button">Save</button>
+          <div className="save-button-cont">
+            <button
+              className="save-button"
+              >Save</button>
           </div>
         </div>
 

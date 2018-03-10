@@ -8,10 +8,12 @@ export default class RouteMap extends React.Component {
     super(props)
     this.state = {
       waypts: [],
-      travelMode: 'DRIVING',
+      travelMode: 'BICYCLING',
       map: null
     }
-    this.placeMarker.bind(this)
+    this.clearRoute = this.clearRoute.bind(this)
+    this.undoLeg = this.undoLeg.bind(this)
+    this.toggleTravelMode = this.toggleTravelMode.bind(this)
   }
 
   componentDidMount(){
@@ -28,7 +30,8 @@ export default class RouteMap extends React.Component {
       zoomControl: true,
       zoomControlOptions: {
           position: google.maps.ControlPosition.LEFT_TOP
-        }
+        },
+      bicyclingLayer: false
     }
 
     this.map = new google.maps.Map(this.mapNode, mapOptions)
@@ -47,14 +50,17 @@ export default class RouteMap extends React.Component {
   }
 
   placeMarker(latLng){
-    // const icon = {
-    //   url: "https://image.flaticon.com/icons/svg/69/69434.svg",
-    //   scaledSize: new google.maps.Size(40, 40),
-    //   anchor: new google.maps.Point(25, 36)}
+
+    const icon = {
+      url: "https://image.flaticon.com/icons/svg/33/33622.svg",
+      scaledSize: new google.maps.Size(40, 40)
+      }
+
     const marker = new google.maps.Marker({
       position: latLng,
       map: this.map,
-      title: String(this.state.waypts.length + 1)
+      title: String(this.state.waypts.length + 1),
+      icon
     })
 
     const updated = this.state.waypts.concat(marker)
@@ -68,33 +74,40 @@ export default class RouteMap extends React.Component {
 
   renderRoute(){
     const pts = this.state.waypts
-    debugger
+
     const start = pts[0].position
     const end = pts[pts.length - 1].position
 
     const waypts = this.makeWayPts(pts.slice(1, -1))
-
-    const directionsService = new google.maps.DirectionsService;
-    const directionsDisplay = new google.maps.DirectionsRenderer({
+    const polylineOptions = new google.maps.Polyline({
+    strokeColor: '#494442',
+    strokeOpacity: 1.0,
+    strokeWeight: 4
+    });
+    this.directionsService = new google.maps.DirectionsService;
+    this.directionsDisplay = new google.maps.DirectionsRenderer({
       suppressMarkers: true,
-      draggable: true
+      suppressBicyclingLayer: true,
+      draggable: false,
+      polylineOptions
     })
-    const polyLine = new google.maps.Polyline
-    directionsDisplay.setMap(this.map)
 
-    directionsService.route({
+    this.directionsDisplay.setMap(this.map)
+
+    this.directionsService.route({
       origin: start,
       destination: end,
       waypoints: waypts,
       travelMode: this.state.travelMode
     }, (payload, status) => {
       if (status === 'OK') {
+        this.poly = payload.routes[0].overview_polyline
         this.clearWayPts()
         this.setTravelTime(payload)
         this.setDistance(payload)
-        directionsDisplay.setDirections(payload)
+        this.directionsDisplay.setDirections(payload)
       } else {
-        alert("I done goofed and " + status)
+        alert("I goofed and " + status)
       }
     })
   }
@@ -113,6 +126,13 @@ export default class RouteMap extends React.Component {
   clearWayPts(){
     const pts = this.state.waypts
     for (var i = 1; i < pts.length - 1; i++ ) {
+      pts[i].setMap(null)
+    }
+  }
+
+  clearAllWayPts(){
+    const pts = this.state.waypts
+    for (var i = 0; i < pts.length; i++ ) {
       pts[i].setMap(null)
     }
   }
@@ -140,11 +160,11 @@ export default class RouteMap extends React.Component {
   }
 
   setTravelTime(payload){
-    const legs = payload.routes[0].legs
+    this.legs = payload.routes[0].legs
     let secs = 0
 
-    for (var i = 0; i < legs.length; i++) {
-      secs += legs[i].duration.value
+    for (var i = 0; i < this.legs.length; i++) {
+      secs += this.legs[i].duration.value
     }
 
     let hours = Math.floor(secs / 3600);
@@ -165,21 +185,44 @@ export default class RouteMap extends React.Component {
   }
 
   setDistance(payload){
-    debugger
-    const legs = payload.routes[0].legs
     let meters = 0
 
-    for (var i = 0; i < legs.length; i++) {
-      meters += legs[i].distance.value
+    for (var i = 0; i < this.legs.length; i++) {
+      meters += this.legs[i].distance.value
     }
     this.setState({
       dist: parseFloat(Math.round((meters / 1609.344) * 100) / 100).toFixed(2)
     })
   }
 
-  clearMap() {
+  clearRoute() {
+    this.directionsDisplay.setMap(null)
+    this.clearAllWayPts()
+    this.setState({
+      waypts: [],
+      dist: null,
+      time: null,
+      el: null
+    })
 
   }
+
+  undoLeg(){
+    const last = this.legs.slice(-1)
+    const waypts = this.state.waypts.slice(0, -1)
+    last.setMap(null)
+    this.setState({waypts})
+    this.renderRoute()
+  }
+
+  toggleTravelMode(travelMode) {
+    this.setState({ travelMode })
+    if (this.state.waypts.length >= 2) {
+      this.directionsDisplay.setMap(null)
+      this.renderRoute()
+    }
+  }
+
 
   render() {
 
@@ -189,7 +232,12 @@ export default class RouteMap extends React.Component {
           map={this.map}
           el={this.state.el}
           time={this.state.time}
-          dist={this.state.dist}/>
+          dist={this.state.dist}
+          clearRoute={this.clearRoute}
+          undoLeg={this.undoLeg}
+          toggleTravelMode={this.toggleTravelMode}
+          poly={this.poly}
+          />
         <div id='map-container' ref={map => this.mapNode = map}></div>
 
       </div>

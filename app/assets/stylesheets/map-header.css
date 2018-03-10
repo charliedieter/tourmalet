@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+  padding-left: -10px
 }
 
 .search {
@@ -13,6 +14,24 @@
   margin: auto;
   margin-left: 50px;
   outline: none;
+}
+
+.search  {
+  padding-left: 10px;
+}
+
+.pac-container, .pac-item {
+    width: 185;
+    margin-left: 2px;
+    outline: none;
+    border-style: none;
+    margin-top: -1px;
+    box-shadow-top:
+}
+
+
+.pac-icon {
+  color: white
 }
 
 .search-container {
@@ -32,8 +51,16 @@
   outline: none;
 }
 
+.route-tools {
+  display: flex;
+  margin: auto 0;
+  margin-left: -40px;
+  justify-content: space-between;
+  width: 300px
+}
+
 .undo-redo-cont {
-  margin: auto 20px;
+  margin: auto 0;
   display: flex;
 }
 
@@ -72,8 +99,8 @@
 
 .ride-run-cont {
   display: flex;
-  margin: auto 30px;
-  margin: auto;
+  margin: auto -5px;
+
 }
 
 .ride-run-cont button {
@@ -89,9 +116,7 @@
 }
 
 .ride-run-cont button.selected,
-.ride-run-cont button:active
-
- {
+.ride-run-cont button:active {
   background: lightgrey;
 }
 
@@ -108,21 +133,30 @@ button.run img {
 
 .header-right {
   display: flex;
+  width: 100px;
+  margin-right: 2%;
 }
-
+.save-button-cont {
+  display:flex;
+  margin: auto 3%;
+}
 .save-button {
-
   height: 38px;
   width: 80px;
-  display: flex;
   color: white;
   background: #fc4c02;
   border-radius: 5px;
-  text-align: center;
+  outline: none;
 }
 
+.header-right a {
+  margin: auto;
+}
 
+.header-right .exit-link {
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  font-size: 13px;
 
-.save-button:hover {
-  background: #c93d02;
 }
