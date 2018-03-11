@@ -41,20 +41,33 @@ export default class SessionForm extends React.Component {
   }
 
   render(){
-    const username = (this.props.formType === 'Sign Up') ?
-      <label>
-        <input
-          type="text"
-          value={this.state.username}
-          onChange={this.update('username')}
-          placeholder="   Create a Username"
-          className={this.state.focusedInput === 1 ||
-            this.state.username != '' ? 'focused' : ''}
-          onFocus={() => this.setState({focusedInput: 1})}
+    const newUserForm = (this.props.formType === 'Sign Up') ?
+      <div>
+        <label>
+          <input
+            type="text"
+            value={this.state.username}
+            onChange={this.update('username')}
+            placeholder="   Create a Username"
+            className={this.state.focusedInput === 1 ||
+              this.state.username != '' ? 'focused' : ''}
+            onFocus={() => this.setState({focusedInput: 1})}
+            />
+          {this.props.errors.username &&
+          <li>Username {this.props.errors.username}</li>}
+        </label>
+        <label>
+          <input
+            name="profile"
+            ref={field => (this.imageField = field)}
+            type="file"
+            accept="image/*"
+            multiple={false}
+            onChange={e => this.handleProfileImageChange(e)}
+            className="profile-img-input"
           />
-        {this.props.errors.username &&
-        <li>Username {this.props.errors.username}</li>}
-      </label>
+        </label>
+      </div>
       : null
 
       const imgSrc = (this.props.formType === 'Log In') ? window.login : window.signup
@@ -78,7 +91,7 @@ export default class SessionForm extends React.Component {
                   <li key={i}>{err}</li>)}
             </ul>
             <form onSubmit={this.handleSubmit}>
-              {username}
+              {newUserForm}
               <label>
                 <input
                   type="email"

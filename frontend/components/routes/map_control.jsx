@@ -38,7 +38,12 @@ export default class MapControl extends React.Component {
   render() {
 
     const modal = this.state.modalOpen ?
-     <MapSaveModal close={this.closeModal} poly={this.props.poly} />
+     <MapSaveModal
+       close={this.closeModal}
+       poly={this.props.poly}
+       el={this.props.el}
+       time={this.props.time}
+       dist={this.props.dist} />
      : null
 
     return (

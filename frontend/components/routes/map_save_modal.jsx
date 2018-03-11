@@ -17,16 +17,20 @@ class MapSaveModal extends React.Component {
 
   handleSave(e) {
     e.preventDefault()
-
     const activity = {
       polyline: this.props.poly,
       title: this.state.title,
       description: this.state.description,
-      athlete_id: this.props.currentUser.id
+      athlete_id: this.props.currentUser.id,
+      elevation: this.props.el,
+      est_moving_time: this.props.time,
+      distance: this.props.dist
     }
     let that = this
-    this.props.saveActivity(activity).then(payload => {
-      that.props.history.push(`/activities/${payload}`)
+    this.props.saveActivity(activity)
+    .then(payload => {
+      debugger
+      that.props.history.push(`/activities/${payload.activity.id}`)
     })
 
   }
