@@ -5,11 +5,11 @@ export const signup = ({username, email, password}) => (
   data: {user: {username, email, password}}
 }))
 
-export const login = ({username, email, password}) => (
+export const login = ({email, password}) => (
   $.ajax({
   url: 'api/session/',
   method: 'POST',
-  data: {user: {username, email, password}}
+  data: {user: {email, password}}
 }))
 
 export const logout = () => (

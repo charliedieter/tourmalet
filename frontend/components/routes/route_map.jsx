@@ -1,6 +1,6 @@
 import React from 'react'
 import mapStyle from './google_maps_styling.js'
-import MapHeader from './map_header'
+import MapControlContainer from './map_control_container'
 
 export default class RouteMap extends React.Component {
 
@@ -228,7 +228,7 @@ export default class RouteMap extends React.Component {
 
     return (
       <div>
-        <MapHeader
+        <MapControlContainer
           map={this.map}
           el={this.state.el}
           time={this.state.time}

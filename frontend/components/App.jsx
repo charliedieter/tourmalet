@@ -18,3 +18,5 @@ export const App = () => (
 )
 
 export default App;
+
+// <ProtectedRoute path="/activities/:activity_id" component ={RouteShow} />

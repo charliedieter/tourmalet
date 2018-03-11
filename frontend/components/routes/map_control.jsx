@@ -2,15 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import MapSearch from './map_search'
 import MapFooter from './map_footer'
+import MapSaveModal from './map_save_modal'
 
-export default class MapHeader extends React.Component {
+export default class MapControl extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      sel: 'Ride'
+      sel: 'Ride',
+      modalOpen: false
     }
     this.updateSel = this.updateSel.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.openModal = this.openModal.bind(this)
   }
 
   updateSel(e){
@@ -21,10 +25,27 @@ export default class MapHeader extends React.Component {
     this.setState({ sel })
   }
 
+  openModal(e) {
+    e.preventDefault()
+
+    this.setState({modalOpen: true})
+  }
+
+  closeModal() {
+    this.setState({modalOpen: false})
+  }
+
   render() {
+
+    const modal = this.state.modalOpen ?
+     <MapSaveModal close={this.closeModal} poly={this.props.poly} />
+     : null
 
     return (
       <div>
+
+        {modal}
+
         <div className="main-header">
           <div className="header-left">
             <h1 className="logo">Tourmalet</h1>
@@ -76,6 +97,7 @@ export default class MapHeader extends React.Component {
           </div>
           <div className="save-button-cont">
             <button
+              onClick={this.openModal}
               className="save-button"
               >Save</button>
           </div>
