@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import MainHeaderContainer from './main_header_container'
 import ProfileColumn from './profile_column'
-import ActivityFeed from './activity_feed'
+import ActivityFeed from './activity/activity_feed'
 
 class Dashboard extends React.Component {
 

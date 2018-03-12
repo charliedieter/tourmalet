@@ -1,0 +1,75 @@
+.activity-feed-item {
+  height: 400px;
+  /* width: 600px; */
+  background: white;
+  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
+  padding: 10px;
+  margin-right: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+.top-item-row {
+  display: flex;
+
+}
+
+
+
+.activity-feed-item .profile-pic {
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  display: flex;
+}
+
+.static-map-cont {
+  margin: 0 14px
+}
+
+.activity-feed-item h1 {
+  margin-left: 70px
+}
+
+.activity-feed-item ul {
+  display: flex;
+  width: 300px;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-top: -20px;
+
+
+}
+
+.activity-feed-item ul li {
+  font-size: 20px;
+
+}
+
+.activity-feed-item ul li a {
+  font-size: 12px;
+  color: lightgrey;
+  font-weight: 400;
+}
+
+button.liked {
+  color: #fc4c02;
+}
+
+
+.feed-item-buttons {
+  width: 110px;
+  margin-left: 440px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feed-item-buttons button {
+  background: #e6e6eb;
+  border: 1px solid #e6e6eb;
+  width: 45px;
+  margin: 10px;
+}

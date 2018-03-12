@@ -8,7 +8,7 @@ export default class RouteMap extends React.Component {
     super(props)
     this.state = {
       waypts: [],
-      travelMode: 'BICYCLING',
+      travelMode: 'WALKING',
       map: null
     }
     this.clearRoute = this.clearRoute.bind(this)
@@ -73,6 +73,7 @@ export default class RouteMap extends React.Component {
   }
 
   renderRoute(){
+    debugger
     const pts = this.state.waypts
 
     const start = pts[0].position
@@ -93,6 +94,8 @@ export default class RouteMap extends React.Component {
     })
 
     this.directionsDisplay.setMap(this.map)
+
+
 
     this.directionsService.route({
       origin: start,
@@ -216,11 +219,15 @@ export default class RouteMap extends React.Component {
   }
 
   toggleTravelMode(travelMode) {
-    this.setState({ travelMode })
-    if (this.state.waypts.length >= 2) {
+
+    console.log(travelMode + 'being passed into toggleTravelMode')
+    console.log(this)
+
+    this.setState({ travelMode }, () => {
       this.directionsDisplay.setMap(null)
       this.renderRoute()
-    }
+    });
+
   }
 
 

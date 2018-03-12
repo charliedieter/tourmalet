@@ -31,3 +31,11 @@ export const fetchActivities = () => (
     url: 'api/activities'
   })
 )
+
+export const createLike = activityId => (
+  $.ajax({
+    url: 'api/likes',
+    method: 'POST',
+    data: { activityId }
+  })
+)

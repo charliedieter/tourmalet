@@ -2,6 +2,7 @@ import * as API from '../util/activity_util'
 
 export const RECEIVE_ACTIVITY = 'RECEIVE_ACTIVITY'
 export const RECEIVE_ACTIVITIES = 'RECEIVE_ACTIVITIES'
+export const RECEIVE_LIKED_ACTIVITY = 'RECEIVE_LIKED_ACTIVITY'
 
 const receiveActivity = activity => ({
   type: RECEIVE_ACTIVITY,
@@ -11,6 +12,11 @@ const receiveActivity = activity => ({
 const receiveActivities = activities => ({
   type: RECEIVE_ACTIVITIES,
   activities
+})
+
+const receiveLikedActivity = activity => ({
+  type: RECEIVE_LIKED_ACTIVITY,
+  activity
 })
 
 export const saveActivity = activity => dispatch => {
@@ -27,3 +33,11 @@ export const fetchActivities = () => dispatch => {
   return API.fetchActivities()
   .then(acts => dispatch(receiveActivities(acts)))
 }
+
+export const createLike = activityId => dispatch => {
+  return API.createLike(activityId)
+  .then(act => dispatch(receiveLikedActivity(act)))
+}
+
+
+act => dispatch(receiveLikedActivity(act))

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const ProfileColumn = props => {
@@ -10,7 +10,8 @@ const ProfileColumn = props => {
 
       <div className="top-prof">
 
-      <div className="line-1">
+      <div className="line-1"
+        onClick={() => props.history.push(`/users/${props.currentUser.id}`)}>
         <img src="http://www.sessionlogs.com/media/icons/defaultIcon.png"/>
       </div>
 
@@ -22,20 +23,20 @@ const ProfileColumn = props => {
       <ul>
         <li>
           <a>
-            <div>Following</div>
-            <b></b>
+            <li>Following</li>
+            <li>{props.currentUser.followings.length}</li>
           </a>
         </li>
         <li>
           <a>
-            <div>Followers</div>
-            <b></b>
+            <li>Followers</li>
+            <li>{props.currentUser.followers.length}</li>
           </a>
         </li>
         <li>
           <a>
-            <div>Activities</div>
-            <b></b>
+            <li>Activities</li>
+            <li>{props.currentUser.activities.length}</li>
           </a>
         </li>
       </ul>
@@ -59,4 +60,4 @@ const msp = state => ({
   activities: Object.values(state.activities)
 })
 
-export default connect(msp, null)(ProfileColumn)
+export default withRouter(connect(msp, null)(ProfileColumn))

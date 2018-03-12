@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchActivities } from '../actions/activity_actions'
+import { fetchActivities } from '../../actions/activity_actions'
 import ActivityFeedItem from './activity_feed_item'
 
 class ActivityFeed extends React.Component {

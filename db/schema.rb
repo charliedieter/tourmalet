@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311084539) do
+ActiveRecord::Schema.define(version: 20180312153602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,33 @@ ActiveRecord::Schema.define(version: 20180311084539) do
     t.integer "elevation"
     t.string "distance"
     t.string "est_moving_time"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "author_id"
+    t.integer "activity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "follower_id"
+    t.integer "followed_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "liker_id"
+    t.integer "activity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
