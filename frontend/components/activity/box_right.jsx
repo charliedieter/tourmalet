@@ -9,7 +9,7 @@ const BoxRight = props => {
     <div className="box-right-cont">
 
       <div className="top-row">
-        <img />
+        <img src="http://www.sessionlogs.com/media/icons/defaultIcon.png"/>
         <div>
           <a className="name">By {props.currentUser.username}</a>
           <a className="date">Created on {props.activity.date}</a>

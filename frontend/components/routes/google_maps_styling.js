@@ -119,7 +119,18 @@ export default { "tourmalet" : [
     "featureType": "road.arterial",
     "stylers": [
       {
-        "weight": 1.5
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "stylers": [
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 1
       }
     ]
   },
@@ -148,10 +159,18 @@ export default { "tourmalet" : [
     ]
   },
   {
+    "featureType": "road.highway.controlled_access",
+    "stylers": [
+      {
+        "visibility": "simplified"
+      }
+    ]
+  },
+  {
     "featureType": "road.local",
     "stylers": [
       {
-        "weight": 2.5
+        "weight": 1
       }
     ]
   },

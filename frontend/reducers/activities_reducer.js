@@ -8,7 +8,7 @@ const activitiesReducer = (oldState = {}, action) => {
     case RECEIVE_ACTIVITY:
       return Object.assign({}, oldState, {current:  action.activity})
     case RECEIVE_ACTIVITIES:
-      return Object.assign({}, oldState, {activities: actions.activities })
+      return Object.assign({}, oldState, action.activities )
     default:
       return oldState
   }

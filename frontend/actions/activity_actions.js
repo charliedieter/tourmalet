@@ -8,12 +8,22 @@ const receiveActivity = activity => ({
   activity
 })
 
+const receiveActivities = activities => ({
+  type: RECEIVE_ACTIVITIES,
+  activities
+})
+
 export const saveActivity = activity => dispatch => {
   return API.saveActivity(activity)
-  .then(activity => dispatch(receiveActivity(activity)))
+  .then(act => dispatch(receiveActivity(act)))
 }
 
 export const fetchActivity = id => dispatch => {
   return API.fetchActivity(id)
-  .then(activity => dispatch(receiveActivity(activity)))
+  .then(act => dispatch(receiveActivity(act)))
+}
+
+export const fetchActivities = () => dispatch => {
+  return API.fetchActivities()
+  .then(acts => dispatch(receiveActivities(acts)))
 }

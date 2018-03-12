@@ -2,11 +2,13 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = user.find_by(params[:id])
-      @image = image_url :avatar.url(:medium)
+    debugger
+    @avatar_url = @user.avatar_url
   end
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       login(@user)
       @image = image_url :avatar.url(:medium)

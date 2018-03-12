@@ -29,7 +29,6 @@ class MapSaveModal extends React.Component {
     let that = this
     this.props.saveActivity(activity)
     .then(payload => {
-      debugger
       that.props.history.push(`/activities/${payload.activity.id}`)
     })
 

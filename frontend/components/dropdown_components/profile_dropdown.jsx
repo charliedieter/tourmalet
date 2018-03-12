@@ -25,9 +25,9 @@ class ProfileDropdown extends React.Component {
     return(
       <div
         className="dropdown-div"
-        onMouseEnter={this.mouseEventHandler}
-        onMouseLeave={this.mouseEventHandler}
-      ><img src={this.props.userImage}/>
+        onMouseEnter={ this.mouseEventHandler }
+        onMouseLeave={ this.mouseEventHandler }
+      ><img className="profile" src="http://www.sessionlogs.com/media/icons/defaultIcon.png"/>
     <i className="material-icons">keyboard_arrow_down</i>
       {items}
       </div>
@@ -35,8 +35,12 @@ class ProfileDropdown extends React.Component {
   }
 }
 
+const msp = state => ({
+  currentUser: state.session.currentUser
+})
+
 const mdp = dispatch => ({
   logout: () => dispatch(logout())
 })
 
-export default connect(null, mdp)(ProfileDropdown)
+export default connect(msp, mdp)(ProfileDropdown)

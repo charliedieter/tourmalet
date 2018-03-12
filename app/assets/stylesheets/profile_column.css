@@ -1,0 +1,72 @@
+.dash-main {
+  display: flex
+}
+
+.prof-box {
+  margin: 60px 140px;
+  width: 300px;
+  height: 300px;
+  background: white;
+  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
+}
+.top-prof {
+/* display: flex; */
+}
+.top-prof div {
+  width: 90px;
+  height: 90px;
+}
+
+.top-prof .line-1 img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-top: -45px;
+  margin-left: 105px;
+  display: block;
+}
+
+.top-prof .line-2 {
+
+  width: 300px;
+  height: 30px;
+  text-align: center;
+  font-size: 28px;
+
+}
+
+.line-2 div {
+  margin: auto
+}
+
+.line-3 {
+  display: flex;
+  margin: 0 30px;
+}
+.line-3 ul {
+  display: flex;
+
+}
+
+li a div {
+  font-weight: 400;
+}
+
+.prof-link-div {
+  display: flex;
+}
+
+.prof-link-div a {
+  text-decoration: none;
+  color: black;
+  margin: auto;
+  display: flex
+}
+.prof-link-div a b {
+font-weight: 400;
+margin: 12px auto;
+
+}
+.prof-link-div a i {
+  margin-top: 10px
+}

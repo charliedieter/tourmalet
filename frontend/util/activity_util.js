@@ -25,3 +25,9 @@ export const fetchActivity = id => (
     url: `api/activities/${id}`
   })
 )
+
+export const fetchActivities = () => (
+  $.ajax({
+    url: 'api/activities'
+  })
+)

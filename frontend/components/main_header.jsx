@@ -19,7 +19,7 @@ class MainHeader extends React.Component {
         </div>
         <div className="header-right">
           <AlertDropdown alerts={['1','2','3']} />
-          <ProfileDropdown />
+          <ProfileDropdown currentUser={ this.props.currentUser }/>
           <RouteDropdown />
         </div>
       </div>

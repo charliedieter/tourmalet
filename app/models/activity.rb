@@ -8,4 +8,7 @@ class Activity < ApplicationRecord
     Activity.where(athlete_id: id)
   end
 
+  def created
+    self.created_at.to_date.to_formatted_s(:long_ordinal)
+  end
 end

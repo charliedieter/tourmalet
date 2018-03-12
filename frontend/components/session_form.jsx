@@ -12,6 +12,7 @@ export default class SessionForm extends React.Component {
     }
     this.update = this.update.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.loginGuest = this.loginGuest.bind(this)
   }
 
   componentWillMount(){
@@ -72,7 +73,7 @@ export default class SessionForm extends React.Component {
 
       const imgSrc = (this.props.formType === 'Log In') ? window.login : window.signup
       const guest = (this.props.formType === 'Log In') ? <div className="button-holster">
-        <button onClick={()=> this.loginGuest.bind(this)}>
+        <button onClick={this.loginGuest}>
         Log In as Guest</button>
       </div>
       :null

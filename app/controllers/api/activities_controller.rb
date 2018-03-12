@@ -11,7 +11,9 @@ class Api::ActivitiesController < ApplicationController
   end
 
   def index
+
     @activities = Activity.all
+    # eventually filter by currentUser's followers
   end
 
   def show
