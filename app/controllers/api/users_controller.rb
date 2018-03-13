@@ -1,9 +1,8 @@
 class Api::UsersController < ApplicationController
 
   def show
-    @user = user.find_by(params[:id])
-    
-    @avatar_url = @user.avatar_url
+
+    @user = User.find(params[:id])
   end
 
   def create
@@ -16,6 +15,10 @@ class Api::UsersController < ApplicationController
     else
       render json: @user.errors, status: 422
     end
+  end
+
+  def index
+    @users = User.all
   end
 
   def user_params

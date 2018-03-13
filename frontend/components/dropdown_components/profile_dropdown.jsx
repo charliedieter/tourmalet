@@ -33,16 +33,18 @@ class ProfileDropdown extends React.Component {
         onMouseEnter={this.mouseEventHandler}
         onMouseLeave={this.mouseEventHandler}
       >
-        <img className="profile" src={currentUser.avatar_url} />
-        <i className="material-icons">keyboard_arrow_down</i>
-        {items}
+        <div className="profile-dropdown-inner">
+          <img className="profile" src={this.props.currentUser.avatar_url} />
+          <i className="material-icons">keyboard_arrow_down</i>
+          {items}
+        </div>
       </div>
     );
   }
 }
 
 const msp = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser.user
 });
 
 const mdp = dispatch => ({

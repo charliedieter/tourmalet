@@ -1,79 +1,97 @@
 .dash-main {
-  display: flex
+  /* display: flex; */
 }
 
 .prof-cont {
   display: flex;
   margin-top: 50px;
   width: 16%;
+  position: fixed;
+}
+
+.fixed-prof {
 }
 
 .prof-box {
   width: 300px;
   height: 300px;
   background: white;
-  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
+  box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
   margin: 100px 100px;
+  display: flex;
+  flex-direction: column;
 }
 .top-prof {
-/* display: flex; */
+  /* display: flex; */
 }
-.top-prof div {
+.top-prof .line-1 {
   width: 90px;
   height: 90px;
 }
 
 .top-prof .line-1 img {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  margin-top: -45px;
-  margin-left: 105px;
+  margin-top: -50px;
+  margin-left: 100px;
   display: block;
-  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
+  box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
 }
 
 .top-prof .line-2 {
-
   width: 300px;
   height: 30px;
   text-align: center;
-  font-size: 28px;
-
+  font-size: 35px;
+  margin: 12px auto;
 }
 
 .line-2 div {
-  margin: auto
+  margin: auto;
 }
 
 .line-3 {
-  display: flex;
   margin: 0 30px;
 }
 .line-3 ul {
   display: flex;
-
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-li a div {
-  font-weight: 400;
-}
-
-.prof-link-div {
+.line-3-row a {
   display: flex;
+  flex-direction: column;
+  height: 60px;
 }
 
-.prof-link-div a {
+.line-3-row a div {
+  font-weight: 400;
+  margin: auto;
+}
+
+.line-3-row a .num {
+  font-size: 26px;
+}
+
+.prof-links-cont {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+}
+
+.prof-links-cont a {
   text-decoration: none;
   color: black;
+  display: flex;
   margin: auto;
-  display: flex
 }
-.prof-link-div a b {
-font-weight: 400;
-margin: 12px auto;
-
+.prof-links-cont a b {
+  font-weight: 400;
+  margin: 12px auto;
 }
-.prof-link-div a i {
-  margin-top: 10px
+.prof-links-cont a i {
+  margin-top: 10px;
 }

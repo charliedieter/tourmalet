@@ -1,10 +1,10 @@
 .map-show-body {
-  margin-top: 75px
+  margin-top: 10px;
+  margin-left: 50px;
 }
 
 .map-graph-cont {
-  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
-
+  box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
 }
 
 .chart-cont {
@@ -12,17 +12,12 @@
   height: 150;
   z-index: 2;
   margin-top: -20px;
-
 }
 
 #map-show-container {
   width: 900px;
   height: 400px;
   /* box-shadow: 0px 8px 24px rgba(13,13,18,0.16); */
-}
-
-.map-show-body {
-  margin-left: 50px;
 }
 
 .index-link {
@@ -35,20 +30,19 @@
   font-size: 14px;
   margin: auto 0;
   text-decoration: none;
-  color: black
+  color: black;
 }
 
 .ac-title {
   font-weight: 400;
-  margin:auto;
+  margin: auto;
   display: flex;
 }
-
 
 .ac-title img {
   width: 40px;
   height: 40px;
-  margin-right: 40px
+  margin-right: 40px;
 }
 
 .map-show-cont {
@@ -56,22 +50,22 @@
 }
 
 .index-link {
-
 }
 
 .map-row {
-  display: flex
+  display: flex;
 }
 
 .map-show-cont {
   width: 900px;
 }
 
+/*  STATS BOX*/
+
 .box-right-cont {
   margin: 100px auto;
   height: 100;
   width: 300px;
-
 }
 
 .top-row {
@@ -87,7 +81,9 @@
   height: 90px;
   width: 90px;
   border-radius: 50%;
-  box-shadow: 0px 8px 24px rgba(13,13,18,0.16);
+  box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
+  margin-bottom: 20px;
+  margin-right: 10px;
 }
 
 .top-row .name {
@@ -126,7 +122,7 @@
   font-size: 12px;
   font-weight: 400px;
   color: lightgrey;
-  margin: auto
+  margin: auto;
 }
 
 .moving-time {

@@ -1,24 +1,23 @@
-import React from 'react'
-import mapStyle from './google_maps_styling.js'
-import MapControlContainer from './map_control_container'
+import React from "react";
+import mapStyle from "./google_maps_styling.js";
+import MapControlContainer from "./map_control_container";
 
 export default class RouteMap extends React.Component {
-
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       waypts: [],
-      travelMode: 'WALKING',
+      travelMode: "WALKING",
       map: null
-    }
-    this.clearRoute = this.clearRoute.bind(this)
-    this.undoLeg = this.undoLeg.bind(this)
-    this.toggleTravelMode = this.toggleTravelMode.bind(this)
+    };
+    this.clearRoute = this.clearRoute.bind(this);
+    this.undoLeg = this.undoLeg.bind(this);
+    this.toggleTravelMode = this.toggleTravelMode.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.initMap();
-    this.setState({map: this.map})
+    this.setState({ map: this.map });
   }
 
   initMap() {
@@ -29,208 +28,205 @@ export default class RouteMap extends React.Component {
       disableDefaultUI: true,
       zoomControl: true,
       zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP
-        },
+        position: google.maps.ControlPosition.LEFT_TOP
+      },
       bicyclingLayer: false
-    }
+    };
 
-    this.map = new google.maps.Map(this.mapNode, mapOptions)
+    this.map = new google.maps.Map(this.mapNode, mapOptions);
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
-        const initialLocation =
-        new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)
-        this.map.panTo(initialLocation)
+        const initialLocation = new google.maps.LatLng(
+          pos.coords.latitude,
+          pos.coords.longitude
+        );
+        this.map.panTo(initialLocation);
 
-        google.maps.event.addListener(this.map, 'click', e => {
-          this.placeMarker(e.latLng)
+        google.maps.event.addListener(this.map, "click", e => {
+          this.placeMarker(e.latLng);
         });
       });
     }
   }
 
-  placeMarker(latLng){
-
+  placeMarker(latLng) {
     const icon = {
       url: "https://image.flaticon.com/icons/svg/33/33622.svg",
       scaledSize: new google.maps.Size(40, 40)
-      }
+    };
 
     const marker = new google.maps.Marker({
       position: latLng,
       map: this.map,
       title: String(this.state.waypts.length + 1),
       icon
-    })
+    });
 
-    const updated = this.state.waypts.concat(marker)
-    this.setState({waypts: updated})
+    const updated = this.state.waypts.concat(marker);
+    this.setState({ waypts: updated });
 
     if (this.state.waypts.length > 1) {
-      this.setElevationGain()
-      this.renderRoute()
+      this.setElevationGain();
+      this.renderRoute();
     }
   }
 
-  renderRoute(){
-    const pts = this.state.waypts
+  renderRoute() {
+    const pts = this.state.waypts;
 
-    const start = pts[0].position
-    const end = pts[pts.length - 1].position
+    const start = pts[0].position;
+    const end = pts[pts.length - 1].position;
 
-    const waypts = this.makeWayPts(pts.slice(1, -1))
+    const waypts = this.makeWayPts(pts.slice(1, -1));
     const polylineOptions = new google.maps.Polyline({
-    strokeColor: '#494442',
-    strokeOpacity: 1.0,
-    strokeWeight: 4
+      strokeColor: "#494442",
+      strokeOpacity: 1.0,
+      strokeWeight: 4
     });
-    this.directionsService = new google.maps.DirectionsService;
+    this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer({
       suppressMarkers: true,
       suppressBicyclingLayer: true,
       draggable: false,
       polylineOptions
-    })
+    });
 
-    this.directionsDisplay.setMap(this.map)
+    this.directionsDisplay.setMap(this.map);
 
-
-
-    this.directionsService.route({
-      origin: start,
-      destination: end,
-      waypoints: waypts,
-      travelMode: this.state.travelMode
-    }, (payload, status) => {
-      if (status === 'OK') {
-        this.poly = payload.routes[0].overview_polyline
-        this.clearWayPts()
-        this.setTravelTime(payload)
-        this.setDistance(payload)
-        this.directionsDisplay.setDirections(payload)
-      } else {
-        alert("I goofed and " + status)
+    this.directionsService.route(
+      {
+        origin: start,
+        destination: end,
+        waypoints: waypts,
+        travelMode: this.state.travelMode
+      },
+      (payload, status) => {
+        if (status === "OK") {
+          this.poly = payload.routes[0].overview_polyline;
+          this.clearWayPts();
+          this.setTravelTime(payload);
+          this.setDistance(payload);
+          this.directionsDisplay.setDirections(payload);
+        } else {
+          alert("I goofed and " + status);
+        }
       }
-    })
+    );
   }
 
   makeWayPts(waypts) {
-    let result = []
+    let result = [];
     for (var i = 0; i < waypts.length; i++) {
       result.push({
         location: waypts[i].position,
         stopover: false
-      })
+      });
     }
-    return result
+    return result;
   }
 
-  clearWayPts(){
-    const pts = this.state.waypts
-    for (var i = 1; i < pts.length - 1; i++ ) {
-      pts[i].setMap(null)
-    }
-  }
-
-  clearAllWayPts(){
-    const pts = this.state.waypts
-    for (var i = 0; i < pts.length; i++ ) {
-      pts[i].setMap(null)
+  clearWayPts() {
+    const pts = this.state.waypts;
+    for (var i = 1; i < pts.length - 1; i++) {
+      pts[i].setMap(null);
     }
   }
 
-  setElevationGain(){
+  clearAllWayPts() {
+    const pts = this.state.waypts;
+    for (var i = 0; i < pts.length; i++) {
+      pts[i].setMap(null);
+    }
+  }
 
-    const elevator = new google.maps.ElevationService
+  setElevationGain() {
+    const elevator = new google.maps.ElevationService();
 
-    elevator.getElevationAlongPath({
-      path: this.state.waypts.map(pt => pt.position),
-      samples: 256
-    }, (els, response) => {
-        if (response === 'OK'){
-
-          let totalElGain = 0
+    elevator.getElevationAlongPath(
+      {
+        path: this.state.waypts.map(pt => pt.position),
+        samples: 256
+      },
+      (els, response) => {
+        if (response === "OK") {
+          let totalElGain = 0;
           for (var i = 0; i < els.length - 1; i++) {
             if (els[i].elevation < els[i + 1].elevation) {
-              totalElGain += els[i + 1].elevation - els[i].elevation
+              totalElGain += els[i + 1].elevation - els[i].elevation;
             }
           }
-          this.setState({ el: Math.round(totalElGain * 3.28084)})
+          this.setState({ el: Math.round(totalElGain * 3.28084) });
         }
       }
-    )
+    );
   }
 
-  setTravelTime(payload){
-    this.legs = payload.routes[0].legs
-    let secs = 0
+  setTravelTime(payload) {
+    this.legs = payload.routes[0].legs;
+    let secs = 0;
 
     for (var i = 0; i < this.legs.length; i++) {
-      secs += this.legs[i].duration.value
+      secs += this.legs[i].duration.value;
     }
 
     let hours = Math.floor(secs / 3600);
-    let minutes = Math.floor((secs - (hours * 3600)) / 60);
-    let seconds = secs - (hours * 3600) - (minutes * 60);
+    let minutes = Math.floor((secs - hours * 3600) / 60);
+    let seconds = secs - hours * 3600 - minutes * 60;
 
-    if (hours   < 10) hours   = "0"+hours;
-    if (minutes < 10) minutes = "0"+minutes;
-    if (seconds < 10) seconds = "0"+seconds;
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
 
-    if (minutes === "00" && hours === "00" ) {
-      this.setState({time: `${seconds} s`})
+    if (minutes === "00" && hours === "00") {
+      this.setState({ time: `${seconds} s` });
     } else if (hours === "00") {
-      this.setState({time: `${minutes}:${seconds}`})
+      this.setState({ time: `${minutes}:${seconds}` });
     } else {
-      this.setState({time: `${hours}:${minutes}:${seconds}`})
+      this.setState({ time: `${hours}:${minutes}:${seconds}` });
     }
   }
 
-  setDistance(payload){
-    let meters = 0
+  setDistance(payload) {
+    let meters = 0;
 
     for (var i = 0; i < this.legs.length; i++) {
-      meters += this.legs[i].distance.value
+      meters += this.legs[i].distance.value;
     }
     this.setState({
-      dist: parseFloat(Math.round((meters / 1609.344) * 100) / 100).toFixed(2)
-    })
+      dist: parseFloat(Math.round(meters / 1609.344 * 100) / 100).toFixed(2)
+    });
   }
 
   clearRoute() {
-    this.directionsDisplay.setMap(null)
-    this.clearAllWayPts()
+    this.directionsDisplay.setMap(null);
+    this.clearAllWayPts();
     this.setState({
       waypts: [],
       dist: null,
       time: null,
       el: null
-    })
-
+    });
   }
 
-  undoLeg(){
-    const last = this.legs.slice(-1)
-    const waypts = this.state.waypts.slice(0, -1)
-    last.setMap(null)
-    this.setState({waypts})
-    this.renderRoute()
+  undoLeg() {
+    const last = this.legs.slice(-1);
+    const waypts = this.state.waypts.slice(0, -1);
+    last.setMap(null);
+    this.setState({ waypts });
+    this.renderRoute();
   }
 
   toggleTravelMode(travelMode) {
-
     this.setState({ travelMode }, () => {
       if (this.state.waypts.length > 1) {
-        this.directionsDisplay.setMap(null)
-        this.renderRoute()
+        this.directionsDisplay.setMap(null);
+        this.renderRoute();
       }
     });
-
   }
 
-
   render() {
-
     return (
       <div>
         <MapControlContainer
@@ -242,10 +238,9 @@ export default class RouteMap extends React.Component {
           undoLeg={this.undoLeg}
           toggleTravelMode={this.toggleTravelMode}
           poly={this.poly}
-          />
-        <div id='map-container' ref={map => this.mapNode = map}></div>
-
+        />
+        <div id="map-container" ref={map => (this.mapNode = map)} />
       </div>
-    )
+    );
   }
 }

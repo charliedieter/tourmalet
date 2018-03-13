@@ -2,22 +2,26 @@ import {
   RECEIVE_ACTIVITY,
   RECEIVE_ACTIVITIES,
   RECEIVE_LIKED_ACTIVITY
-       } from '../actions/activity_actions'
+} from "../actions/activity_actions";
+
+import { RECEIVE_USER } from "../actions/user_actions";
 
 const activitiesReducer = (oldState = {}, action) => {
-
-  Object.freeze(oldState)
+  Object.freeze(oldState);
 
   switch (action.type) {
     case RECEIVE_ACTIVITY:
-      return Object.assign({}, oldState, {current:  action.activity})
+      return Object.assign({}, oldState, { current: action.activity });
     case RECEIVE_LIKED_ACTIVITY:
-      return Object.assign({}, oldState, {[action.activity.id]: action.activity})
+      return Object.assign({}, oldState, {
+        [action.activity.id]: action.activity
+      });
+    case RECEIVE_USER:
     case RECEIVE_ACTIVITIES:
-      return Object.assign({}, oldState, action.activities )
+      return Object.assign({}, oldState, action.activities);
     default:
-      return oldState
+      return oldState;
   }
-}
+};
 
 export default activitiesReducer;
