@@ -1,6 +1,7 @@
 import React from 'react'
 import mapStyle from '../routes/google_maps_styling'
 
+
 class Map extends React.Component {
   constructor(props) {
     super(props)
@@ -31,7 +32,7 @@ class Map extends React.Component {
       strokeWeight: 4,
       path: this.path
     });
-    debugger
+    
     poly.setMap(this.map)
     this.placeMarkers()
   }

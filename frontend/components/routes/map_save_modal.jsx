@@ -24,7 +24,8 @@ class MapSaveModal extends React.Component {
       athlete_id: this.props.currentUser.id,
       elevation: this.props.el,
       est_moving_time: this.props.time,
-      distance: this.props.dist
+      distance: this.props.dist,
+      type: this.props.type
     }
     let that = this
     this.props.saveActivity(activity)

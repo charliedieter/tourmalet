@@ -17,15 +17,11 @@ export default class MapControl extends React.Component {
     this.openModal = this.openModal.bind(this)
   }
 
-  componentWillReceiveProps(next) {
-    console.log(next )
-  }
-
   updateSel(e){
     e.preventDefault()
     const sel = this.state.sel === 'Ride' ? 'Run' : 'Ride'
     const mode = this.state.sel === 'Ride' ? 'WALKING' : 'BICYCLING'
-    console.log(mode+ 'being called in updateSel in map_control')
+    
     this.props.toggleTravelMode(mode)
     this.setState({ sel })
   }
@@ -48,7 +44,8 @@ export default class MapControl extends React.Component {
        poly={this.props.poly}
        el={this.props.el}
        time={this.props.time}
-       dist={this.props.dist} />
+       dist={this.props.dist}
+       type={this.state.sel}/>
      : null
 
     return (

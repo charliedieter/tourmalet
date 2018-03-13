@@ -39,5 +39,7 @@ export const createLike = activityId => dispatch => {
   .then(act => dispatch(receiveLikedActivity(act)))
 }
 
-
-act => dispatch(receiveLikedActivity(act))
+export const createComment = (activityId, authorId) => {
+  return API.createComment(activityId, authorId)
+  .then(activity => dispatch(receiveActivity(activity)))
+}

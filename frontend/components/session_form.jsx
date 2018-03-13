@@ -57,17 +57,6 @@ export default class SessionForm extends React.Component {
           {this.props.errors.username &&
           <li>Username {this.props.errors.username}</li>}
         </label>
-        <label>
-          <input
-            name="profile"
-            ref={field => (this.imageField = field)}
-            type="file"
-            accept="image/*"
-            multiple={false}
-            onChange={e => this.handleProfileImageChange(e)}
-            className="profile-img-input"
-          />
-        </label>
       </div>
       : null
 
@@ -120,7 +109,9 @@ export default class SessionForm extends React.Component {
                 <li>Password {this.props.errors.password}</li>}
               </label>
               <div className="button-holster">
-                <button>Log In</button>
+                <button>
+                  {this.props.formType === 'Sign Up' ? 'Sign Up' : 'Log In'}
+                </button>
               </div>
               {guest}
             </form>

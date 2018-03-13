@@ -1,23 +1,28 @@
-export const saveActivity = (
-  {polyline,
+export const saveActivity = ({
+    polyline,
     title,
     description,
     athlete_id,
     est_moving_time,
     distance,
-    elevation}) => (
+    elevation,
+    type
+  }) => (
   $.ajax({
   url: 'api/activities',
   method: 'POST',
-  data: { activity:
-    {polyline,
+  data: {
+    activity: {
+      polyline,
       title,
       description,
       athlete_id,
       est_moving_time,
       distance,
-      elevation}
+      elevation,
+      type_of: type
     }
+  }
 }))
 
 export const fetchActivity = id => (
@@ -37,5 +42,13 @@ export const createLike = activityId => (
     url: 'api/likes',
     method: 'POST',
     data: { activityId }
+  })
+)
+
+export const createComment = (activityId, authorId, content) => (
+  $.ajax({
+    url: 'api/comments',
+    method: 'POST',
+    data: { activityId, authorId, content }
   })
 )

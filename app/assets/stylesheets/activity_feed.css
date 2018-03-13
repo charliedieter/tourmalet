@@ -6,7 +6,10 @@
 
 
 .activity-feed {
-  margin-top: 60px
+  margin-top: 60px;
+  width: 66.66666667%;
+
+  
 }
 
 .activity-feed li{

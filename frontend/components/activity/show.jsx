@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import BoxRight from './box_right'
+import ElevationGraph from './elevation'
 import MainHeader from '../main_header'
 import Map from './map'
 import { fetchActivity } from '../../actions/activity_actions'
@@ -9,7 +10,6 @@ import { Link } from 'react-router-dom'
 class ActivityShow extends React.Component {
 
   componentDidMount() {
-    debugger
     this.props.fetchActivity(this.props.match.params.activityId)
   }
 
@@ -31,9 +31,15 @@ class ActivityShow extends React.Component {
             <a>&nbsp;/&nbsp;{activity.title}</a>
           </div>
 
-          <h1 className="ac-title">{activity.title}</h1>
+          <h1 className="ac-title"><img src={activity.type_of === 'Ride' ?
+            "https://image.flaticon.com/icons/png/128/130/130276.png" :
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/Running_shoe_icon.png"}
+            />{activity.title}</h1>
           <div className="map-row">
-            <Map polyline={activity.polyline}/>
+            <div className="map-graph-container">
+              <Map polyline={activity.polyline}/>
+              <ElevationGraph polyline={activity.polyline}/>
+            </div>
             <BoxRight />
           </div>
         </div>

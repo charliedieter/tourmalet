@@ -2,7 +2,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = user.find_by(params[:id])
-    debugger
+    
     @avatar_url = @user.avatar_url
   end
 

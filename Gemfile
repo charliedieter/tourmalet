@@ -14,7 +14,9 @@ gem 'pry-rails'
 gem 'annotate'
 gem 'bcrypt'
 gem 'jquery-rails'
-gem "paperclip", "~> 5.2.1"
+gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '< 3.0'
+gem 'figaro'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

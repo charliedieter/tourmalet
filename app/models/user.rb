@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_attached_file :avatar,
   styles: { medium: "300x300>", thumb: "100x100>" },
-  default_url: "/assets/images/default_profile.png"
+  default_url: "/images/default_profile.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
@@ -18,10 +18,6 @@ class User < ApplicationRecord
   attr_reader :password
 
   after_initialize :ensure_session_token
-
-  def avatar_url
-    avatar.url(:medium)
-  end
 
   def password=(pwd)
     self.password_digest = BCrypt::Password.create(pwd)

@@ -73,7 +73,6 @@ export default class RouteMap extends React.Component {
   }
 
   renderRoute(){
-    debugger
     const pts = this.state.waypts
 
     const start = pts[0].position
@@ -220,12 +219,11 @@ export default class RouteMap extends React.Component {
 
   toggleTravelMode(travelMode) {
 
-    console.log(travelMode + 'being passed into toggleTravelMode')
-    console.log(this)
-
     this.setState({ travelMode }, () => {
-      this.directionsDisplay.setMap(null)
-      this.renderRoute()
+      if (this.state.waypts.length > 1) {
+        this.directionsDisplay.setMap(null)
+        this.renderRoute()
+      }
     });
 
   }

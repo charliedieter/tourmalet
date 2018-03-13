@@ -8,7 +8,6 @@ const StaticMap = props => {
 
   return (
     <div onClick={() => props.history.push(`/activities/${props.idx}`)}>
-
       <img src={ url } className="static-map" />
     </div>
   )

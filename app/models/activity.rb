@@ -1,5 +1,5 @@
 class Activity < ApplicationRecord
-  validates :title, :polyline, :athlete_id, presence: true
+  validates :title, :polyline, :athlete_id, :type_of, presence: true
   validates :title, length: { maximum: 20 }
   belongs_to :user, foreign_key: :athlete_id
   has_many :comments
@@ -13,4 +13,7 @@ class Activity < ApplicationRecord
   def created
     self.created_at.to_date.to_formatted_s(:long_ordinal)
   end
+
 end
+
+Activity.create(title: 'hi from the console', polyline: 'gibberish', athlete_id: 1, type_of: 'Run')
