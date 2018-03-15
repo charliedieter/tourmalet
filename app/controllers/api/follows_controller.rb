@@ -13,6 +13,7 @@ class Api::FollowsController < ApplicationController
       @users = User.where(id: [params[:followerId], params[:followedId]])
       @activites = Activity.find_by_athletes_ids([params[:followerId], params[:followedId]])
       render 'api/users/index'
+
     else
       render json: {}, status: 422
     end
@@ -21,10 +22,10 @@ class Api::FollowsController < ApplicationController
 
   def destroy
 
-    @follow = case
-
+    @follow = Follow.where(followed_id: params[:followedId]).where(follower_id: params[:followed_id] )
+    
     @follow.destroy!
-    @user = User.where(id: [params[:followerId], params[:followedId]])
+    @users = User.where(id: [params[:followerId], params[:followedId]])
     render 'api/users/show'
   end
 
