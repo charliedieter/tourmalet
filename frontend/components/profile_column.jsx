@@ -13,14 +13,12 @@ class ProfileColumn extends React.Component {
   }
 
   render() {
-    debugger;
     if (!this.props.currentUser.activity_ids || !this.props.activities)
       return null;
     const acts = this.props.currentUser.activity_ids;
 
     const lastAct =
       acts.length > 0 ? this.props.activities[acts[acts.length - 1]] : "";
-    debugger;
     const addFollowLink = this.props.dash ? (
       <Link to="/routes/new">
         <b>Add an Activity</b>

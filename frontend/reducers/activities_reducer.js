@@ -22,7 +22,7 @@ const activitiesReducer = (oldState = {}, action) => {
     case RECEIVE_CURRENT_USER:
     case RECEIVE_USER:
     case RECEIVE_ACTIVITIES:
-      debugger;
+       ;
       return merge({}, oldState, action.activities);
     default:
       return oldState;

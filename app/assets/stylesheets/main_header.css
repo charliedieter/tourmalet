@@ -15,6 +15,7 @@
 
 h1.logo {
   margin-right: 50px;
+  cursor: pointer;
 }
 
 .dash-header {
@@ -221,8 +222,31 @@ ul li a {
   margin: auto;
 }
 
+.plus ul:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 112px; /* or 100px */
+  border-top: 0.5px solid #ccccd1;
+}
+
 .dropdown-div .bell:hover {
   background: black;
+}
+.main-header-right .dropdown-div ul {
+  right: 0;
+}
+
+.profile-ul:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 82px; /* or 100px */
+  border-top: 0.5px solid #ccccd1;
 }
 
 .plus-sign {

@@ -7,12 +7,10 @@ import { fetchActivities } from "../actions/activity_actions";
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    debugger;
     this.props.fetchActivities();
   }
 
   render() {
-    debugger;
     if (!this.props.activities[1]) return null;
 
     return (

@@ -6,7 +6,7 @@ class Api::FollowsController < ApplicationController
       follower_id: params[:followerId],
       followed_id: params[:followedId]
     })
-    debugger
+
 
     if @follow.save
 

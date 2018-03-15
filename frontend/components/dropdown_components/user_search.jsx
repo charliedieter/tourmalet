@@ -16,7 +16,7 @@ class UserSearch extends React.Component {
 
   updateValue(e) {
     this.setState({ name: e.currentTarget.value }, () => {
-      debugger;
+       ;
       this.props.searchUsers(this.state.name);
     });
   }

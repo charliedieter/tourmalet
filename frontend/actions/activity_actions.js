@@ -15,7 +15,7 @@ const receiveActivityWithUser = (activity, currentUser) => ({
 });
 
 const receiveActivities = activities => {
-  debugger;
+   ;
   return {
     type: RECEIVE_ACTIVITIES,
     activities
@@ -38,7 +38,7 @@ export const fetchActivity = id => dispatch => {
 };
 
 export const fetchActivities = () => dispatch => {
-  debugger;
+   ;
   return API.fetchActivities().then(acts => dispatch(receiveActivities(acts)));
 };
 

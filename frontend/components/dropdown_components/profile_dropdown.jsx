@@ -17,7 +17,7 @@ class ProfileDropdown extends React.Component {
   render() {
     const items =
       this.state.open === true ? (
-        <ul>
+        <ul className="profile-ul">
           <li>
             <Link to="/">Edit Profile</Link>
           </li>

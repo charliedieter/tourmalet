@@ -35,13 +35,13 @@ export const updateUser = (userId, attributes) => dispatch => {
 };
 
 export const searchUsers = query => dispatch => {
-  debugger;
+   ;
   return API.fetchUsers(query).then(users => dispatch(receiveSearch(users)));
 };
 
 export const createFollow = (follower, followed) => dispatch => {
   return API.createFollow(follower, followed).then(payload => {
-    debugger;
+     ;
     dispatch(receiveUsers(payload));
   });
 };

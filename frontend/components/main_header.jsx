@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import ProfileDropdown from "./dropdown_components/profile_dropdown";
 import TrainingDropdown from "./dropdown_components/training_dropdown";
 import RouteDropdown from "./dropdown_components/route_dropdown";
@@ -12,7 +12,9 @@ class MainHeader extends React.Component {
     return (
       <div className="main-header">
         <div className="header-left">
-          <h1 className="logo">Tourmalet</h1>
+          <h1 onClick={() => this.props.history.push("/")} className="logo">
+            Tourmalet
+          </h1>
           {this.props.search === true && <UserSearch />}
           <div className="dash-training-div">
             <DashboardDropdown className="header-link" />
@@ -29,19 +31,4 @@ class MainHeader extends React.Component {
   }
 }
 
-export default MainHeader;
-
-// dashboard
-// activity feed
-// my routes
-// training
-// log
-// my index feed
-// alerts
-// profile
-// edit profile
-// logout
-// add
-// add manual entry
-// MAP
-// post
+export default withRouter(MainHeader);
