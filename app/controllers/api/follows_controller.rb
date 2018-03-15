@@ -24,7 +24,7 @@ class Api::FollowsController < ApplicationController
     @follow = case
 
     @follow.destroy!
-    @users = User.where(id: [params[:followerId], params[:followedId]])
+    @user = User.where(id: [params[:followerId], params[:followedId]])
     render 'api/users/show'
   end
 
