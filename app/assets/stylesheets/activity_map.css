@@ -127,5 +127,15 @@
 
 .moving-time {
   font-size: 14px;
-  margin: 40px auto;
+  height: 50px;
+  display: flex;
+}
+
+.moving-time-cont {
+  display: flex;
+  margin: auto;
+}
+
+.moving-time-cont div {
+  margin: auto 3px;
 }

@@ -6,8 +6,8 @@ class Activity < ApplicationRecord
   has_many :likes
   has_many :likers, through: :likes, source: :liker
 
-  def self.find_by_athlete_id(id)
-    Activity.where(athlete_id: id)
+  def self.find_by_athletes_ids(ids)
+    Activity.where(athlete_id: ids)
   end
 
   def created
@@ -15,5 +15,3 @@ class Activity < ApplicationRecord
   end
 
 end
-
-Activity.create(title: 'hi from the console', polyline: 'gibberish', athlete_id: 1, type_of: 'Run')

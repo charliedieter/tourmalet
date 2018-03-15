@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const BoxRight = props => {
   if (!props.activity) return null;
@@ -25,19 +26,22 @@ const BoxRight = props => {
             <a>Elevation Gain</a>
           </li>
           <li>
-            <div>Road</div>
+            <div>{props.activity.type_of}</div>
             <a>Type</a>
           </li>
         </ul>
 
-        <div className="movingTime">
-          <i class="material-icons">schedule</i>
-          {props.activity.est_moving_time}
+        <div className="moving-time">
+          <div className="moving-time-cont">
+            <i class="material-icons">schedule</i>
+            <div>Est. Time:</div>
+            <div> {props.activity.est_moving_time}</div>
+          </div>
         </div>
       </div>
 
       <div className="bottom-row">
-        <a>Share this Route with Friends</a>
+        <a />
         <ul>
           <li />
           <li />
@@ -48,9 +52,11 @@ const BoxRight = props => {
   );
 };
 
-const msp = state => ({
-  currentUser: state.session.currentUser,
-  activity: state.activities.current
-});
+const msp = (state, ownProps) => {
+  return {
+    currentUser: state.session.currentUser,
+    activity: state.entities.activities[ownProps.match.params.activityId]
+  };
+};
 
-export default connect(msp, null)(BoxRight);
+export default withRouter(connect(msp, null)(BoxRight));

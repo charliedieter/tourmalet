@@ -8,7 +8,8 @@ export default class RouteMap extends React.Component {
     this.state = {
       waypts: [],
       travelMode: "WALKING",
-      map: null
+      map: null,
+      load: false
     };
     this.clearRoute = this.clearRoute.bind(this);
     this.undoLeg = this.undoLeg.bind(this);
@@ -22,7 +23,7 @@ export default class RouteMap extends React.Component {
 
   initMap() {
     const mapOptions = {
-      center: { lat: 42.9149, lng: 0.1863 },
+      center: { lat: 40.7128, lng: -73.98513 },
       zoom: 13,
       styles: mapStyle.tourmalet,
       disableDefaultUI: true,
@@ -32,7 +33,7 @@ export default class RouteMap extends React.Component {
       },
       bicyclingLayer: false
     };
-
+    this.setState({ load: true });
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     if (navigator.geolocation) {

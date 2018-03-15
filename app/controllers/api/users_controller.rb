@@ -1,7 +1,6 @@
 class Api::UsersController < ApplicationController
 
   def show
-
     @user = User.find(params[:id])
   end
 
@@ -10,7 +9,6 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      @image = image_url :avatar.url(:medium)
       render '/api/users/show'
     else
       render json: @user.errors, status: 422
@@ -18,8 +16,24 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:query].present?
+      @users = User.where('username LIKE ?', "#{params[:query]}%")
+      .where('username != ?', current_user.username)
+      render '/api/users/index'
+    else
+      @users = User.none
+    end
   end
+
+  # def update
+  #   @user = User.find(params[:id])
+  #
+  #   if @user.update_attributes(params[:attributes])
+  #     render '/api/users/show'
+  #   else
+  #     render {}, status: 422
+  #   end
+  # end
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :avatar)

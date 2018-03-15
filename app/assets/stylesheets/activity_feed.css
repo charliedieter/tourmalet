@@ -2,10 +2,11 @@
   display: flex;
   justify-content: space-between;
   width: 600px;
+  height: 100%;
 }
 
 .activity-feed {
-  margin: 60px 33%;
+  margin: 100px 0 0 360px;
   width: 66.66666667%;
 }
 

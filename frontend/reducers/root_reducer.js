@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import errorsReducer from "./errors_reducer";
 import sessionReducer from "./session_reducer";
-import activitiesReducer from "./activities_reducer";
-import usersReducer from "./users_reducer";
+import entitiesReducer from "./entities_reducer";
+import search from "./search_reducer";
 
 const rootReducer = combineReducers({
+  entities: entitiesReducer,
   session: sessionReducer,
-  activities: activitiesReducer,
   errors: errorsReducer,
-  users: usersReducer
+  search
 });
 
 export default rootReducer;

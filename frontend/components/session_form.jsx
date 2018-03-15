@@ -87,7 +87,7 @@ export default class SessionForm extends React.Component {
               {typeof this.props.errors[0] === "string" &&
                 this.props.errors.map((err, i) => <li key={i}>{err}</li>)}
             </ul>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="session-form">
               {newUserForm}
               <label>
                 <input
@@ -125,7 +125,7 @@ export default class SessionForm extends React.Component {
               </label>
               <div className="button-holster">
                 <button>
-                  {this.props.formType === "Sign Up" ? "Sign Up" : "Log In"}
+                  {this.props.formType === "Log In" ? "Log In" : "Sign Up"}
                 </button>
               </div>
               {guest}

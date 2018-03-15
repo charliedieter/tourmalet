@@ -7,10 +7,10 @@ class ActivityFeed extends React.Component {
   render() {
     if (!this.props.activities) return null;
 
-    const activities = this.props.activities.slice(0, 10).map((act, idx) => {
+    const activities = this.props.activities.slice(0, 10).map(act => {
       return (
-        <li>
-          <ActivityFeedItem key={`activity-${idx}`} activity={act} />
+        <li key={`${act.id}`}>
+          <ActivityFeedItem activity={act} />
         </li>
       );
     });

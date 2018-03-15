@@ -5,8 +5,7 @@
 .prof-cont {
   display: flex;
   margin-top: 50px;
-  width: 16%;
-  position: fixed;
+  width: 100px;
 }
 
 .fixed-prof {
@@ -14,12 +13,15 @@
 
 .prof-box {
   width: 300px;
-  height: 300px;
+  height: 325px;
   background: white;
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
   margin: 100px 100px;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  margin-top: 160px;
+  top: 120px;
 }
 .top-prof {
   /* display: flex; */
@@ -37,6 +39,7 @@
   margin-left: 100px;
   display: block;
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
+  cursor: pointer;
 }
 
 .top-prof .line-2 {
@@ -45,6 +48,7 @@
   text-align: center;
   font-size: 35px;
   margin: 12px auto;
+  cursor: pointer;
 }
 
 .line-2 div {
@@ -70,16 +74,15 @@
 .line-3-row a div {
   font-weight: 400;
   margin: auto;
+  cursor: pointer;
 }
 
 .line-3-row a .num {
   font-size: 26px;
+  cursor: pointer;
 }
 
 .prof-links-cont {
-  display: flex;
-  flex-direction: column;
-  margin: 30px auto;
 }
 
 .prof-links-cont a {
@@ -94,4 +97,41 @@
 }
 .prof-links-cont a i {
   margin-top: 10px;
+}
+
+.last-act-info i {
+}
+
+.last-act-cont {
+  font-size: 14px;
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+  width: 80%;
+  margin: auto;
+  padding: 5px;
+}
+.last-act-cont a {
+  justify-content: space-between;
+}
+
+.last-act-info {
+  display: flex;
+  margin: auto;
+}
+
+.last-act-info .arrow {
+  display: flex;
+}
+
+.last-act-name {
+  font-weight: bold;
+}
+
+.last-act-date {
+  font-size: 14px;
+  color: lightgrey;
+}
+.last-act-cont a div {
+  width: 100%;
+  margin: auto;
 }

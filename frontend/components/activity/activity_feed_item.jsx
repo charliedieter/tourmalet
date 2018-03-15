@@ -38,16 +38,19 @@ class ActivityFeedItem extends React.Component {
     const act = this.props.activity;
     const comments = this.props.activity.comments.map((comment, idx) => {
       return (
-        <li key={`comment-${idx}`}>
+        <a key={`comment-${idx}`}>
           <Comment comment={comment} />
-        </li>
+        </a>
       );
     });
     const commentForm = <CommentForm activityId={act.id} />;
+
     return (
       <div className="activity-feed-item">
         <div className="top-item-row">
-          <div onClick={() => this.props.history.push(`/users/${1}`)}>
+          <div
+            onClick={() => this.props.history.push(`/users/${act.owner.id}`)}
+          >
             <img className="profile-pic" src={act.owner_img} />
           </div>
           <div className="name-and-date">
@@ -92,10 +95,14 @@ class ActivityFeedItem extends React.Component {
         </div>
 
         <div className="feed-item-buttons">
+          <div>{act.likers.length > 0 && act.likers.length}</div>
           <button onClick={this.toggleLike}>
             <img
-              className={this.state.currUserLikes ? "liked" : ""}
-              src="http://icons.iconarchive.com/icons/iconsmind/outline/512/Like-icon.png"
+              src={
+                this.state.currUserLikes
+                  ? window.orangelike
+                  : "http://icons.iconarchive.com/icons/iconsmind/outline/512/Like-icon.png"
+              }
             />
           </button>
           <button onClick={this.openComment}>
@@ -103,9 +110,7 @@ class ActivityFeedItem extends React.Component {
           </button>
         </div>
 
-        <div className="comments-cont">
-          <ul>{comments}</ul>
-        </div>
+        <div className="comments-cont">{comments}</div>
         <div>{this.state.commentOpen && commentForm}</div>
       </div>
     );
@@ -114,7 +119,7 @@ class ActivityFeedItem extends React.Component {
 
 const msp = state => {
   return {
-    currentUser: state.session.currentUser.user
+    currentUser: state.session.currentUser
   };
 };
 

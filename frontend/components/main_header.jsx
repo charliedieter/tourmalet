@@ -5,6 +5,7 @@ import TrainingDropdown from "./dropdown_components/training_dropdown";
 import RouteDropdown from "./dropdown_components/route_dropdown";
 import AlertDropdown from "./dropdown_components/alert_dropdown";
 import DashboardDropdown from "./dropdown_components/dashboard_dropdown";
+import UserSearch from "./dropdown_components/user_search";
 
 class MainHeader extends React.Component {
   render() {
@@ -12,8 +13,11 @@ class MainHeader extends React.Component {
       <div className="main-header">
         <div className="header-left">
           <h1 className="logo">Tourmalet</h1>
-          <DashboardDropdown className="header-link" />
-          <TrainingDropdown />
+          {this.props.search === true && <UserSearch />}
+          <div className="dash-training-div">
+            <DashboardDropdown className="header-link" />
+            <TrainingDropdown />
+          </div>
         </div>
         <div className="main-header-right">
           <AlertDropdown alerts={["1", "2", "3"]} />

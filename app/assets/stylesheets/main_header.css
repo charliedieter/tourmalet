@@ -7,7 +7,7 @@
   overflow: visible;
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
   /* position: fixed; */
-  top: 0;
+  this: 0;
   width: 100%;
   z-index: 100;
   background: white;
@@ -31,7 +31,6 @@ h1.logo {
 
 .header-left {
   margin: auto 100px;
-  width: 500px;
 }
 
 .main-header-right {
@@ -42,6 +41,52 @@ h1.logo {
 .header-link {
   margin: auto 10px;
 }
+
+.outer-search-div {
+  margin: auto;
+}
+
+.inner-search-div {
+  position: relative;
+  margin: auto;
+  display: flex;
+}
+
+.user-search-input {
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+}
+
+.dash-training-div {
+  display: flex;
+  width: 300px;
+}
+
+.outer-search-div ul {
+  position: absolute;
+  margin-top: 29px;
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  z-index: 1000;
+}
+.outer-search-div ul div {
+  display: flex;
+  height: 45px;
+  margin: auto;
+}
+.outer-search-div ul div div {
+  margin: 12px 5px;
+}
+
+.outer-search-div ul div img {
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: auto 10px;
+}
 div.dropdown-div {
   display: flex;
   margin: auto;
@@ -49,6 +94,7 @@ div.dropdown-div {
   position: relative;
   height: 50px;
 }
+
 .dropdown-div div.profile-dropdown-inner {
   width: 80px;
 }
@@ -62,6 +108,15 @@ div.dropdown-div {
 }
 
 .profile-dropdown-inner ul li button {
+  width: 100%;
+  background: white;
+  background: none;
+  color: black;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .right-ul {
@@ -97,6 +152,7 @@ div.dropdown-div {
 .dropdown-div div a {
   margin: auto;
 }
+
 .dropdown-div div i {
   margin: auto;
 }
@@ -108,6 +164,15 @@ div.dropdown-div {
   overflow: auto;
   position: absolute;
   top: 100%;
+}
+.header-left .dropdown-div ul:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 1px;
+  width: 52px; /* or 100px */
+  border-top: 0.5px solid #ccccd1;
 }
 
 .plus ul {
@@ -122,6 +187,9 @@ div.dropdown-div {
   border-right: 0.5px solid #ccccd1;
 }
 
+.dropdown-div ul li:hover {
+  background: #ccccd1;
+}
 .dropdown-div ul li:last-child {
   border-bottom: 0.5px solid #ccccd1;
 }
@@ -136,19 +204,25 @@ div.dropdown-div {
   margin-left: -20px;
 }
 
+.dropdown-div.plus {
+  width: 50px;
+}
+.dropdown-div.profile {
+  width: 80px;
+}
 ul li a {
   text-decoration: none;
   color: black;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 12px;
   margin: auto 10px;
 }
-.bell {
+.dropdown-div-bell {
   margin: auto;
 }
 
-.bell:hover {
-  border-style: none;
+.dropdown-div .bell:hover {
+  background: black;
 }
 
 .plus-sign {

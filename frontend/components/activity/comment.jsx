@@ -1,19 +1,26 @@
-import React from 'react'
-
+import React from "react";
+import { withRouter } from "react-router-dom";
 const Comment = props => {
-
-  const image = "http://www.sessionlogs.com/media/icons/defaultIcon.png"
-
   return (
-    <div>
-      <img src={image} className="commenter-photo"/>
-      <div>
-        <div>{props.author.username}</div>
-        <div>{props.created}</div>
+    <div className="comment-cont">
+      <div className="commenter-photo-cont">
+        <img
+          src={props.comment.author_photo}
+          className="commenter-photo"
+          onClick={() =>
+            props.history.push(`/users/${props.comment.comment.author_id}`)
+          }
+        />
+        <div className="commenter-name-and-such">
+          <div>{props.comment.author_name}</div>
+          <div className="created">{props.comment.created} ago</div>
+        </div>
       </div>
-      <div>{props.comment.content}</div>
+      <div className="comment-content">
+        <div>{props.comment.comment.content}</div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Comment;
+export default withRouter(Comment);

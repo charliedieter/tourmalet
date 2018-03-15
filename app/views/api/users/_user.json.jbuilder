@@ -5,13 +5,7 @@ json.user do
   json.followings user.followings
   json.liked_posts user.liked_posts.pluck(:activity_id)
   json.activity_ids user.activity_ids
-end
+  json.follower_ids user.followers.pluck(:id)
+  json.following_ids user.followings.pluck(:id)
 
-
-json.activities do
-  user.activities.each do |act|
-    json.set! act.id do
-      json.partial! '/api/activities/activity.json.jbuilder', activity: act
-    end
-  end
 end

@@ -44,7 +44,7 @@ class DashboardDropdown extends React.Component {
 }
 
 const msp = state => ({
-  currentUser: state.session.currentUser.user
+  currentUser: state.session.currentUser
 });
 
 export default connect(msp, null)(DashboardDropdown);

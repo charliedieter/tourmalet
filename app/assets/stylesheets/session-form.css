@@ -1,7 +1,5 @@
-
-.Sign, .Log {
-  background-size: contain;
-  display: flex;
+.Sign,
+.Log {
   width: 100%;
   height: 100%;
   display: flex;
@@ -38,15 +36,15 @@
 label li {
   text-align: center;
   color: red;
-  font-size: 14px
+  font-size: 14px;
 }
 
-form input{
+.session-form input {
   display: block;
   margin: 20px auto;
   width: 300px;
   height: 40px;
-  background:rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   border: 0.5px solid grey;
   font-size: 14px;
 }
@@ -59,7 +57,7 @@ input.focused {
   display: flex;
 }
 
-form button {
+.session-form button {
   background: #fc4c02;
   border: 1px solid #fc4c02;
   color: white;
@@ -68,7 +66,7 @@ form button {
   margin: 20px auto 0;
 }
 
-form button:hover {
+.session-form button:hover {
   background: #c93d02;
   border: 1px solid #c93d02;
 }

@@ -6,22 +6,30 @@ import ActivityFeed from "./activity/activity_feed";
 import { fetchActivities } from "../actions/activity_actions";
 
 class Dashboard extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
+    debugger;
     this.props.fetchActivities();
   }
 
   render() {
+    debugger;
+    if (!this.props.activities[1]) return null;
+
     return (
       <div>
         <div className="dash-header">
-          <MainHeaderContainer />
+          <MainHeaderContainer search={true} />
         </div>
         <div className="dash-main">
           <ProfileColumn
             className="ProfileColumn"
             user={this.props.currentUser}
+            activities={this.props.activities}
+            dash={true}
           />
-          <ActivityFeed activities={this.props.activities} />
+          <ActivityFeed
+            activities={Object.values(this.props.activities).reverse()}
+          />
         </div>
       </div>
     );
@@ -30,7 +38,7 @@ class Dashboard extends React.Component {
 
 const msp = state => ({
   currentUser: state.session.currentUser,
-  activities: Object.values(state.activities).reverse()
+  activities: state.entities.activities
 });
 
 const mdp = dispatch => ({

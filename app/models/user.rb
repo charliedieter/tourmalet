@@ -4,15 +4,17 @@ class User < ApplicationRecord
 
   has_attached_file :avatar,
   styles: { medium: "300x300>", thumb: "100x100>" },
-  default_url: "/images/default_profile.png"
+  default_url: "http://www.sessionlogs.com/media/icons/defaultIcon.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :activities, foreign_key: :athlete_id
   has_many :comments, foreign_key: :author_id
   has_many :liked_posts, class_name: :Like, foreign_key: :liker_id
+
   has_many :follows, foreign_key: :follower_id
-  has_many :followers, through: :follows, source: :follower
+  has_many :in_follows, class_name: :Follow, foreign_key: :followed_id
+  has_many :followers, through: :in_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
 
   attr_reader :password

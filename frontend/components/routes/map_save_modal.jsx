@@ -15,7 +15,6 @@ class MapSaveModal extends React.Component {
   }
 
   handleSave(e) {
-    debugger;
     e.preventDefault();
     const activity = {
       polyline: this.props.poly,
@@ -28,7 +27,7 @@ class MapSaveModal extends React.Component {
       type: this.props.type
     };
     let that = this;
-    this.props.saveActivity(activity).then(payload => {
+    this.props.saveActivity(activity, this.props.currentUser).then(payload => {
       that.props.history.push(`/activities/${payload.activity.id}`);
     });
   }
@@ -85,11 +84,11 @@ class MapSaveModal extends React.Component {
 }
 
 const msp = state => ({
-  currentUser: state.session.currentUser.user
+  currentUser: state.session.currentUser
 });
 
 const mdp = dispatch => ({
-  saveActivity: activity => dispatch(saveActivity(activity))
+  saveActivity: activity => dispatch(saveActivity(activity, currentUser))
 });
 
 export default withRouter(connect(msp, mdp)(MapSaveModal));

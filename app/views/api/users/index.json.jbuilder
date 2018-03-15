@@ -1,13 +1,13 @@
 @users.each do |user|
   json.set! user.id do
-    json.partial! '/api/users/user', user: user
-  end
-end
+    json.extract! user, :id, :username, :email, :session_token
+    json.avatar_url image_path(user.avatar.url(:medium))
+    json.followers user.followers
+    json.followings user.followings
+    json.follower_ids user.followers.pluck(:id)
+    json.following_ids user.followings.pluck(:id)
+    json.liked_posts user.liked_posts.pluck(:activity_id)
+    json.activity_ids user.activity_ids
 
-json.activities do
-  @users.map(&:activities) do |act|
-    json.set! act.id do
-      json.partial! '/api/activities/activity', activity: act
-    end
   end
 end

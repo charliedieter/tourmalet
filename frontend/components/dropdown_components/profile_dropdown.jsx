@@ -29,7 +29,7 @@ class ProfileDropdown extends React.Component {
 
     return (
       <div
-        className="dropdown-div"
+        className="dropdown-div profile"
         onMouseEnter={this.mouseEventHandler}
         onMouseLeave={this.mouseEventHandler}
       >
@@ -44,7 +44,7 @@ class ProfileDropdown extends React.Component {
 }
 
 const msp = state => ({
-  currentUser: state.session.currentUser.user
+  currentUser: state.session.currentUser
 });
 
 const mdp = dispatch => ({

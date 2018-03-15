@@ -1,0 +1,56 @@
+.user-show-prof-box {
+  width: 250px;
+  height: 300px;
+  margin: 50px 0 0 100px;
+}
+
+.user-show-prof-box .img-cont {
+  display: flex;
+}
+
+.user-show-prof-box img {
+  border-radius: 50%;
+  height: 140px;
+  width: 140px;
+  margin: auto;
+}
+
+.user-show-name {
+  height: 50px;
+  width: 100%;
+  display: flex;
+}
+
+.user-show-name div {
+  margin: auto;
+  font-size: 40px;
+}
+
+.follow-edit-buttons {
+  margin: 0 75px;
+}
+
+.follow-edit-buttons button {
+  height: 30px;
+  width: 100px;
+  background: white;
+  border-style: none;
+  border: 1px solid lightgrey;
+  margin-top: 15px;
+}
+
+.act-stat-box {
+  width: 750px;
+  height: 250px;
+  margin: 200px 0 0 0;
+}
+
+.act-count-box {
+  height: 150px;
+  width: 150px;
+  text-align: center;
+}
+
+.act-count-box .num {
+  font-size: 50px;
+}

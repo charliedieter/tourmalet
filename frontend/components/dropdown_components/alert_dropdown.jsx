@@ -19,7 +19,7 @@ export default class AlertDropdown extends React.Component {
     });
 
     return (
-      <div className="dropdown-div" onClick={this.handleClick}>
+      <div className="dropdown-div-bell" onClick={this.handleClick}>
         <i className="material-icons bell">notifications_none</i>
         {items}
       </div>

@@ -5,7 +5,7 @@ import ElevationGraph from "./elevation";
 import MainHeader from "../main_header";
 import Map from "./map";
 import { fetchActivity } from "../../actions/activity_actions";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class ActivityShow extends React.Component {
   componentDidMount() {
@@ -48,14 +48,14 @@ class ActivityShow extends React.Component {
   }
 }
 
-const msp = state => ({
+const msp = (state, ownProps) => ({
   currentUser: state.session.currentUser,
-  activity: state.activities.current
+  activity: state.entities.activities[ownProps.match.params.activityId]
 });
 
 const mdp = dispatch => ({
   fetchActivity: id => dispatch(fetchActivity(id))
 });
 
-export default connect(msp, mdp)(ActivityShow);
+export default withRouter(connect(msp, mdp)(ActivityShow));
 // /athlete/:athlete_id/routes
