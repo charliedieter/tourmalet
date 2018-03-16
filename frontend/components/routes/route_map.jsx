@@ -8,8 +8,7 @@ export default class RouteMap extends React.Component {
     this.state = {
       waypts: [],
       travelMode: "WALKING",
-      map: null,
-      load: false
+      map: null
     };
     this.clearRoute = this.clearRoute.bind(this);
     this.undoLeg = this.undoLeg.bind(this);
@@ -33,22 +32,21 @@ export default class RouteMap extends React.Component {
       },
       bicyclingLayer: false
     };
-    this.setState({ load: true });
+
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        const initialLocation = new google.maps.LatLng(
-          pos.coords.latitude,
-          pos.coords.longitude
-        );
-        this.map.panTo(initialLocation);
-
-        google.maps.event.addListener(this.map, "click", e => {
-          this.placeMarker(e.latLng);
-        });
-      });
-    }
+    google.maps.event.addListener(this.map, "click", e => {
+      this.placeMarker(e.latLng);
+    });
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(pos => {
+    //     const initialLocation = new google.maps.LatLng(
+    //       pos.coords.latitude,
+    //       pos.coords.longitude
+    //     );
+    //     this.map.panTo(initialLocation);
+    //   });
+    // }
   }
 
   placeMarker(latLng) {
