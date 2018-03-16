@@ -168,7 +168,7 @@ comments = Comment.create([{author_id: users[3], activity_id: activities[11], co
 likes = Like.create([{liker_id: 7, activity_id: 12},
 {liker_id: users[3], activity_id: activities[9]},
 {liker_id: users[6], activity_id: activities[11]},
-{liker_id: users[6], activity_id: activities[11]},
+{liker_id: users[5], activity_id: activities[11]},
 {liker_id: users[4], activity_id: activities[11]},
 {liker_id: users[3], activity_id: activities[11]}])
 
