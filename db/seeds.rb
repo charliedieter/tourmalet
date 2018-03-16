@@ -160,15 +160,15 @@ activities = Activity.create([{title: "Morning Ride",
    elevation: 400}
 ])
 
-comments = Comment.create([{author_id: users[3], activity_id: activity[11], content: "killin it!"},
-{author_id: users[7], activity_id: activity[11], content: "heeeeeeyyyyoooo"}])
+comments = Comment.create([{author_id: users[3], activity_id: activities[11], content: "killin it!"},
+{author_id: users[7], activity_id: activities[11], content: "heeeeeeyyyyoooo"}])
 
 likes = Like.create([{liker_id: 7, activity_id: 12},
-{liker_id: users[3], activity_id: activity[9]},
-{liker_id: users[6], activity_id: activity[11]},
-{liker_id: users[6], activity_id: activity[11]},
-{liker_id: users[4], activity_id: activity[11]},
-{liker_id: users[3], activity_id: activity[11]}])
+{liker_id: users[3], activity_id: activities[9]},
+{liker_id: users[6], activity_id: activities[11]},
+{liker_id: users[6], activity_id: activities[11]},
+{liker_id: users[4], activity_id: activities[11]},
+{liker_id: users[3], activity_id: activities[11]}])
 
 follows = Follow.create([{follower_id: 2, followed_id: 1},
 {follower_id: users[3], followed_id: users[0]},
