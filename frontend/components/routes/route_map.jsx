@@ -155,7 +155,8 @@ export default class RouteMap extends React.Component {
               totalElGain += els[i + 1].elevation - els[i].elevation;
             }
           }
-          this.setState({ el: Math.round(totalElGain * 3.28084) });
+          this.setState({ el: Math.round(totalElGain * 1.5) });
+          // * 3.28084
         }
       }
     );
@@ -198,6 +199,8 @@ export default class RouteMap extends React.Component {
   }
 
   clearRoute() {
+    this.directionsDisplay.setDirections({ routes: [] });
+
     this.directionsDisplay.setMap(null);
     this.clearAllWayPts();
     this.setState({

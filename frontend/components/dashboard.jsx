@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (!this.props.activities[1]) return null;
+    if (!Object.values(this.props.activities)[0]) return null;
 
     return (
       <div>

@@ -27,6 +27,7 @@ class MapSaveModal extends React.Component {
       type: this.props.type
     };
     let that = this;
+     ;
     this.props.saveActivity(activity, this.props.currentUser).then(payload => {
       that.props.history.push(`/activities/${payload.activity.id}`);
     });
