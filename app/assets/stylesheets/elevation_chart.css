@@ -1,0 +1,30 @@
+.elevation-chart {
+  margin-top: 30px;
+  position: relative;
+}
+
+.elevation-chart div {
+  border-bottom-style: solid;
+  border-bottom-color: #bcbbba;
+  width: 3.515px;
+  height: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.elevation-chart div.selected {
+  border-bottom-color: #6d6d6c;
+}
+
+.elevation-chart div span {
+  font-size: 15px;
+  height: 20px;
+  line-height: 20px;
+  opacity: 0;
+  position: absolute;
+  top: -20px;
+}
+
+.elevation-chart div:hover span {
+  opacity: 1;
+}

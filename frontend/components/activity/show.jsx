@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import BoxRight from "./box_right";
-import ElevationGraph from "./elevation";
 import MainHeader from "../main_header";
 import Map from "./map";
 import { fetchActivity } from "../../actions/activity_actions";
@@ -38,7 +37,6 @@ class ActivityShow extends React.Component {
           <div className="map-row">
             <div className="map-graph-container">
               <Map polyline={activity.polyline} />
-              <ElevationGraph polyline={activity.polyline} />
             </div>
             <BoxRight />
           </div>

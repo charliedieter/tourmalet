@@ -162,9 +162,9 @@ activities = Activity.create([{title: "Morning Ride",
    elevation: 400}
 ])
 
-comments = Comment.create([{author_id: users[3].id, activity_id: activities[11].id, content: "killin it!"},
-{author_id: users[7].id, activity_id: activities[11].id, content: "heeeeeeyyyyoooo"}])
-
+# comments = Comment.create([{author_id: users[3].id, activity_id: activities[11].id, content: "killin it!"},
+# {author_id: users[7].id, activity_id: activities[11].id, content: "heeeeeeyyyyoooo"}])
+#
 # likes = Like.create([{liker_id: 7, activity_id: 12},
 # {liker_id: users[3], activity_id: activities[9]},
 # {liker_id: users[6], activity_id: activities[11]},
@@ -172,17 +172,17 @@ comments = Comment.create([{author_id: users[3].id, activity_id: activities[11].
 # {liker_id: users[4], activity_id: activities[11]},
 # {liker_id: users[3], activity_id: activities[11]}])
 #
-# follows = Follow.create([{follower_id: 2, followed_id: 1},
-# {follower_id: users[3], followed_id: users[0].id},
-# {follower_id: users[4], followed_id: users[0]},
-# {follower_id: users[5], followed_id: users[0]},
-# {follower_id: users[6], followed_id: users[0]},
-# {follower_id: users[7], followed_id: users[0]},
-# {follower_id: users[8], followed_id: users[0]},
-# {follower_id: users[9], followed_id: users[0]},
-# {follower_id: users[0], followed_id: users[2]},
-# {follower_id: users[0], followed_id: users[3]},
-# {follower_id: users[0], followed_id: users[4]},
-# {follower_id: users[0], followed_id: users[5]},
-# {follower_id: users[0], followed_id: users[6]},
-# {follower_id: users[0], followed_id: users[7]}])
+# follows = Follow.create([{follower_id: 102, followed_id: 101},
+# {follower_id: 109, followed_id: 101},
+# {follower_id: 104, followed_id: 101},
+# {follower_id: 105, followed_id: 101},
+# {follower_id: 106, followed_id: 101},
+# {follower_id: 107, followed_id: 101},
+# {follower_id: 108, followed_id: 101}]),
+# {follower_id: 101, followed_id: users[0]},
+# {follower_id: 101, followed_id: users[2]},
+# {follower_id: 101, followed_id: users[3]},
+# {follower_id: 101, followed_id: users[4]},
+# {follower_id: 101, followed_id: users[5]},
+# {follower_id: 101, followed_id: users[6]},
+# {follower_id: 101, followed_id: users[7]}])

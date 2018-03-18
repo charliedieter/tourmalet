@@ -1,9 +1,14 @@
 import React from "react";
 import mapStyle from "../routes/google_maps_styling";
+import ElevationChart from "./elevation_chart";
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
+    this.elevator = new google.maps.ElevationService();
+    this.showPinpoint = this.showPinpoint.bind(this);
+    this.hidePinpoint = this.hidePinpoint.bind(this);
+    this.handleBarHover = this.handleBarHover.bind(this);
   }
 
   componentDidMount() {
@@ -25,38 +30,83 @@ class Map extends React.Component {
 
     this.map = new google.maps.Map(this.mapNode, mapOpts);
 
-    const poly = new google.maps.Polyline({
-      strokeColor: "#494442",
+    this.pinpoint = new google.maps.Marker({
+      visible: false,
+      clickable: false,
+      zIndex: 1000,
+      icon: {
+        url: window.blue_pinpoint,
+        scaledSize: new google.maps.Size(35, 35),
+        color: "green"
+      }
+    });
+    this.polyline = new google.maps.Polyline({
+      strokeColor: "#757272",
       strokeOpacity: 1.0,
       strokeWeight: 4,
       path: this.path
     });
 
-    poly.setMap(this.map);
+    this.polyline.setMap(this.map);
+    this.pinpoint.setMap(this.map);
     this.placeMarkers();
   }
 
   placeMarkers(latLng1, latLng2) {
     const icon = {
-      url: "https://image.flaticon.com/icons/svg/33/33622.svg",
-      scaledSize: new google.maps.Size(40, 40)
+      url: window.green_pinpoint,
+      scaledSize: new google.maps.Size(26, 26)
     };
 
     const marker1 = new google.maps.Marker({
       position: this.path[0],
       map: this.map,
-      icon
+      icon: {
+        url: window.green_pinpoint,
+        scaledSize: new google.maps.Size(22, 22)
+      }
     });
 
     const marker2 = new google.maps.Marker({
       position: this.path[this.path.length - 1],
       map: this.map,
-      icon
+      icon: {
+        url: "https://image.flaticon.com/icons/svg/33/33622.svg",
+        scaledSize: new google.maps.Size(22, 22)
+      }
     });
   }
 
+  showPinpoint(location) {
+    this.pinpoint.setPosition(location);
+    this.pinpoint.setVisible(true);
+  }
+
+  hidePinpoint() {
+    this.pinpoint.setVisible(false);
+  }
+
+  handleBarHover(location) {
+    if (location) {
+      this.showPinpoint(location);
+    } else {
+      this.hidePinpoint();
+    }
+  }
+
   render() {
-    return <div id="map-show-container" ref={map => (this.mapNode = map)} />;
+    return (
+      <div>
+        <div id="map-show-container" ref={map => (this.mapNode = map)} />
+        <ElevationChart
+          polyline={this.props.polyline}
+          height={100}
+          width={900}
+          onMouseEnter={this.handleBarHover}
+          onMouseLeave={this.handleBarHover}
+        />
+      </div>
+    );
   }
 }
 

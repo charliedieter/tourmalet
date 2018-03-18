@@ -33,7 +33,7 @@ const BoxRight = props => {
 
         <div className="moving-time">
           <div className="moving-time-cont">
-            <i class="material-icons">schedule</i>
+            <i className="material-icons">schedule</i>
             <div>Est. Time:</div>
             <div> {props.activity.est_moving_time}</div>
           </div>

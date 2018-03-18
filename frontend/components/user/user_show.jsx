@@ -21,7 +21,7 @@ class UserShow extends React.Component {
   render() {
     if (!this.props.user) return null;
     let followEditButton;
-    if (this.props.currentUser.following_ids.includes(this.props.user.id - 1)) {
+    if (this.props.currentUser.following_ids.includes(this.props.user.id)) {
       followEditButton = (
         <button
           onClick={() =>
