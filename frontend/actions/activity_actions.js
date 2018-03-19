@@ -15,7 +15,6 @@ const receiveActivityWithUser = (activity, currentUser) => ({
 });
 
 const receiveActivities = activities => {
-   ;
   return {
     type: RECEIVE_ACTIVITIES,
     activities
@@ -38,8 +37,9 @@ export const fetchActivity = id => dispatch => {
 };
 
 export const fetchActivities = () => dispatch => {
-   ;
-  return API.fetchActivities().then(acts => dispatch(receiveActivities(acts)));
+  return API.fetchActivities().then(acts => {
+    dispatch(receiveActivities(acts));
+  });
 };
 
 export const createLike = activityId => dispatch => {

@@ -1,5 +1,10 @@
+.elevation-chart-box {
+  height: 200px;
+  width: 900px;
+  padding-top: 30px;
+}
+
 .elevation-chart {
-  margin-top: 30px;
   position: relative;
 }
 
@@ -27,4 +32,10 @@
 
 .elevation-chart div:hover span {
   opacity: 1;
+}
+
+.ele-label {
+  margin-top: -30px;
+  position: absolute;
+  padding: 10px;
 }

@@ -41,7 +41,7 @@ class Map extends React.Component {
       }
     });
     this.polyline = new google.maps.Polyline({
-      strokeColor: "#757272",
+      strokeColor: "red",
       strokeOpacity: 1.0,
       strokeWeight: 4,
       path: this.path
@@ -53,17 +53,12 @@ class Map extends React.Component {
   }
 
   placeMarkers(latLng1, latLng2) {
-    const icon = {
-      url: window.green_pinpoint,
-      scaledSize: new google.maps.Size(26, 26)
-    };
-
     const marker1 = new google.maps.Marker({
       position: this.path[0],
       map: this.map,
       icon: {
         url: window.green_pinpoint,
-        scaledSize: new google.maps.Size(22, 22)
+        scaledSize: new google.maps.Size(28, 28)
       }
     });
 
@@ -72,7 +67,7 @@ class Map extends React.Component {
       map: this.map,
       icon: {
         url: "https://image.flaticon.com/icons/svg/33/33622.svg",
-        scaledSize: new google.maps.Size(22, 22)
+        scaledSize: new google.maps.Size(28, 28)
       }
     });
   }

@@ -2,6 +2,7 @@ import React from "react";
 import MainHeaderContainer from "../main_header_container";
 import ProfileColumn from "../profile_column";
 import ActivityFeed from "../activity/activity_feed";
+import ActivityCalendar from "./calendar";
 import { connect } from "react-redux";
 import { fetchActivities } from "../../actions/activity_actions";
 import {
@@ -70,6 +71,8 @@ class UserShow extends React.Component {
               <div className="num">{this.props.user.activity_ids.length}</div>
               <div>total activities</div>
             </div>
+
+            <ActivityCalendar />
           </div>
         </div>
       </div>

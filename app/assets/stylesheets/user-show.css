@@ -42,7 +42,8 @@
 .act-stat-box {
   width: 750px;
   height: 250px;
-  margin: 200px 0 0 0;
+  margin: 100px 0 0 0;
+  display: flex;
 }
 
 .act-count-box {
