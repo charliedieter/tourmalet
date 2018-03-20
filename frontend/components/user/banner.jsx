@@ -23,7 +23,7 @@ class Banner extends React.Component {
     };
 
     const images = this.props.images.map((img, idx) => {
-      return <img style={imageStyle} src={img.url} />;
+      return <img style={imageStyle} src={img.url} key={`img-${idx}`} />;
     });
     return <div className="banner">{images}</div>;
   }

@@ -17,6 +17,7 @@ class UserShow extends React.Component {
     this.state = {
       modalOpen: false
     };
+
     this.props.fetchUser(this.props.match.params.userId);
   }
 

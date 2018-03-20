@@ -8,7 +8,7 @@ export const saveActivity = ({
   elevation,
   type
 }) =>
-  $.ajax({
+  $c.ajax({
     url: "api/activities",
     method: "POST",
     data: {
@@ -26,24 +26,24 @@ export const saveActivity = ({
   });
 
 export const fetchActivity = id =>
-  $.ajax({
+  $c.ajax({
     url: `api/activities/${id}`
   });
 
 export const fetchActivities = () =>
-  $.ajax({
+  $c.ajax({
     url: "api/activities"
   });
 
 export const createLike = activityId =>
-  $.ajax({
+  $c.ajax({
     url: "api/likes",
     method: "POST",
     data: { activityId }
   });
 
 export const createComment = ({ activityId, authorId, content }) => {
-  return $.ajax({
+  return $c.ajax({
     url: "api/comments",
     method: "POST",
     data: { comment: { activity_id: activityId, author_id: authorId, content } }

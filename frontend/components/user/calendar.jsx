@@ -45,9 +45,9 @@ class ActivityCalendar extends React.Component {
       }
 
       month.push(
-        <tr>
+        <tr key={`week-${i}`}>
           {week.map((day, idx) => (
-            <td className="day-wrapper">
+            <td className="day-wrapper" key={`day-${idx}`}>
               <span className="day">
                 <div>{day.format("D")}</div>
               </span>
@@ -63,9 +63,9 @@ class ActivityCalendar extends React.Component {
 
   render() {
     if (!this.props.activities) return <div />;
-    const header = "MTWTFSS".split("").map(day => (
-      <th>
-        <div>{day}</div>
+    const header = "MTWTFSS".split("").map((day, idx) => (
+      <th key={`weeks-${idx}`}>
+        <div key={`weeks-${idx}`}>{day}</div>
       </th>
     ));
     const rows = this.makeRows();
