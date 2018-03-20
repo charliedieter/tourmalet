@@ -1,13 +1,12 @@
 export const signup = ({ username, email, password }) =>
-  $.ajax({
+  $c.ajax({
     url: "api/users",
     method: "POST",
     data: { user: { username, email, password } }
   });
 
 export const login = ({ email, password }) => {
-  ;
-  return $.ajax({
+  return $c.ajax({
     url: "api/session/",
     method: "POST",
     data: { user: { email, password } }
@@ -15,7 +14,7 @@ export const login = ({ email, password }) => {
 };
 
 export const logout = () =>
-  $.ajax({
+  $c.ajax({
     url: "api/session",
     method: "DELETE"
   });
