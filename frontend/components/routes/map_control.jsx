@@ -115,16 +115,3 @@ export default class MapControl extends React.Component {
     );
   }
 }
-
-// const geocoder = new google.maps.Geocoder()
-// geocoder.geocode(search.value,
-//   (data) => props.map.panTo(data)
-
-// props.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
-// search.addListener('keyPress', () => {
-//         var places = search.getPlaces();
-//         console.log(places)
-//         if (places.length == 0) {
-//           return;
-//         }
-//       })

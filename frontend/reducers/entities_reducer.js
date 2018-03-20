@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import activitiesReducer from "./activities_reducer";
-import usersReducer from "./users_reducer";
+import activities from "./activities_reducer";
+import users from "./users_reducer";
+import images from "./images_reducer";
 
 const entitiesReducer = combineReducers({
-  activities: activitiesReducer,
-  users: usersReducer
+  activities,
+  users,
+  images
 });
 
 export default entitiesReducer;

@@ -16,7 +16,8 @@ class User < ApplicationRecord
   has_many :in_follows, class_name: :Follow, foreign_key: :followed_id
   has_many :followers, through: :in_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
-
+  has_many :images
+  
   attr_reader :password
 
   after_initialize :ensure_session_token

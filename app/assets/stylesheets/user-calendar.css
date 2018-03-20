@@ -9,8 +9,8 @@ table {
 }
 
 .activity-calendar .day-wrapper {
-  height: 32px;
-  width: 32px;
+  height: 25px;
+  width: 35px;
   cursor: pointer;
   text-align: center;
   position: relative;
@@ -24,7 +24,7 @@ table {
 }
 
 i.material-icons.dot {
-  font-size: 6px;
+  font-size: 4px;
   margin: auto;
   color: lightgrey;
 }
@@ -47,6 +47,7 @@ i.material-icons.act {
 
 .day div {
   text-align: center;
+  padding-left: 3px;
 }
 
 .activity-calendar .activity-indicator {

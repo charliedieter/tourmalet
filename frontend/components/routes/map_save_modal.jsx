@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { saveActivity } from "../../actions/activity_actions";
+import { saveImage } from "../../actions/image_actions";
 import { withRouter } from "react-router";
 
 class MapSaveModal extends React.Component {
@@ -8,14 +9,17 @@ class MapSaveModal extends React.Component {
     super(props);
     this.state = {
       title: null,
-      description: null
+      description: null,
+      image: null
     };
     this.handleSave = this.handleSave.bind(this);
     this.close = this.close.bind(this);
+    this.saveImage = this.saveImage.bind(this);
   }
 
   handleSave(e) {
     e.preventDefault();
+
     const activity = {
       polyline: this.props.poly,
       title: this.state.title,
@@ -26,9 +30,17 @@ class MapSaveModal extends React.Component {
       distance: this.props.dist,
       type: this.props.type
     };
+
     let that = this;
-     ;
     this.props.saveActivity(activity, this.props.currentUser).then(payload => {
+      if (this.state.image) {
+        const image = {
+          userId: that.props.currentUser.id,
+          activityId: payload.activity.id,
+          image: that.state.image
+        };
+        that.props.saveImage(image);
+      }
       that.props.history.push(`/activities/${payload.activity.id}`);
     });
   }
@@ -40,6 +52,10 @@ class MapSaveModal extends React.Component {
   close(e) {
     e.preventDefault();
     this.props.close();
+  }
+
+  saveImage() {
+    this.setState({ image: e.target.value });
   }
 
   render() {
@@ -68,6 +84,9 @@ class MapSaveModal extends React.Component {
                 value={this.state.description || ""}
               />
             </label>
+            <input type="image" onClick={this.saveImage}>
+              Add Image
+            </input>
 
             <div className="buttons">
               <button className="close" onClick={this.close}>
@@ -89,7 +108,8 @@ const msp = state => ({
 });
 
 const mdp = dispatch => ({
-  saveActivity: activity => dispatch(saveActivity(activity, currentUser))
+  saveActivity: activity => dispatch(saveActivity(activity, currentUser)),
+  saveImage: image => dispatch(saveImage(image))
 });
 
 export default withRouter(connect(msp, mdp)(MapSaveModal));

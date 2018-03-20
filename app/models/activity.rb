@@ -5,6 +5,7 @@ class Activity < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :likers, through: :likes, source: :liker
+  has_many :images
 
   def self.find_by_athletes_ids(ids)
     Activity.where(athlete_id: ids)

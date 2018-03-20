@@ -8,3 +8,11 @@ json.activities do
     end
   end
 end
+
+json.images do
+  @user.images.each do |img|
+    json.set! img.id do
+      json.url image_path(img.image.url)
+    end
+  end
+end

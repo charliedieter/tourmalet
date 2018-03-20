@@ -9,10 +9,11 @@ const receiveUsers = users => ({
   users
 });
 
-const receiveUser = ({ user, activities }) => ({
+const receiveUser = ({ user, activities, images }) => ({
   type: RECEIVE_USER,
   user,
-  activities
+  activities,
+  images
 });
 
 const receiveSearch = users => ({
@@ -35,13 +36,11 @@ export const updateUser = (userId, attributes) => dispatch => {
 };
 
 export const searchUsers = query => dispatch => {
-   ;
   return API.fetchUsers(query).then(users => dispatch(receiveSearch(users)));
 };
 
 export const createFollow = (follower, followed) => dispatch => {
   return API.createFollow(follower, followed).then(payload => {
-     ;
     dispatch(receiveUsers(payload));
   });
 };

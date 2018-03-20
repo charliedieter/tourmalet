@@ -25,16 +25,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   @user = User.find(params[:id])
-  #
-  #   if @user.update_attributes(params[:attributes])
-  #     render '/api/users/show'
-  #   else
-  #     render {}, status: 422
-  #   end
-  # end
-
   def user_params
     params.require(:user).permit(:username, :email, :password, :avatar)
   end

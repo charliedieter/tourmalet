@@ -3,8 +3,9 @@ import MainHeaderContainer from "../main_header_container";
 import ProfileColumn from "../profile_column";
 import ActivityFeed from "../activity/activity_feed";
 import ActivityCalendar from "./calendar";
+import FourWeekChart from "./four_week_chart";
+import Banner from "./banner";
 import { connect } from "react-redux";
-import { fetchActivities } from "../../actions/activity_actions";
 import {
   fetchUser,
   createFollow,
@@ -52,7 +53,8 @@ class UserShow extends React.Component {
     return (
       <div>
         <MainHeaderContainer className="dash-header" search={true} />
-        <div className="dash-main">
+        <Banner />
+        <div className="user-show-main">
           <div className="user-show-prof-box">
             <div className="img-cont">
               <img src={this.props.user.avatar_url} />
