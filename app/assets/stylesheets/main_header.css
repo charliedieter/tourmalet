@@ -5,7 +5,7 @@
   /* box-shadow: 0 1px 2px black; */
   border-bottom: 0.5px solid #e6e6eb;
   overflow: visible;
-  box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
   /* position: fixed; */
   this: 0;
   width: 100%;
@@ -104,7 +104,7 @@ div.dropdown-div {
   margin: auto;
 }
 .profile-dropdown-inner i {
-  font-size: 16px;
+  font-size: 12px;
   padding-left: -10;
 }
 
@@ -129,12 +129,11 @@ div.dropdown-div {
 
 .dropdown-div:hover {
   color: #fc4c02;
-  box-sizing: border-box;
+
   border-left: 0.5px solid #ccccd1;
   border-right: 0.5px solid #ccccd1;
   border-bottom: 0.5px solid white;
   box-shadow: none;
-  z-index: 1000;
 }
 
 /* .dropdown-div:hover div ul li {
@@ -165,6 +164,8 @@ div.dropdown-div {
   overflow: auto;
   position: absolute;
   top: 100%;
+  margin-left: -1px;
+  margin-top: -1px;
 }
 .header-left .dropdown-div ul:before {
   content: "";
@@ -172,7 +173,7 @@ div.dropdown-div {
   right: 0;
   top: 0;
   height: 1px;
-  width: 52px; /* or 100px */
+  width: 51px; /* or 100px */
   border-top: 0.5px solid #ccccd1;
 }
 
@@ -228,7 +229,7 @@ ul li a {
   left: 0;
   top: 0;
   height: 1px;
-  width: 112px; /* or 100px */
+  width: 111px; /* or 100px */
   border-top: 0.5px solid #ccccd1;
 }
 
@@ -245,7 +246,7 @@ ul li a {
   left: 0;
   top: 0;
   height: 1px;
-  width: 82px; /* or 100px */
+  width: 80px; /* or 100px */
   border-top: 0.5px solid #ccccd1;
 }
 

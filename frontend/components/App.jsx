@@ -1,10 +1,10 @@
 import React from "react";
-import SplashPage from "./splash_page";
-import LoginFormContainer from "./login_form_container";
-import SignupFormContainer from "./signup_form_container";
-import DashboardContainer from "./dashboard_container";
+import SplashPage from "./session/splash_page";
+import LoginFormContainer from "./session/login_form_container";
+import SignupFormContainer from "./session/signup_form_container";
+import DashboardContainer from "./dashboard/dashboard_container";
 import ActivityShow from "./activity/show";
-import RouteMap from "./routes/route_map";
+import RouteMap from "./map/route_map";
 import UserShow from "./user/user_show";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
@@ -23,5 +23,3 @@ export const App = () => {
 };
 
 export default App;
-
-// <ProtectedRoute path="/activities/:activity_id" component ={RouteShow} />

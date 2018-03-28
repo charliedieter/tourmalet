@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import BoxRight from "./box_right";
-import MainHeader from "../main_header";
+import MainHeader from "../header/main_header";
 import Map from "./map";
 import { fetchActivity } from "../../actions/activity_actions";
 import { withRouter, Link } from "react-router-dom";
@@ -56,4 +56,3 @@ const mdp = dispatch => ({
 });
 
 export default withRouter(connect(msp, mdp)(ActivityShow));
-// /athlete/:athlete_id/routes

@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
 
   def index
     if params[:query].present?
-      @users = User.where('username LIKE ?', "#{params[:query]}%")
+      @users = User.where('username ILIKE ?', "#{params[:query]}%")
       .where('username != ?', current_user.username)
       render '/api/users/index'
     else

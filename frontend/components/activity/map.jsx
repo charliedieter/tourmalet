@@ -1,5 +1,5 @@
 import React from "react";
-import mapStyle from "../routes/google_maps_styling";
+import mapStyle from "../map/google_maps_styling";
 import ElevationChart from "./elevation_chart";
 
 class Map extends React.Component {
@@ -35,9 +35,8 @@ class Map extends React.Component {
       clickable: false,
       zIndex: 1000,
       icon: {
-        url: window.blue_pinpoint,
-        scaledSize: new google.maps.Size(35, 35),
-        color: "green"
+        url: window.green_pinpoint,
+        scaledSize: new google.maps.Size(28, 28)
       }
     });
     this.polyline = new google.maps.Polyline({
@@ -49,28 +48,28 @@ class Map extends React.Component {
 
     this.polyline.setMap(this.map);
     this.pinpoint.setMap(this.map);
-    this.placeMarkers();
+    // this.placeMarkers();
   }
 
-  placeMarkers(latLng1, latLng2) {
-    const marker1 = new google.maps.Marker({
-      position: this.path[0],
-      map: this.map,
-      icon: {
-        url: window.green_pinpoint,
-        scaledSize: new google.maps.Size(28, 28)
-      }
-    });
-
-    const marker2 = new google.maps.Marker({
-      position: this.path[this.path.length - 1],
-      map: this.map,
-      icon: {
-        url: "https://image.flaticon.com/icons/svg/33/33622.svg",
-        scaledSize: new google.maps.Size(28, 28)
-      }
-    });
-  }
+  // placeMarkers(latLng1, latLng2) {
+  //   const marker1 = new google.maps.Marker({
+  //     position: this.path[0],
+  //     map: this.map,
+  //     icon: {
+  //       url: window.green_pinpoint,
+  //       scaledSize: new google.maps.Size(28, 28)
+  //     }
+  //   });
+  //
+  //   const marker2 = new google.maps.Marker({
+  //     position: this.path[this.path.length - 1],
+  //     map: this.map,
+  //     icon: {
+  //       url: "https://image.flaticon.com/icons/svg/33/33622.svg",
+  //       scaledSize: new google.maps.Size(28, 28)
+  //     }
+  //   });
+  // }
 
   showPinpoint(location) {
     this.pinpoint.setPosition(location);

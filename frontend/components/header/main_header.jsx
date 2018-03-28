@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import ProfileDropdown from "./dropdown_components/profile_dropdown";
-import TrainingDropdown from "./dropdown_components/training_dropdown";
-import RouteDropdown from "./dropdown_components/route_dropdown";
-import AlertDropdown from "./dropdown_components/alert_dropdown";
-import DashboardDropdown from "./dropdown_components/dashboard_dropdown";
-import UserSearch from "./dropdown_components/user_search";
+import ProfileDropdown from "./dropdown/profile_dropdown";
+import TrainingDropdown from "./dropdown/training_dropdown";
+import RouteDropdown from "./dropdown/route_dropdown";
+import AlertDropdown from "./dropdown/alert_dropdown";
+import DashboardDropdown from "./dropdown/dashboard_dropdown";
+import UserSearch from "./user_search";
 
 class MainHeader extends React.Component {
   render() {
@@ -22,7 +22,6 @@ class MainHeader extends React.Component {
           </div>
         </div>
         <div className="main-header-right">
-          <AlertDropdown alerts={["1", "2", "3"]} />
           <ProfileDropdown currentUser={this.props.currentUser} />
           <RouteDropdown />
         </div>

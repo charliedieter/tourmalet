@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createFollow } from "../actions/user_actions";
+import { createFollow } from "../../actions/user_actions";
 
 class ProfileColumn extends React.Component {
   handleClick(e) {

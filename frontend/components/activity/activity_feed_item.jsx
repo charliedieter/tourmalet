@@ -1,5 +1,5 @@
 import React from "react";
-import StaticMap from "../routes/static_map";
+import StaticMap from "../map/static_map";
 import Comment from "./comment";
 import CommentForm from "./comment_form";
 import { connect } from "react-redux";
@@ -11,8 +11,8 @@ class ActivityFeedItem extends React.Component {
     super(props);
     if (this.props.activity)
       this.state = {
-        currUserLikes: this.props.activity.likers.includes(
-          this.props.currentUser.id
+        currUserLikes: this.props.activity.likers.some(
+          liker => liker.id === this.props.currentUser.id
         ),
         commentOpen: false
       };
@@ -34,6 +34,23 @@ class ActivityFeedItem extends React.Component {
     this.setState({ commentOpen: true });
   }
 
+  likerAvatars() {
+    if (this.props.activity.likers.length === 0) {
+      return <div className="like-text">Be the first to like this route!</div>;
+    } else {
+      return this.props.activity.likers.map((liker, idx) => {
+        return (
+          <img
+            key={`liker-${idx}`}
+            className="liker-avatar"
+            src={liker.img}
+            onClick={() => this.props.history.push(`/users/${liker.id}`)}
+          />
+        );
+      });
+    }
+  }
+
   render() {
     const act = this.props.activity;
     const comments = this.props.activity.comments.map((comment, idx) => {
@@ -44,6 +61,13 @@ class ActivityFeedItem extends React.Component {
       );
     });
     const commentForm = <CommentForm activityId={act.id} />;
+
+    const likers = this.likerAvatars();
+
+    const image =
+      act.images.length > 0 ? (
+        <img className="activity-image" src={act.images[0].image} />
+      ) : null;
 
     return (
       <div className="activity-feed-item">
@@ -91,23 +115,31 @@ class ActivityFeedItem extends React.Component {
         </div>
 
         <div className="static-map-cont">
-          <StaticMap polyline={act.polyline} idx={act.id} />
+          <StaticMap polyline={act.polyline} idx={act.id} image={image} />
         </div>
+        <div className="buttons-and-likers">
+          <div className="liker-profiles">
+            <div>{likers}</div>
+            <div className="like-text">
+              {act.likers.length > 1 && act.likers.length + " likes"}
+              {act.likers.length === 1 && act.likers.length + " like"}
+            </div>
+          </div>
 
-        <div className="feed-item-buttons">
-          <div>{act.likers.length > 0 && act.likers.length}</div>
-          <button onClick={this.toggleLike}>
-            <img
-              src={
-                this.state.currUserLikes
-                  ? window.orangelike
-                  : "http://icons.iconarchive.com/icons/iconsmind/outline/512/Like-icon.png"
-              }
-            />
-          </button>
-          <button onClick={this.openComment}>
-            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/33080-200.png" />
-          </button>
+          <div className="feed-item-buttons">
+            <button onClick={this.toggleLike}>
+              <img
+                src={
+                  this.state.currUserLikes
+                    ? window.orangelike
+                    : "http://icons.iconarchive.com/icons/iconsmind/outline/512/Like-icon.png"
+                }
+              />
+            </button>
+            <button onClick={this.openComment}>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/33080-200.png" />
+            </button>
+          </div>
         </div>
 
         <div className="comments-cont">{comments}</div>

@@ -17,7 +17,7 @@ export default class RouteMap extends React.Component {
 
   componentDidMount() {
     this.initMap();
-    Map.pinpointMarker.setMap(this.map);
+    // Map.pinpointMarker.setMap(this.map);
     this.setState({ map: this.map });
   }
 

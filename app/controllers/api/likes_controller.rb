@@ -1,6 +1,7 @@
 class Api::LikesController < ApplicationController
 
   def create
+
     @like = current_user.liked_posts.new(
       {activity_id: params[:activityId]})
 

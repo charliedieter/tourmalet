@@ -5,7 +5,6 @@ export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveCurrentUser = ({ user, activities }) => {
-  ;
   return {
     type: RECEIVE_CURRENT_USER,
     user,
@@ -28,15 +27,20 @@ const clearErrs = () => ({
 });
 
 export const login = user => dispatch => {
-  ;
   return API.login(user).then(
-    user => dispatch(receiveCurrentUser(user)),
-    payload => dispatch(receiveErrors(payload.responseJSON))
+    user => {
+      dispatch(receiveCurrentUser(user));
+    },
+    payload => {
+      dispatch(receiveErrors(payload.responseJSON));
+    }
   );
 };
 
 export const logout = () => dispatch => {
-  return API.logout().then(() => dispatch(removeCurrentUser()));
+  return API.logout().then(p => {
+    dispatch(removeCurrentUser());
+  });
 };
 
 export const signup = user => dispatch =>

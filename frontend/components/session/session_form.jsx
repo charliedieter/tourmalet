@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SessionHeader from "./session_header";
+import SessionHeader from "../header/session_header";
 
 export default class SessionForm extends React.Component {
   constructor(props) {

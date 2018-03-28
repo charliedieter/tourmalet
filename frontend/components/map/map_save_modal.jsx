@@ -84,9 +84,6 @@ class MapSaveModal extends React.Component {
                 value={this.state.description || ""}
               />
             </label>
-            <input type="image" onClick={this.saveImage}>
-              Add Image
-            </input>
 
             <div className="buttons">
               <button className="close" onClick={this.close}>

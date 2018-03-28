@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import MainHeaderContainer from "./main_header_container";
-import ProfileColumn from "./profile_column";
-import ActivityFeed from "./activity/activity_feed";
-import { fetchActivities } from "../actions/activity_actions";
+import MainHeaderContainer from "../header/main_header_container";
+import ProfileColumn from "../user/profile_column";
+import ActivityFeed from "../activity/activity_feed";
+import { fetchActivities } from "../../actions/activity_actions";
 
 class Dashboard extends React.Component {
   componentDidMount() {
