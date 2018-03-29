@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
       .where('username != ?', current_user.username)
       render '/api/users/index'
     else
-      @users = User.none
+      @users = User.all
     end
   end
 

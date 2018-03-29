@@ -19,9 +19,6 @@ class ProfileDropdown extends React.Component {
       this.state.open === true ? (
         <ul className="profile-ul">
           <li>
-            <Link to="/">Edit Profile</Link>
-          </li>
-          <li>
             <button onClick={this.props.logout}>Log Out</button>
           </li>
         </ul>

@@ -38,7 +38,7 @@ class UserShow extends React.Component {
         </button>
       );
     } else if (this.props.user.id === this.props.currentUser.id) {
-      followEditButton = <button>Edit Profile</button>;
+      followEditButton = null;
     } else {
       followEditButton = (
         <button

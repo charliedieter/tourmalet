@@ -4,6 +4,7 @@ import MainHeaderContainer from "../header/main_header_container";
 import ProfileColumn from "../user/profile_column";
 import ActivityFeed from "../activity/activity_feed";
 import { fetchActivities } from "../../actions/activity_actions";
+import SuggestedFriends from "./suggested_friends.jsx";
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class Dashboard extends React.Component {
           <ActivityFeed
             activities={Object.values(this.props.activities).reverse()}
           />
+          <SuggestedFriends currentUser={this.props.currentUser} />
         </div>
       </div>
     );

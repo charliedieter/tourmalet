@@ -45,6 +45,7 @@
 
 img.profile-pic {
   cursor: pointer;
+  background: #f5f5fa;
 }
 
 .name-and-type a {
@@ -52,7 +53,22 @@ img.profile-pic {
 }
 
 .name-and-date {
-  margin: 15px 0;
+  margin: 25px 0;
+}
+
+.act-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.act-date {
+  font-size: 10px;
+  color: gray;
+}
+
+.name-and-type a {
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .activity-feed-item .profile-pic {
@@ -86,8 +102,8 @@ img.profile-pic {
 }
 
 .activity-feed-item ul li {
-  font-size: 20px;
-  padding-left: 20px;
+  font-size: 16px;
+  padding-left: 16px;
 }
 
 .activity-feed-item .activity-image {
@@ -124,14 +140,15 @@ img.liked {
 }
 
 .liker-avatar {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 2px solid white;
+  background: #f5f5fa;
 }
 
-.liker-profiles:nth-child(n + 2) {
-  margin-left: -8px;
+.liker-avatar:nth-child(n + 2) {
+  margin-left: -10px;
 }
 
 .feed-item-buttons {

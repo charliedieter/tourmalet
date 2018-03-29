@@ -1,7 +1,8 @@
 .elevation-chart-box {
-  height: 200px;
-  width: 900px;
+  height: 130px;
+  width: 898px;
   padding-top: 30px;
+  border: 1px solid black;
 }
 
 .elevation-chart {
@@ -13,12 +14,17 @@
   border-bottom-color: #bcbbba;
   width: 3.515px;
   height: 100%;
+  opacity: 0.4;
   display: inline-block;
   box-sizing: border-box;
 }
 
+.elevation-chart div:nth-child(even) {
+  /* border-bottom-color: #6d6d6c; */
+}
+
 .elevation-chart div.selected {
-  border-bottom-color: #6d6d6c;
+  border-bottom-color: black;
 }
 
 .elevation-chart div span {
@@ -32,10 +38,11 @@
 
 .elevation-chart div:hover span {
   opacity: 1;
+  border-bottom-width: 100%;
 }
 
 .ele-label {
-  margin-top: -30px;
+  margin-top: -5px;
   position: absolute;
   padding: 10px;
 }

@@ -17,12 +17,16 @@ class DashboardDropdown extends React.Component {
     const items =
       this.state.open === true ? (
         <ul>
-          <li>
-            <Link to="/dashboard">Activity Feed</Link>
-          </li>
-          <li>
-            <Link to={`/users/${this.props.currentUser.id}`}>My Routes</Link>
-          </li>
+          <Link className="dropdown-link" to="/dashboard">
+            Activity Feed
+          </Link>
+
+          <Link
+            className="dropdown-link"
+            to={`/users/${this.props.currentUser.id}`}
+          >
+            My Routes
+          </Link>
         </ul>
       ) : null;
 

@@ -2,12 +2,9 @@
   display: flex;
   justify-content: space-between;
   height: 55px;
-  /* box-shadow: 0 1px 2px black; */
   border-bottom: 0.5px solid #e6e6eb;
   overflow: visible;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
-  /* position: fixed; */
-  this: 0;
   width: 100%;
   z-index: 100;
   background: white;
@@ -16,6 +13,7 @@
 h1.logo {
   margin-right: 50px;
   cursor: pointer;
+  font-family: "Montserrat";
 }
 
 .dash-header {
@@ -88,6 +86,12 @@ h1.logo {
   border-radius: 50%;
   margin: auto 10px;
 }
+
+.search-button {
+  border: none;
+  background: none;
+  color: gray;
+}
 div.dropdown-div {
   display: flex;
   margin: auto;
@@ -156,9 +160,6 @@ div.dropdown-div {
 .dropdown-div div i {
   margin: auto;
 }
-/* .selected-drop a {
-  border-bottom: 2px solid #fc4c02;
-} */
 
 .dropdown-div ul {
   overflow: auto;
@@ -166,6 +167,7 @@ div.dropdown-div {
   top: 100%;
   margin-left: -1px;
   margin-top: -1px;
+  text-align: center;
 }
 .header-left .dropdown-div ul:before {
   content: "";
@@ -177,9 +179,6 @@ div.dropdown-div {
   border-top: 0.5px solid #ccccd1;
 }
 
-.plus ul {
-}
-
 .dropdown-div ul li {
   display: flex;
   width: 160px;
@@ -187,10 +186,33 @@ div.dropdown-div {
   background: white;
   border-left: 0.5px solid #ccccd1;
   border-right: 0.5px solid #ccccd1;
+  text-align: center;
+}
+
+.dropdown-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  width: 160px;
+  height: 50px;
+  background: white;
+  border-left: 0.5px solid #ccccd1;
+  border-right: 0.5px solid #ccccd1;
+  text-align: center;
+  margin: auto;
 }
 
 .dropdown-div ul li:hover {
   background: #ccccd1;
+}
+.dropdown-div ul a:hover {
+  background: #ccccd1;
+}
+.dropdown-div ul a {
+  text-align: center;
+}
+.dropdown-div ul a:last-child {
+  border-bottom: 0.5px solid #ccccd1;
 }
 .dropdown-div ul li:last-child {
   border-bottom: 0.5px solid #ccccd1;
@@ -212,13 +234,7 @@ div.dropdown-div {
 .dropdown-div.profile {
   width: 80px;
 }
-ul li a {
-  text-decoration: none;
-  color: black;
-  font-weight: 400;
-  font-size: 12px;
-  margin: auto 10px;
-}
+
 .dropdown-div-bell {
   margin: auto;
 }
@@ -229,7 +245,7 @@ ul li a {
   left: 0;
   top: 0;
   height: 1px;
-  width: 111px; /* or 100px */
+  width: 111px;
   border-top: 0.5px solid #ccccd1;
 }
 

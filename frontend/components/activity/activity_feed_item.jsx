@@ -38,7 +38,7 @@ class ActivityFeedItem extends React.Component {
     if (this.props.activity.likers.length === 0) {
       return <div className="like-text">Be the first to like this route!</div>;
     } else {
-      return this.props.activity.likers.map((liker, idx) => {
+      return this.props.activity.likers.slice(0, 3).map((liker, idx) => {
         return (
           <img
             key={`liker-${idx}`}
@@ -78,8 +78,8 @@ class ActivityFeedItem extends React.Component {
             <img className="profile-pic" src={act.owner_img} />
           </div>
           <div className="name-and-date">
-            <div>{act.owner.username}</div>
-            <div>{act.date}</div>
+            <div className="act-name">{act.owner.username}</div>
+            <div className="act-date">{act.date}</div>
           </div>
           <div className="top-row-right">
             <img

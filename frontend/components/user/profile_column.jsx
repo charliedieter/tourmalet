@@ -13,8 +13,8 @@ class ProfileColumn extends React.Component {
   }
 
   render() {
-    if (!this.props.currentUser.activity_ids || !this.props.activities)
-      return null;
+    // if (!this.props.currentUser.activity_ids || !this.props.activities)
+    //   return null;
     const acts = this.props.currentUser.activity_ids;
 
     const lastAct =
@@ -29,7 +29,7 @@ class ProfileColumn extends React.Component {
         <b>Follow {this.props.currentUser.username}</b>
       </button>
     );
-
+    if (!lastAct) return null;
     return (
       <div className="prof-cont" ref="sticky">
         <div className="prof-box">

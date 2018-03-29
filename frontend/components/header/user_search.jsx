@@ -16,7 +16,6 @@ class UserSearch extends React.Component {
 
   updateValue(e) {
     this.setState({ name: e.currentTarget.value }, () => {
-       ;
       this.props.searchUsers(this.state.name);
     });
   }
@@ -56,7 +55,7 @@ class UserSearch extends React.Component {
               onChange={this.updateValue}
               className="user-search-input"
             />
-            <button>
+            <button className="search-button">
               <i className="material-icons">search</i>
             </button>
             <ul>{returnVal}</ul>

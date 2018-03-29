@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_attached_file :avatar,
   styles: { medium: "300x300>", thumb: "100x100>" },
-  default_url: "http://www.sessionlogs.com/media/icons/defaultIcon.png"
+  default_url: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :followers, through: :in_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
   has_many :images
-  
+
   attr_reader :password
 
   after_initialize :ensure_session_token

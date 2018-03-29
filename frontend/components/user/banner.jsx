@@ -12,7 +12,7 @@ class Banner extends React.Component {
   }
 
   render() {
-    if (!this.props.images[0]) return null;
+    if (!this.props.images[0]) return <div className="banner-default" />;
 
     if (this.props.images.length < 5)
       this.imageWidth = 100 / this.props.images.length + "%";
