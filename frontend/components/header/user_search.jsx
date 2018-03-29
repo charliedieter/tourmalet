@@ -16,7 +16,9 @@ class UserSearch extends React.Component {
 
   updateValue(e) {
     this.setState({ name: e.currentTarget.value }, () => {
-      this.props.searchUsers(this.state.name);
+      if (this.state.name.length > 0) {
+        return this.props.searchUsers(this.state.name);
+      }
     });
   }
 
@@ -38,6 +40,7 @@ class UserSearch extends React.Component {
   render() {
     const returnVal =
       this.props.searchReturn &&
+      this.state.name.length > 0 &&
       Object.values(this.props.searchReturn).map(user => (
         <div key={user.id} onClick={() => this.handleClick(user.id)}>
           <img src={user.avatar_url} />

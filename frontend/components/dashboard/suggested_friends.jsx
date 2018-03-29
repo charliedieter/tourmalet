@@ -5,22 +5,23 @@ import { fetchUsers, createFollow } from "../../actions/user_actions";
 class SuggestedFriends extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
-    debugger;
   }
 
   render() {
     if (!this.props.users) return null;
-    debugger;
+    const currentUser = this.props.currentUser.user
+      ? this.props.currentUser.user
+      : this.props.currentUser;
     const suggested = this.props.users
       .filter(
         user =>
-          user.id !== this.props.currentUser.id &&
-          !this.props.currentUser.following_ids.includes(user.id)
+          user.id !== currentUser.id &&
+          !currentUser.following_ids.includes(user.id)
       )
       .slice(0, 5)
       .map((user, idx) => {
         return (
-          <li className="suggested-friend-li">
+          <li key={`user-${idx}`} className="suggested-friend-li">
             <img src={user.avatar_url} />
             <div>
               <div>{user.username}</div>
@@ -28,7 +29,7 @@ class SuggestedFriends extends React.Component {
                 <button
                   className="suggested-follow-button"
                   onClick={() =>
-                    this.props.createFollow(this.props.currentUser, user.id)
+                    this.props.createFollow(currentUser.id, user.id).then()
                   }
                 >
                   Follow
@@ -51,7 +52,8 @@ class SuggestedFriends extends React.Component {
 const msp = state => ({ users: Object.values(state.entities.users) });
 const mdp = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
-  createFollow: () => dispatch(createFollow())
+  createFollow: (followerId, followedId) =>
+    dispatch(createFollow(followerId, followedId))
 });
 
 export default connect(msp, mdp)(SuggestedFriends);

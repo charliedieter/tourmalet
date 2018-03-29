@@ -8,7 +8,10 @@ import { withRouter, Link } from "react-router-dom";
 
 class ActivityShow extends React.Component {
   componentDidMount() {
-    this.props.fetchActivity(this.props.match.params.activityId);
+    this.props.fetchActivity(
+      this.props.match.params.activityId,
+      this.props.currentUser.id
+    );
   }
 
   render() {
@@ -52,7 +55,7 @@ const msp = (state, ownProps) => ({
 });
 
 const mdp = dispatch => ({
-  fetchActivity: id => dispatch(fetchActivity(id))
+  fetchActivity: (id, currentUser) => dispatch(fetchActivity(id, currentUser))
 });
 
 export default withRouter(connect(msp, mdp)(ActivityShow));

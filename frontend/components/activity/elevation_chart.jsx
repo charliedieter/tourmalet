@@ -49,9 +49,10 @@ class ElevationChart extends React.Component {
   render() {
     if (!this.state.elevations) return null;
     const bars = this.state.elevations.map((ele, idx) => {
+      const borderBottomWidth =
+        this.props.height * ele.elevation / this.state.domain[1] || 0;
       const barStyle = {
-        borderBottomWidth:
-          this.props.height * ele.elevation / this.state.domain[1]
+        borderBottomWidth
       };
 
       return (

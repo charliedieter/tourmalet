@@ -15,6 +15,10 @@ class ProfileDropdown extends React.Component {
   }
 
   render() {
+    const currentUser = this.props.currentUser.user
+      ? this.props.currentUser.user
+      : this.props.currentUser;
+
     const items =
       this.state.open === true ? (
         <ul className="profile-ul">
@@ -31,7 +35,7 @@ class ProfileDropdown extends React.Component {
         onMouseLeave={this.mouseEventHandler}
       >
         <div className="profile-dropdown-inner">
-          <img className="profile" src={this.props.currentUser.avatar_url} />
+          <img className="profile" src={currentUser.avatar_url} />
           <i className="material-icons">keyboard_arrow_down</i>
           {items}
         </div>

@@ -13,7 +13,7 @@
 
 .prof-box {
   width: 300px;
-  height: 325px;
+  height: 280px;
   background: white;
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.04);
   margin: 160px 100%;
@@ -65,10 +65,14 @@
   margin-top: 20px;
 }
 
+.line-3-row {
+}
+
 .line-3-row a {
   display: flex;
   flex-direction: column;
   height: 60px;
+  font-size: 12px;
 }
 
 .line-3-row a div {
@@ -79,6 +83,8 @@
 
 .line-3-row a .num {
   font-size: 20px;
+
+  margin-top: -5px;
   cursor: pointer;
 }
 
@@ -96,19 +102,16 @@
   font-weight: 400;
   margin: 12px auto;
 }
-.prof-links-cont a i {
-  margin-top: 10px;
-}
 
 .last-act-info i {
 }
 
 .last-act-cont {
   font-size: 14px;
-  border-top: 0.5px solid black;
-  border-bottom: 0.5px solid black;
+  border-top: 0.5px solid lightgray;
+  border-bottom: 0.5px solid lightgray;
   width: 80%;
-  margin: auto;
+  margin: 20px auto auto auto;
   padding: 5px;
 }
 .last-act-cont a {
@@ -135,4 +138,15 @@
 .last-act-cont a div {
   width: 100%;
   margin: auto;
+}
+
+.activity-log-button {
+  display: flex;
+  margin: 20px auto;
+}
+
+.activity-log-button div {
+  margin: auto;
+  font-size: 16px;
+  font-weight: lighter;
 }

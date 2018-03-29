@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createFollow } from "../../actions/user_actions";
+import { fetchUser, createFollow } from "../../actions/user_actions";
 
 class ProfileColumn extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser(this.props.currentUser.id);
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.props.createFollow(
@@ -13,23 +17,39 @@ class ProfileColumn extends React.Component {
   }
 
   render() {
-    // if (!this.props.currentUser.activity_ids || !this.props.activities)
-    //   return null;
-    const acts = this.props.currentUser.activity_ids;
+    if (!this.props.currentUser) return null;
+    const currentUser = this.props.currentUser.user
+      ? this.props.currentUser.user
+      : this.props.currentUser;
+
+    let acts;
+    if (currentUser.activity_ids) {
+      acts = currentUser.activity_ids;
+    } else {
+      acts = [];
+    }
 
     const lastAct =
-      acts.length > 0 ? this.props.activities[acts[acts.length - 1]] : "";
-    const addFollowLink = this.props.dash ? (
+      acts.length > 0 ? this.props.activities[acts[acts.length - 1]] : null;
+
+    const lastActOrAddAct = lastAct ? (
+      <Link to={`/activities/${lastAct.id}`}>
+        <div className="last-act-info">
+          <div>Last Activity </div>
+          <div className="last-act-title-date">
+            <div className="last-act-name">{lastAct.title}</div>
+            <div className="last-act-date">{lastAct.date}</div>
+          </div>
+          <i className="material-icons">keyboard_arrow_right</i>
+        </div>
+      </Link>
+    ) : (
       <Link to="/routes/new">
         <b>Add an Activity</b>
         <i className="material-icons">keyboard_arrow_right</i>
       </Link>
-    ) : (
-      <button onClick={this.handleClick.bind(this)}>
-        <b>Follow {this.props.currentUser.username}</b>
-      </button>
     );
-    if (!lastAct) return null;
+
     return (
       <div className="prof-cont" ref="sticky">
         <div className="prof-box">
@@ -37,30 +57,26 @@ class ProfileColumn extends React.Component {
             <div
               className="line-1"
               onClick={() =>
-                this.props.history.push(`/users/${this.props.currentUser.id}`)
+                this.props.history.push(`/users/${currentUser.id}`)
               }
             >
-              <img src={this.props.currentUser.avatar_url} />
+              <img src={currentUser.avatar_url} />
             </div>
             <div className="line-2">
-              <div>{this.props.currentUser.username}</div>
+              <div>{currentUser.username}</div>
             </div>
             <div className="line-3">
               <ul>
                 <li className="line-3-row">
                   <a>
                     <div>Following</div>
-                    <div className="num">
-                      {this.props.currentUser.followings.length}
-                    </div>
+                    <div className="num">{currentUser.followings.length}</div>
                   </a>
                 </li>
                 <li className="line-3-row">
                   <a>
                     <div>Followers</div>
-                    <div className="num">
-                      {this.props.currentUser.followers.length}
-                    </div>
+                    <div className="num">{currentUser.followers.length}</div>
                   </a>
                 </li>
                 <li className="line-3-row">
@@ -73,22 +89,12 @@ class ProfileColumn extends React.Component {
             </div>
           </div>
           <div className="prof-links-cont">
-            <div className="last-act-cont">
-              <Link to={`/activities/${lastAct.id}`}>
-                <div className="last-act-info">
-                  <div>Last Activity</div>
-                  <div className="last-act-title-date">
-                    <div className="last-act-name">{lastAct.title}</div>
-                    <div className="last-act-date">{lastAct.date}</div>
-                  </div>
-                  <i className="material-icons">keyboard_arrow_right</i>
-                </div>
-              </Link>
-            </div>
-            {addFollowLink}
+            <div className="last-act-cont">{lastActOrAddAct}</div>
             <Link to={`/users/${this.props.currentUser.id}`}>
-              <b>Activity Log</b>
-              <i className="material-icons">keyboard_arrow_right</i>
+              <div className="activity-log-button">
+                Activity Log
+                <i className="material-icons">keyboard_arrow_right</i>
+              </div>
             </Link>
           </div>
         </div>
@@ -102,4 +108,8 @@ const msp = state => ({
   activities: state.entities.activities
 });
 
-export default withRouter(connect(msp, null)(ProfileColumn));
+const mdp = dispatch => ({
+  fetchUser: userId => dispatch(fetchUser(userId))
+});
+
+export default withRouter(connect(msp, mdp)(ProfileColumn));

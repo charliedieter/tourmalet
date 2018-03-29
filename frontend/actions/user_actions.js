@@ -4,10 +4,13 @@ export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 
-const receiveUsers = users => ({
-  type: RECEIVE_USERS,
-  users
-});
+const receiveUsers = users => {
+  debugger;
+  return {
+    type: RECEIVE_USERS,
+    users
+  };
+};
 
 const receiveUser = ({ user, activities, images }) => ({
   type: RECEIVE_USER,

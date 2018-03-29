@@ -105,7 +105,8 @@ const msp = state => ({
 });
 
 const mdp = dispatch => ({
-  saveActivity: activity => dispatch(saveActivity(activity, currentUser)),
+  saveActivity: (activity, currentUser) =>
+    dispatch(saveActivity(activity, currentUser)),
   saveImage: image => dispatch(saveImage(image))
 });
 

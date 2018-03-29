@@ -4,15 +4,19 @@ export const RECEIVE_ACTIVITY = "RECEIVE_ACTIVITY";
 export const RECEIVE_ACTIVITIES = "RECEIVE_ACTIVITIES";
 export const RECEIVE_LIKED_ACTIVITY = "RECEIVE_LIKED_ACTIVITY";
 
-const receiveActivity = activity => ({
-  type: RECEIVE_ACTIVITY,
-  activity
-});
-const receiveActivityWithUser = (activity, currentUser) => ({
+const receiveActivity = (activity, currentUser) => ({
   type: RECEIVE_ACTIVITY,
   activity,
-  currentUser
+  user: currentUser
 });
+
+const receiveActivityWithUser = (activity, currentUser) => {
+  return {
+    type: RECEIVE_ACTIVITY,
+    activity,
+    user: currentUser
+  };
+};
 
 const receiveActivities = activities => {
   return {
@@ -32,8 +36,10 @@ export const saveActivity = (activity, currentUser) => dispatch => {
   );
 };
 
-export const fetchActivity = id => dispatch => {
-  return API.fetchActivity(id).then(act => dispatch(receiveActivity(act)));
+export const fetchActivity = (id, currentUser) => dispatch => {
+  return API.fetchActivity(id).then((act, currentUser) =>
+    dispatch(receiveActivity(act, currentUser))
+  );
 };
 
 export const fetchActivities = () => dispatch => {
