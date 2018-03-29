@@ -1,6 +1,7 @@
 div.comment-cont {
   justify-content: space-around;
   width: 400px;
+  height: 70px;
 }
 
 div.commenter-photo-cont {

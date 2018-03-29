@@ -40,7 +40,6 @@
 
 .top-row-right img {
   width: 35px;
-  cursor: pointer;
 }
 
 img.profile-pic {
@@ -173,4 +172,8 @@ img.liked {
 .comment-form-container {
   display: flex;
   flex-direction: column;
+}
+
+.commenter-name-and-such {
+  font-size: 12px;
 }
