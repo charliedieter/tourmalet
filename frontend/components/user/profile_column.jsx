@@ -2,6 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser, createFollow } from "../../actions/user_actions";
+import Goals from "./goals";
 
 class ProfileColumn extends React.Component {
   componentDidMount() {
@@ -97,6 +98,9 @@ class ProfileColumn extends React.Component {
               </div>
             </Link>
           </div>
+        </div>
+        <div className="goals-box">
+          <Goals currentUser={currentUser} />
         </div>
       </div>
     );

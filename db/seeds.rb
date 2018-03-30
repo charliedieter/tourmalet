@@ -11,11 +11,11 @@ Comment.destroy_all
 Like.destroy_all
 Follow.destroy_all
 
-users = User.create([
-{ username: 'Guest',
+users = User.create(
+[{ username: 'Guest',
     email: "email@gmail.com",
     password: "password",
-    avatar: "http://i.dailymail.co.uk/i/pix/2017/04/11/16/3F2782B200000578-0-image-m-8_1491925634006.jpg"
+    avatar: "https://www.discoveradventure.com/media/image-cache/80212f2a-0c5e-4f45-aa1e-699a25766dc4/900-0-1-1000-650/1483950968-cycling_uphill_pyreneesjpg.jpg"
 },{ username: 'Fred',
   email: "fred@gmail.com",
   password: "password",
@@ -67,8 +67,8 @@ users = User.create([
 },{ username: 'Taylor',
   email: "taylor@gmail.com",
   password: "password",
-  avatar: "https://sweatngears.files.wordpress.com/2011/06/sweatngears_tourseries_endura_ian-superman-wilkinson.jpg"
-}])
+  avatar: "https://sweatngears.files.wordpress.com/2011/06/sweatngears_tourseries_endura_ian-superman-wilkinson.jpg"}
+])
 
 activities = Activity.create([{title: "Morning Ride",
   description: "",
@@ -162,27 +162,33 @@ activities = Activity.create([{title: "Morning Ride",
    elevation: 400}
 ])
 
-# comments = Comment.create([{author_id: users[3].id, activity_id: activities[11].id, content: "killin it!"},
-# {author_id: users[7].id, activity_id: activities[11].id, content: "heeeeeeyyyyoooo"}])
-#
-# likes = Like.create([{liker_id: 7, activity_id: 12},
-# {liker_id: users[3], activity_id: activities[9]},
-# {liker_id: users[6], activity_id: activities[11]},
-# {liker_id: users[5], activity_id: activities[11]},
-# {liker_id: users[4], activity_id: activities[11]},
-# {liker_id: users[3], activity_id: activities[11]}])
-#
-# follows = Follow.create([{follower_id: 102, followed_id: 101},
-# {follower_id: 109, followed_id: 101},
-# {follower_id: 104, followed_id: 101},
-# {follower_id: 105, followed_id: 101},
-# {follower_id: 106, followed_id: 101},
-# {follower_id: 107, followed_id: 101},
-# {follower_id: 108, followed_id: 101}]),
-# {follower_id: 101, followed_id: users[0]},
-# {follower_id: 101, followed_id: users[2]},
-# {follower_id: 101, followed_id: users[3]},
-# {follower_id: 101, followed_id: users[4]},
-# {follower_id: 101, followed_id: users[5]},
-# {follower_id: 101, followed_id: users[6]},
-# {follower_id: 101, followed_id: users[7]}])
+comments = Comment.create(
+[{author_id: users[3].id, activity_id: activities[11].id, content: "killin it!"},
+{author_id: users[7].id, activity_id: activities[11].id, content: "heeeeeeyyyyoooo"}
+])
+
+likes = Like.create(
+[{liker_id: users[1].id, activity_id: activities[11].id},
+{liker_id: users[3].id, activity_id: activities[9].id},
+{liker_id: users[6].id, activity_id: activities[11].id},
+{liker_id: users[5].id, activity_id: activities[11].id},
+{liker_id: users[4].id, activity_id: activities[11].id},
+{liker_id: users[3].id, activity_id: activities[11].id}
+])
+
+follows = Follow.create(
+[{follower_id: users[1].id, followed_id: users[0].id },
+{follower_id: users[2].id, followed_id: users[0].id },
+{follower_id: users[3].id, followed_id: users[0].id },
+{follower_id: users[4].id, followed_id: users[0].id },
+{follower_id: users[5].id, followed_id: users[0].id },
+{follower_id: users[6].id, followed_id: users[0].id },
+{follower_id: users[7].id, followed_id: users[0].id },
+{follower_id: users[8].id, followed_id: users[0].id },
+{follower_id: users[9].id, followed_id: users[0].id },
+{follower_id: users[0].id, followed_id: users[2].id },
+{follower_id: users[0].id, followed_id: users[3].id },
+{follower_id: users[0].id, followed_id: users[4].id },
+{follower_id: users[0].id, followed_id: users[5].id },
+{follower_id: users[0].id, followed_id: users[6].id }
+])

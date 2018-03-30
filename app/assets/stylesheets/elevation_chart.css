@@ -2,7 +2,8 @@
   height: 130px;
   width: 898px;
   padding-top: 30px;
-  border: 1px solid black;
+  border: 1px solid slategray;
+  background: #f5f5fa;
 }
 
 .elevation-chart {
@@ -29,6 +30,7 @@
 
 .elevation-chart div span {
   font-size: 15px;
+  color: black;
   height: 20px;
   line-height: 20px;
   opacity: 0;

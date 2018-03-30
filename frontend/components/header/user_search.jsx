@@ -7,7 +7,8 @@ class UserSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      name: "",
+      open: false
     };
     this.updateValue = this.updateValue.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -37,6 +38,10 @@ class UserSearch extends React.Component {
     }
   }
 
+  toggleSearchBar() {
+    this.setState({ open: !this.state.open });
+  }
+
   render() {
     const returnVal =
       this.props.searchReturn &&
@@ -56,14 +61,23 @@ class UserSearch extends React.Component {
               placeholder="Find your friends"
               value={this.state.name}
               onChange={this.updateValue}
-              className="user-search-input"
+              className={
+                this.state.open ? "user-search-input open" : "user-search-input"
+              }
             />
-            <button className="search-button">
-              <i className="material-icons">search</i>
-            </button>
             <ul>{returnVal}</ul>
           </div>
         </form>
+        <button
+          onClick={this.toggleSearchBar.bind(this)}
+          className="search-button"
+        >
+          {this.state.open ? (
+            <i className="material-icons">close</i>
+          ) : (
+            <i className="material-icons">search</i>
+          )}
+        </button>
       </div>
     );
   }

@@ -10,14 +10,6 @@ const receiveActivity = (activity, currentUser) => ({
   user: currentUser
 });
 
-const receiveActivityWithUser = (activity, currentUser) => {
-  return {
-    type: RECEIVE_ACTIVITY,
-    activity,
-    user: currentUser
-  };
-};
-
 const receiveActivities = activities => {
   return {
     type: RECEIVE_ACTIVITIES,
@@ -32,7 +24,7 @@ const receiveLikedActivity = activity => ({
 
 export const saveActivity = (activity, currentUser) => dispatch => {
   return API.saveActivity(activity).then(act =>
-    dispatch(receiveActivityWithUser(act, currentUser))
+    dispatch(receiveActivity(act, currentUser))
   );
 };
 

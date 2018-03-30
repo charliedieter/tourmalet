@@ -43,6 +43,7 @@ h1.logo {
 
 .outer-search-div {
   margin: auto;
+  display: flex;
 }
 
 .inner-search-div {
@@ -52,9 +53,14 @@ h1.logo {
 }
 
 .user-search-input {
+  display: none;
   width: 200px;
-  height: 30px;
+
+  height: 40px;
   padding: 10px;
+}
+.user-search-input.open {
+  display: inline;
 }
 
 .dash-training-div {
@@ -93,6 +99,10 @@ h1.logo {
   border: none;
   background: none;
   color: gray;
+}
+
+.search-button:hover {
+  color: black;
 }
 div.dropdown-div {
   display: flex;
