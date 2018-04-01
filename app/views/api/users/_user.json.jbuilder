@@ -6,6 +6,7 @@ json.user do
   json.liked_posts user.liked_posts.pluck(:activity_id)
   json.activity_ids user.activity_ids
   json.last_weeks_activities user.last_weeks_activities
+  json.year_totals user.one_year_act_totals
   json.follower_ids user.followers.pluck(:id)
   json.following_ids user.followings.pluck(:id)
   json.yearlyCyclingGoal user.yearly_cycling_goal

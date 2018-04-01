@@ -6,6 +6,7 @@ import WeeklyChart from "./weekly_goal_chart";
 class Goals extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       selected: 1,
       form: false,
@@ -26,6 +27,15 @@ class Goals extends React.Component {
       field += "Running";
       return e => this.setState({ [field]: parseInt(e.target.value) });
     }
+  }
+
+  dayOfYear() {
+    let now = new Date();
+    let start = new Date(now.getFullYear(), 0, 0);
+    let diff = now - start;
+    let oneDay = 1000 * 60 * 60 * 24;
+    let day = Math.floor(diff / oneDay);
+    return day;
   }
 
   updateGoals(e) {
@@ -50,12 +60,23 @@ class Goals extends React.Component {
   render() {
     const user = this.props.currentUser;
 
-    const weekTotal = Object.values(user.last_weeks_activities)[0]
-      .map(act => parseInt(act.distance))
-      .reduce((a, b) => a + b);
+    const type = this.state.selected === 1 ? "Ride" : "Run";
+
+    let weekTotal;
+    if (this.state.selected === 3) {
+      weekTotal = Object.values(user.last_weeks_activities)[0]
+        .map(act => parseInt(act.distance))
+        .reduce((a, b) => a + b);
+    } else {
+      weekTotal = Object.values(user.last_weeks_activities)[0]
+        .filter(act => act.type_of === type)
+        .map(act => parseInt(act.distance))
+        .reduce((a, b) => a + b);
+    }
 
     let goalImage, weeklyGoal, yearlyGoal;
     if (this.state.selected === 1) {
+      debugger;
       weeklyGoal = this.state.weeklyCycling;
       yearlyGoal = this.state.yearlyCycling;
       goalImage = (
@@ -119,6 +140,14 @@ class Goals extends React.Component {
       </div>
     );
 
+    const yearTotal =
+      this.state.selected === 1
+        ? user.year_totals.ride
+        : this.state.selected === 2
+          ? user.year_totals.run
+          : user.year_totals.total;
+    let statusWidth =
+      yearTotal / yearlyGoal * 100 > 100 ? 100 : yearTotal / yearlyGoal * 100;
     const goalChart = (
       <div>
         <div className="goals-top-row">
@@ -163,8 +192,20 @@ class Goals extends React.Component {
         <div className="this-year">
           <div>THIS YEAR</div>
           <div className="goal-num">
-            {user.totalMiles || 0}
+            {yearTotal || 0}
             {yearlyGoal ? ` / ${yearlyGoal} mi` : " mi"}
+          </div>
+
+          <div className="year-tracker">
+            <div className="goal-status" style={{ width: statusWidth + "%" }} />
+          </div>
+
+          <div
+            className="today-label"
+            style={{ marginLeft: this.dayOfYear() / 365 * 200 - 120 }}
+          >
+            <span className="today-line" />
+            <label>Today</label>
           </div>
         </div>
       </div>

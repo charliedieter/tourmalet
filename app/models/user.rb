@@ -69,6 +69,22 @@ class User < ApplicationRecord
     days
   end
 
+  def one_year_act_totals
+    acts = self.activities.where('created_at >= ?', 1.year.ago)
+    total = 0
+    ride = 0
+    run = 0
+    acts.each do |act|
+      total += act.distance.to_i
+      if act.type_of == "Run"
+        run += act.distance.to_i
+      elsif act.type_of == "Ride"
+        ride += act.distance.to_i
+      end
+    end
+    {total: total, ride: ride, run: run}
+  end
+
   private
 
   def ensure_session_token
