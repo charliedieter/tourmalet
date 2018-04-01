@@ -17,13 +17,16 @@ export default class TrainingDropdown extends React.Component {
     const items =
       this.state.open === true ? (
         <ul>
-          <Link className="dropdown-link" to="/">
-            Training Log
-          </Link>
-
-          <Link className="dropdown-link" to="/">
-            My Activities
-          </Link>
+          <li>
+            <Link className="dropdown-link" to="/">
+              Training Log
+            </Link>
+          </li>
+          <li>
+            <Link className="dropdown-link" to="/">
+              My Activities
+            </Link>
+          </li>
         </ul>
       ) : null;
 

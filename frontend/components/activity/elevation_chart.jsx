@@ -61,7 +61,7 @@ class ElevationChart extends React.Component {
           key={`${ele}-${idx}`}
           onMouseEnter={() => this.handleMouseEnter(idx)}
           onMouseLeave={this.handleMouseLeave}
-          className={this.state.selected === idx ? "selected" : ""}
+          className={this.state.selected === idx ? "selected bar" : "bar"}
         >
           <span>{Math.floor(ele.elevation * 3.28083)} ft</span>
         </div>
@@ -74,6 +74,63 @@ class ElevationChart extends React.Component {
     };
     return (
       <div className="elevation-chart-box">
+        <ul className="horizontal-graph-bars">
+          <li>
+            {" "}
+            <span>{Math.floor(this.state.domain[1] * 3.28)} ft</span>
+          </li>
+          <li>
+            {" "}
+            <span>{}</span>
+          </li>
+          <li>
+            {" "}
+            <span>{}</span>
+          </li>
+          <li>
+            {" "}
+            <span>{}</span>
+          </li>
+          <li>
+            {" "}
+            <span>{this.state.domain[0]} ft</span>
+          </li>
+        </ul>
+        <ul className="vertical-graph-bars">
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+          <li>
+            <span>{}</span>
+          </li>
+        </ul>
         <div style={chartStyle} className="elevation-chart">
           {bars}
         </div>

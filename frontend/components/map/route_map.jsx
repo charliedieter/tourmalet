@@ -199,9 +199,9 @@ export default class RouteMap extends React.Component {
   }
 
   clearRoute() {
-    this.directionsDisplay.setDirections({ routes: [] });
-
     this.directionsDisplay.setMap(null);
+    this.directionsDisplay.setDirections({ routes: [] }, this.initMap());
+
     this.clearAllWayPts();
     this.setState({
       waypts: [],
@@ -213,10 +213,11 @@ export default class RouteMap extends React.Component {
 
   undoLeg() {
     const last = this.legs.slice(-1);
+    this.clearAllWayPts();
     const waypts = this.state.waypts.slice(0, -1);
-    last.setMap(null);
+
+    this.directionsDisplay.setMap(null);
     this.setState({ waypts });
-    this.renderRoute();
   }
 
   toggleTravelMode(travelMode) {

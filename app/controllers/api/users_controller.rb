@@ -15,6 +15,24 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    data = params[:data]
+    goals = {
+      yearly_cycling_goal: data[:yearlyCyclingGoal],
+      weekly_cycling_goal: data[:weeklyCyclingGoal],
+      yearly_running_goal: data[:yearlyRunningGoal],
+      weekly_running_goal: data[:weeklyRunningGoal]
+    }
+
+    if @user.update(goals)
+      render 'api/users/show'
+    else
+      render json: @user.errors, status: 422
+    end
+
+  end
+
   def index
     if params[:query].present?
       @users = User.where('username ILIKE ?', "#{params[:query]}%")
@@ -26,6 +44,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :avatar)
+    params.require(:user)
+    .permit(:username, :email, :password, :avatar)
   end
 end

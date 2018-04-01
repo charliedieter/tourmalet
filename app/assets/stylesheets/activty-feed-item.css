@@ -144,6 +144,7 @@ img.liked {
   border-radius: 50%;
   border: 2px solid white;
   background: #f5f5fa;
+  cursor: pointer;
 }
 
 .liker-avatar:nth-child(n + 2) {

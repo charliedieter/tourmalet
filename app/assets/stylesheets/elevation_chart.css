@@ -2,17 +2,46 @@
   height: 130px;
   width: 898px;
   padding-top: 30px;
-  border: 1px solid slategray;
-  background: #f5f5fa;
+  border: 1px solid lightgrey;
 }
 
 .elevation-chart {
   position: relative;
 }
 
-.elevation-chart div {
+.horizontal-graph-bars {
+  position: absolute;
+  height: 130px;
+  margin-top: -30px;
+  width: 897px;
+}
+
+.horizontal-graph-bars li {
+  border-top: 1px solid lightgrey;
+  height: 26px;
+}
+
+.horizontal-graph-bars li span {
+  font-size: 12px;
+  margin-left: -30px;
+}
+
+.vertical-graph-bars {
+  position: absolute;
+  display: flex;
+  width: 897px;
+  height: 130px;
+  margin-top: -30px;
+}
+
+.vertical-graph-bars li {
+  width: 90px;
+  border-right: 1px solid lightgrey;
+}
+
+.elevation-chart .bar {
   border-bottom-style: solid;
-  border-bottom-color: #bcbbba;
+  border-bottom-color: slategrey;
   width: 3.515px;
   height: 100%;
   opacity: 0.4;
@@ -28,19 +57,19 @@
   border-bottom-color: black;
 }
 
-.elevation-chart div span {
+.elevation-chart .bar span {
   font-size: 15px;
   color: black;
   height: 20px;
-  line-height: 20px;
-  opacity: 0;
+  width: 40px;
   position: absolute;
+  font-weight: bold;
+  opacity: 0;
   top: -20px;
 }
 
 .elevation-chart div:hover span {
   opacity: 1;
-  border-bottom-width: 100%;
 }
 
 .ele-label {

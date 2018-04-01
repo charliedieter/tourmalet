@@ -47,7 +47,11 @@ class UserSearch extends React.Component {
       this.props.searchReturn &&
       this.state.name.length > 0 &&
       Object.values(this.props.searchReturn).map(user => (
-        <div key={user.id} onClick={() => this.handleClick(user.id)}>
+        <div
+          className="user-search-list-item"
+          key={user.id}
+          onClick={() => this.handleClick(user.id)}
+        >
           <img src={user.avatar_url} />
           <div>{user.username}</div>
         </div>

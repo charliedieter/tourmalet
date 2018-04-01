@@ -109,8 +109,6 @@
   background: #f1f1f1;
   border-style: none;
   outline: none;
-
-  /* border: 1px solid ; */
 }
 
 .ride-run-cont button.selected,
@@ -125,8 +123,8 @@ button.ride img {
 
 button.run img {
   width: 33px;
-  margin-bottom: -7px;
-  margin-top: 5px;
+  margin: auto;
+  display: block;
 }
 
 .header-right {

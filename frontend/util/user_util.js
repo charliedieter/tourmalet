@@ -27,10 +27,10 @@ export const deleteFollow = (followerId, followedId) => {
   });
 };
 
-export const updateUser = user => {
+export const updateUser = (userId, data) => {
   return $.ajax({
-    url: `api/users/${user.id}`,
+    url: `api/users/${userId}`,
     method: "PATCH",
-    data: { user, attributes }
+    data: { data }
   });
 };

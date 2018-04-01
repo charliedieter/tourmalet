@@ -45,6 +45,30 @@ class User < ApplicationRecord
     user && user.is_password?(pwd) ? user : nil
   end
 
+  def last_weeks_activities
+    days = Hash.new { |h,k| h[k] = []}
+    acts = self.activities.where('created_at >= ?', 1.week.ago)
+    acts.each do |act|
+      d = act.created_at.wday
+      if d == 0
+        days[:sun] << act
+      elsif d == 1
+        days[:mon] << act
+      elsif d == 2
+        days[:tues] << act
+      elsif d == 3
+        days[:wed] << act
+      elsif d == 4
+        days[:thurs] << act
+      elsif d == 5
+        days[:fri] << act
+      elsif d == 6
+        days[:sat] << act
+      end
+    end
+    days
+  end
+
   private
 
   def ensure_session_token

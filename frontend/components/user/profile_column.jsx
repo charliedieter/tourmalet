@@ -99,7 +99,7 @@ class ProfileColumn extends React.Component {
             </Link>
           </div>
         </div>
-        <div className="goals-box">
+        <div className="goals-sticky">
           <Goals currentUser={currentUser} />
         </div>
       </div>

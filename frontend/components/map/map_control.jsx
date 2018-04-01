@@ -69,11 +69,6 @@ export default class MapControl extends React.Component {
 
           <div className="route-tools">
             <div className="undo-redo-cont">
-              <button onClick={this.props.undoLeg} className="undo">
-                <i className="material-icons">undo</i>
-                <a>Undo</a>
-              </button>
-
               <button onClick={this.props.clearRoute} className="clear">
                 <i className="material-icons">close</i>
                 <a>Clear</a>
@@ -115,3 +110,9 @@ export default class MapControl extends React.Component {
     );
   }
 }
+
+// <button onClick={this.props.undoLeg} className="undo">
+//   <i className="material-icons">undo</i>
+//   <a>Undo</a>
+// </button>
+//

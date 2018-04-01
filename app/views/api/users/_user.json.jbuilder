@@ -5,7 +5,11 @@ json.user do
   json.followings user.followings
   json.liked_posts user.liked_posts.pluck(:activity_id)
   json.activity_ids user.activity_ids
+  json.last_weeks_activities user.last_weeks_activities
   json.follower_ids user.followers.pluck(:id)
   json.following_ids user.followings.pluck(:id)
-
+  json.yearlyCyclingGoal user.yearly_cycling_goal
+  json.weeklyCyclingGoal user.weekly_cycling_goal
+  json.yearlyRunningGoal user.yearly_running_goal
+  json.weeklyRunningGoal user.weekly_running_goal
 end
