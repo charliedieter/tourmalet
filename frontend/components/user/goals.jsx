@@ -76,7 +76,6 @@ class Goals extends React.Component {
 
     let goalImage, weeklyGoal, yearlyGoal;
     if (this.state.selected === 1) {
-      debugger;
       weeklyGoal = this.state.weeklyCycling;
       yearlyGoal = this.state.yearlyCycling;
       goalImage = (

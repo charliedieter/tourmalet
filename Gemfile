@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.1.5'
 gem 'better_errors'
 gem 'binding_of_caller'
-
+gem 'kaminari'
 gem 'annotate'
 gem 'bcrypt'
 gem 'jquery-rails'

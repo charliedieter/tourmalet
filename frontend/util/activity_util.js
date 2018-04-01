@@ -30,9 +30,10 @@ export const fetchActivity = id =>
     url: `api/activities/${id}`
   });
 
-export const fetchActivities = () =>
+export const fetchActivities = page =>
   $.ajax({
-    url: "api/activities"
+    url: "api/activities",
+    data: { page }
   });
 
 export const createLike = activityId =>

@@ -3,6 +3,11 @@ json.user do
   json.avatar_url image_path(user.avatar.url(:medium))
   json.followers user.followers
   json.followings user.followings
+  json.followings_with_avatar user.followings.each do |f|
+    json.username f.username
+    json.id f.id
+    json.avatar_url image_path(f.avatar.url(:medium))
+  end
   json.liked_posts user.liked_posts.pluck(:activity_id)
   json.activity_ids user.activity_ids
   json.last_weeks_activities user.last_weeks_activities

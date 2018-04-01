@@ -26,9 +26,7 @@ class Dashboard extends React.Component {
             activities={this.props.activities}
             dash={true}
           />
-          <ActivityFeed
-            activities={Object.values(this.props.activities).reverse()}
-          />
+          <ActivityFeed />
           <SuggestedFriends currentUser={this.props.currentUser} />
         </div>
       </div>

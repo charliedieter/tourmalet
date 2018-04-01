@@ -2,23 +2,44 @@ import React from "react";
 
 class WeeklyChart extends React.Component {
   render() {
-    const max = Math.max(
-      ...Object.values(this.props.acts)[0].map(act => parseInt(act.distance))
+    const dailyTotals = {
+      sun: 0.05,
+      mon: 0.05,
+      tues: 0.05,
+      weds: 0.05,
+      thurs: 0.05,
+      fri: 0.05,
+      sat: 0.05
+    };
+
+    ["sun", "mon", "tues", "weds", "thurs", "fri", "sat"].forEach(
+      (day, idx) => {
+        const acts = this.props.acts[day];
+        const type = this.props.type;
+        if (acts) {
+          // skip over if  activity type does not match current selection
+          for (var i = 0; i < acts.length; i++) {
+            if (type === "Ride" && acts[i].type_of === "Run") {
+              continue;
+            } else if (type === "Run" && acts[i].type_of === "Ride") {
+              continue;
+            } else {
+              dailyTotals[day] += parseInt(acts[i].distance);
+            }
+          }
+        }
+      }
     );
+
+    const maxDailyMiles = Math.max(...Object.values(dailyTotals));
 
     const bars = ["sun", "mon", "tues", "weds", "thurs", "fri", "sat"].map(
       (day, idx) => {
-        const acts = this.props.acts[day];
-        let total = 0.2;
-        if (acts) {
-          for (var i = 0; i < acts.length; i++) {
-            total += parseInt(acts[i].distance);
-          }
-        }
-
+        // math to find % of container bar should fill
+        const barHeight = 115 * (dailyTotals[day] / maxDailyMiles);
         return (
           <div
-            style={{ borderBottomWidth: 30 * total / max || 0 }}
+            style={{ borderBottomWidth: barHeight }}
             key={`${day}`}
             className={`bar ${day}`}
           >

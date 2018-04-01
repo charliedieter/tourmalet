@@ -15,11 +15,11 @@ users = User.create(
 [{ username: 'Guest',
     email: "email@gmail.com",
     password: "password",
-    avatar: "https://www.discoveradventure.com/media/image-cache/80212f2a-0c5e-4f45-aa1e-699a25766dc4/900-0-1-1000-650/1483950968-cycling_uphill_pyreneesjpg.jpg"
+    avatar: "http://3.bp.blogspot.com/-sC9vVftcp48/Tk19UAu4SSI/AAAAAAAABCE/Xq2nS_QQLmo/s1600/100_2892.JPG"
 },{ username: 'Fred',
   email: "fred@gmail.com",
   password: "password",
-  avatar: "http://3.bp.blogspot.com/-sC9vVftcp48/Tk19UAu4SSI/AAAAAAAABCE/Xq2nS_QQLmo/s1600/100_2892.JPG"
+  avatar: "http://www.cyclefiesta.com/multimedia/pyrenees/images/cycling-pyrenees.jpg"
 },{ username: 'Charlie',
   email: "charlie@gmail.com",
   password: "password",
@@ -31,11 +31,11 @@ users = User.create(
 },{ username: 'Bob',
   email: "user2@gmail.com",
   password: "password",
-  avatar: "http://i1.wp.com/ledomestiquetours.co.uk.88-208-244-163.jago-staging.com/wp-content/uploads/2015/07/Col-du-Tourmalet-Feeling-the-Pain.jpg"
+  avatar: "https://www.discoveradventure.com/media/image-cache/80212f2a-0c5e-4f45-aa1e-699a25766dc4/900-0-1-1000-650/1483950968-cycling_uphill_pyreneesjpg.jpg"
 },{ username: 'Linda',
   email: "user3@gmail.com",
   password: "password",
-  avatar: "http://cdn.coresites.factorymedia.com/twc/wp-content/uploads/2014/12/an-intimate-portrait-of-the-tour-de-france-680x380.jpg"
+  avatar: "https://www.discoveradventure.com/media/image-cache/80212f2a-0c5e-4f45-aa1e-699a25766dc4/900-0-1-1000-650/1483950968-cycling_uphill_pyreneesjpg.jpg"
 },{ username: 'Laurette',
   email: "email4@gmail.com",
   password: "password",
@@ -47,7 +47,7 @@ users = User.create(
 },{ username: 'OtherGuy',
   email: "Otherguy@gmail.com",
   password: "password",
-  avatar: "http://www.cyclefiesta.com/multimedia/pyrenees/images/cycling-pyrenees.jpg"
+  avatar: "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=af753f6c66c27ee4325322951a0f2f6e&auto=format&fit=crop&w=1050&q=80"
 },{ username: 'Aislinn',
   email: "aislinn@gmail.com",
   password: "password",
@@ -63,11 +63,40 @@ users = User.create(
 },{ username: 'Lael',
   email: "lael@gmail.com",
   password: "password",
-  avatar: "http://cdn.coresites.factorymedia.com/twc/wp-content/uploads/2014/12/an-intimate-portrait-of-the-tour-de-france-680x380.jpg"
+  avatar: "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=af753f6c66c27ee4325322951a0f2f6e&auto=format&fit=crop&w=1050&q=80"
 },{ username: 'Taylor',
   email: "taylor@gmail.com",
   password: "password",
-  avatar: "https://sweatngears.files.wordpress.com/2011/06/sweatngears_tourseries_endura_ian-superman-wilkinson.jpg"}
+  avatar: "https://sweatngears.files.wordpress.com/2011/06/sweatngears_tourseries_endura_ian-superman-wilkinson.jpg"
+},{ username: 'Jimbo',
+  email: "jimbo@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1471439330580-1493ebc92c13?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e3f8706cfc6281e973bbad12f6e0a5a&auto=format&fit=crop&w=762&q=80"
+},{ username: 'Samuel',
+  email: "samuel@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1495563923587-bdc4282494d0?ixlib=rb-0.3.5&s=69bb714b982f1104fd9262198ce60919&auto=format&fit=crop&w=1050&q=80"
+},{ username: 'Christopher',
+  email: "christopher@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1501620363363-4f9cb7fa25e8?ixlib=rb-0.3.5&s=08b1557aec8d2f46b179c1be135a268d&auto=format&fit=crop&w=934&q=80"
+},{ username: 'Patrick',
+  email: "patrick@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1470298740710-87fd14ccb21f?ixlib=rb-0.3.5&s=12378c445159824227f072429c33f40c&auto=format&fit=crop&w=1050&q=80"
+},{ username: 'Jonah',
+  email: "jonah@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1516725630185-19ae408fbc83?ixlib=rb-0.3.5&s=e86df147f25dae637a8ffbd42c21384d&auto=format&fit=crop&w=1051&q=80"
+},{ username: 'Garrett',
+  email: "garrett@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1455719103652-8c015f564e2b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=361cd2dc22efed1c4f8149b1dfff409e&auto=format&fit=crop&w=889&q=80"
+},{ username: 'Samantha',
+  email: "samantha@gmail.com",
+  password: "password",
+  avatar: "https://images.unsplash.com/photo-1516147697747-02adcafd3fda?ixlib=rb-0.3.5&s=fc4bac92ba239938161e2e8628ddcf8f&auto=format&fit=crop&w=814&q=80"
+}
 ])
 
 activities = Activity.create([{title: "Morning Ride",
@@ -162,6 +191,10 @@ activities = Activity.create([{title: "Morning Ride",
    elevation: 400}
 ])
 
+images = Image.create(
+  [{user_id: users[0].id , activity_id: activities[1].id, image:"http://www.whichtrainingcamp.com/images/Articleimages/CYCLING/TDFCLIMBS/col_du_tourmalet2.jpg" }]
+)
+{user_id: 51 , activity_id: 85, image:"http://www.whichtrainingcamp.com/images/Articleimages/CYCLING/TDFCLIMBS/col_du_tourmalet2.jpg" }
 comments = Comment.create(
 [{author_id: users[3].id, activity_id: activities[11].id, content: "killin it!"},
 {author_id: users[7].id, activity_id: activities[11].id, content: "heeeeeeyyyyoooo"}

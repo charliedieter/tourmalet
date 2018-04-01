@@ -5,6 +5,8 @@ import ActivityFeed from "../activity/activity_feed";
 import ActivityCalendar from "./calendar";
 import FourWeekChart from "./four_week_chart";
 import Banner from "./banner";
+import Goals from "./goals";
+import RoutesAndFollows from "./routes_and_follows";
 import { connect } from "react-redux";
 import {
   fetchUser,
@@ -54,28 +56,41 @@ class UserShow extends React.Component {
     return (
       <div>
         <MainHeaderContainer className="dash-header" search={true} />
-        <Banner />
+        <Banner images={this.props.images} user={this.props.user} />
         <div className="user-show-main">
-          <div className="user-show-prof-box">
-            <div className="img-cont">
-              <img src={this.props.user.avatar_url} />
+          <div className="user-show-top-row">
+            <div className="user-show-prof-box">
+              <div className="img-cont">
+                <img src={this.props.user.avatar_url} />
+              </div>
+              <div className="user-show-name">
+                <div>{this.props.user.username}</div>
+              </div>
+              <div className="follow-edit-buttons">
+                <div>{followEditButton}</div>
+              </div>
             </div>
-            <div className="user-show-name">
-              <div>{this.props.user.username}</div>
-            </div>
-            <div className="follow-edit-buttons">
-              <div>{followEditButton}</div>
+
+            <div className="act-stat-box">
+              <div className="act-count-box">
+                <div>Last 4 Weeks</div>
+                <div className="num">{this.props.user.activity_ids.length}</div>
+                <div>total activities</div>
+              </div>
+
+              <ActivityCalendar />
             </div>
           </div>
+          <div>
+            <RoutesAndFollows
+              images={this.props.images}
+              user={this.props.user}
+              currentUser={this.props.currentUser}
+            />
 
-          <div className="act-stat-box">
-            <div className="act-count-box">
-              <div>Last 4 Weeks</div>
-              <div className="num">{this.props.user.activity_ids.length}</div>
-              <div>total activities</div>
+            <div className="user-show-goals-container">
+              <Goals currentUser={this.props.user} />
             </div>
-
-            <ActivityCalendar />
           </div>
         </div>
       </div>
@@ -86,7 +101,8 @@ class UserShow extends React.Component {
 const msp = (state, ownProps) => ({
   currentUser: state.session.currentUser,
   user: state.entities.users[ownProps.match.params.userId],
-  activities: state.entities.activities
+  activities: state.entities.activities,
+  images: state.entities.images
 });
 
 const mdp = dispatch => ({
@@ -98,13 +114,3 @@ const mdp = dispatch => ({
 });
 
 export default connect(msp, mdp)(UserShow);
-
-// <ProfileColumn
-//   className="ProfileColumn"
-//   user={this.props.user}
-//   currentUser={this.props.currentUser}
-//   activities={this.props.activities}
-//   />
-// <ActivityFeed
-//   activities={Object.values(this.props.activities).reverse()}
-//   />

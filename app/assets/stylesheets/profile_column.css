@@ -11,17 +11,18 @@
   height: 300px;
   background: white;
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.04);
-  margin: 160px 100%;
+  margin: 180px 0 180px 150%;
   display: flex;
   flex-direction: column;
   position: sticky;
-  top: -25px;
+  top: 120px;
 }
 
 .goals-sticky {
   position: sticky;
-  top: 320px;
-  margin: -115px 0 0 4vw;
+  top: 460px;
+
+  margin: -130px 0 0 150%;
 }
 
 .goals-box {
@@ -119,6 +120,9 @@
   opacity: 0.95;
 }
 
+.goals-edit-row i:hover {
+  color: #c93d02;
+}
 .goal-image {
   height: 26px;
   width: 26px;

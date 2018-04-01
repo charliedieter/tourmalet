@@ -18,6 +18,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-user-avatar": "^1.10.0",
+    "react-waypoint": "^8.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "webpack": "^3.11.0"

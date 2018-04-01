@@ -36,7 +36,6 @@ class SuggestedFriends extends React.Component {
                 </button>
               </div>
             </div>
-            <button className="remove-suggestion">x</button>
           </li>
         );
       });
@@ -57,3 +56,5 @@ const mdp = dispatch => ({
 });
 
 export default connect(msp, mdp)(SuggestedFriends);
+
+// <button className="remove-suggestion">x</button>

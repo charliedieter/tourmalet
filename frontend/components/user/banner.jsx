@@ -1,40 +1,36 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchImages } from "../../actions/image_actions";
 
 class Banner extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchImages();
-  }
-
   render() {
-    if (!this.props.images[0]) return <div className="banner-default" />;
+    const length = Object.keys(this.props.images).length;
 
-    if (this.props.images.length < 5)
-      this.imageWidth = 100 / this.props.images.length + "%";
+    const images = [];
+    // inline style so it can be changed depending on resolution/shape/# of photos in the future
+    Object.values(this.props.images).forEach((img, idx) =>
+      images.push(
+        <img
+          className="banner-photo"
+          style={{ width: "25%", height: "100%" }}
+          src={img.url}
+          key={`banner-img-${idx}`}
+        />
+      )
+    );
 
-    const imageStyle = {
-      width: this.imageWidth,
-      height: "100%"
-    };
+    if (!images[0]) return <div className="banner-default" />;
 
-    const images = this.props.images.map((img, idx) => {
-      return <img style={imageStyle} src={img.url} key={`img-${idx}`} />;
-    });
     return <div className="banner">{images}</div>;
   }
 }
 
-const msp = state => ({
-  images: Object.values(state.entities.images)
-});
+export default Banner;
 
-const mdp = dispatch => ({
-  fetchImages: () => dispatch(fetchImages)
-});
-
-export default connect(msp, mdp)(Banner);
+//
+// const imageStyle = {
+//   width: this.imageWidth,
+//   height: "100%"
+// };

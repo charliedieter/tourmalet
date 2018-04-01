@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { style, key, rectangle, square } from "./google_static_map_styling";
 
 const StaticMap = props => {
-  const size = props.image ? square : rectangle;
+  const size = props.image ? square : props.square ? square : rectangle;
   const url =
     size +
     style +

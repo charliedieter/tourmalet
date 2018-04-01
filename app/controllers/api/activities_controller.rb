@@ -11,7 +11,8 @@ class Api::ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
+
+      @activities = Activity.all.page(params[:page]).per(5)
   end
 
   def show
