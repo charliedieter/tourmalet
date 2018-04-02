@@ -1,4 +1,5 @@
 import React from "react";
+import Gallery from "react-grid-gallery";
 
 class Banner extends React.Component {
   constructor(props) {
@@ -9,28 +10,33 @@ class Banner extends React.Component {
     const length = Object.keys(this.props.images).length;
 
     const images = [];
-    // inline style so it can be changed depending on resolution/shape/# of photos in the future
-    Object.values(this.props.images).forEach((img, idx) =>
-      images.push(
-        <img
-          className="banner-photo"
-          style={{ width: "25%", height: "100%" }}
-          src={img.url}
-          key={`banner-img-${idx}`}
-        />
-      )
-    );
+
+    Object.values(this.props.images)
+      .slice(0, 4)
+      .forEach((img, idx) =>
+        images.push({
+          src: img.url,
+          thumbnail: img.url,
+          thumbnailWidth: 600,
+          thumbnailHeight: 500
+        })
+      );
+    // without react grid
+    // <img
+    //   className="banner-photo"
+    //   style={{ width: "25%", height: "100%" }}
+    //   src={img.url}
+    //   key={`banner-img-${idx}`}
+    //   />
 
     if (!images[0]) return <div className="banner-default" />;
 
-    return <div className="banner">{images}</div>;
+    return (
+      <div className="banner">
+        <Gallery images={images} enableImageSelection={false} rowHeight={300} />
+      </div>
+    );
   }
 }
 
 export default Banner;
-
-//
-// const imageStyle = {
-//   width: this.imageWidth,
-//   height: "100%"
-// };

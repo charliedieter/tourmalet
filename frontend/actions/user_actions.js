@@ -1,4 +1,5 @@
 import * as API from "../util/user_util";
+import { receiveCurrentUser } from "./session_actions";
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -43,12 +44,13 @@ export const searchUsers = query => dispatch => {
 
 export const createFollow = (follower, followed) => dispatch => {
   return API.createFollow(follower, followed).then(payload => {
-    dispatch(receiveUsers(payload));
+    return dispatch(receiveUsers(payload));
   });
 };
 
 export const deleteFollow = (followerId, followedId) => dispatch => {
-  return API.deleteFollow(followerId, followedId).then(payload =>
-    dispatch(receiveUsers(payload))
-  );
+  return API.deleteFollow(followerId, followedId).then(payload => {
+    debugger;
+    return dispatch(receiveUsers(payload));
+  });
 };

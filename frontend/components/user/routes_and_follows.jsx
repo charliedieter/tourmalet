@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import StaticMap from "../map/static_map";
+import Gallery from "react-grid-gallery";
 
 class RoutesAndFollows extends React.Component {
   constructor(props) {
@@ -36,16 +37,29 @@ class RoutesAndFollows extends React.Component {
           </div>
         );
       });
+
+    // before using react-grid
+
+    // const images = [];
+    // Object.values(this.props.images).forEach((img, idx) =>
+    //   images.push(
+    //     <img
+    //       className="banner-photo"
+    //       style={{ width: "25%", height: "100%" }}
+    //       src={img.url}
+    //       key={`banner-img-${idx}`}
+    //     />
+    //   )
+    // );
+
     const images = [];
     Object.values(this.props.images).forEach((img, idx) =>
-      images.push(
-        <img
-          className="banner-photo"
-          style={{ width: "25%", height: "100%" }}
-          src={img.url}
-          key={`banner-img-${idx}`}
-        />
-      )
+      images.push({
+        src: img.url,
+        thumbnail: img.url,
+        thumbnailWidth: 300,
+        thumbnailHeight: 200
+      })
     );
 
     const following = this.props.user.followings_with_avatar.map(
@@ -87,9 +101,13 @@ class RoutesAndFollows extends React.Component {
           </li>
         </ul>
         <div className="routes-follows-body">
-          {this.state.selected === 1
-            ? routes
-            : this.state.selected === 2 ? images : following}
+          {this.state.selected === 1 ? (
+            routes
+          ) : this.state.selected === 2 ? (
+            <Gallery images={images} enableImageSelection={false} />
+          ) : (
+            following
+          )}
         </div>
       </div>
     );

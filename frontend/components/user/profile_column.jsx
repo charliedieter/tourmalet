@@ -107,10 +107,12 @@ class ProfileColumn extends React.Component {
   }
 }
 
-const msp = state => ({
-  currentUser: state.session.currentUser,
-  activities: state.entities.activities
-});
+const msp = state => {
+  return {
+    currentUser: state.entities.users[state.session.currentUser.id],
+    activities: state.entities.activities
+  };
+};
 
 const mdp = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId))

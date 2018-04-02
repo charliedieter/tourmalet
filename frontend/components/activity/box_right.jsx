@@ -7,7 +7,12 @@ const BoxRight = props => {
 
   return (
     <div className="box-right-cont">
-      <div className="top-row">
+      <div
+        className="top-row"
+        onClick={() =>
+          props.history.push(`/users/${props.activity.athlete_id}`)
+        }
+      >
         <img src={props.activity.owner_img} />
         <div>
           <a className="name">By {props.activity.owner.username}</a>

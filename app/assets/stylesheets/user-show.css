@@ -1,14 +1,15 @@
 .banner {
   height: 300px;
   width: 88%;
+
   background: white;
   overflow: hidden;
-  margin: auto;
+  margin: 10px auto;
 }
 
-.banner-photo {
+/* .banner-photo {
   border: 1px solid white;
-}
+} */
 
 .banner-default {
   height: 150px;
@@ -180,7 +181,7 @@
   height: 20px;
   font-size: 14px;
   position: absolute;
-  right: 35vw;
+  right: 40vw;
   border: none;
 }
 

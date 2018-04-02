@@ -84,11 +84,13 @@
   box-shadow: 0px 8px 24px rgba(13, 13, 18, 0.16);
   margin-bottom: 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .top-row .name {
   font-size: 20px;
   display: block;
+  cursor: pointer;
 }
 
 .top-row .date {

@@ -15,6 +15,7 @@
     "react-dom": "^16.2.0",
     "react-google-charts": "^1.5.5",
     "react-google-static-map": "^0.1.0",
+    "react-grid-gallery": "^0.4.8",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-user-avatar": "^1.10.0",
