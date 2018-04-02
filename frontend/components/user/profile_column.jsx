@@ -109,7 +109,7 @@ class ProfileColumn extends React.Component {
 
 const msp = state => {
   return {
-    currentUser: state.entities.users[state.session.currentUser.id],
+    currentUser: state.session.currentUser,
     activities: state.entities.activities
   };
 };
