@@ -1,16 +1,21 @@
 .suggested-friends-list {
   width: 300px;
   height: 390px;
-  margin: 400px 10% 0 0;
+  margin: 400px 10% 0 40px;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   position: sticky;
   top: 100px;
 }
+
 .suggested-friends-list h4 {
   height: 40px;
   font-weight: 100;
   margin-top: 10px;
+}
+
+.suggested-friends-ul {
+  margin-left: 10px;
 }
 
 .suggested-friend-li {

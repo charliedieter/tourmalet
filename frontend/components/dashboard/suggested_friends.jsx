@@ -42,7 +42,7 @@ class SuggestedFriends extends React.Component {
     return (
       <div className="suggested-friends-list">
         <h4>Suggested Friends</h4>
-        <ul>{suggested}</ul>
+        <ul className="suggested-friends-ul">{suggested}</ul>
       </div>
     );
   }
