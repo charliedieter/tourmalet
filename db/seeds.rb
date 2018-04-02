@@ -192,7 +192,18 @@ activities = Activity.create([{title: "Morning Ride",
 ])
 
 images = Image.create(
-  [{user_id: users[0].id , activity_id: activities[1].id, image:"http://www.whichtrainingcamp.com/images/Articleimages/CYCLING/TDFCLIMBS/col_du_tourmalet2.jpg" }]
+  [{user_id: users[0].id , activity_id: activities[1].id, image:"http://www.whichtrainingcamp.com/images/Articleimages/CYCLING/TDFCLIMBS/col_du_tourmalet2.jpg" },
+{user_id: users[0].id , activity_id: activities[2].id, image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/LuzArdidien2003.jpg/300px-LuzArdidien2003.jpg" },
+{user_id: users[0].id , activity_id: activities[2].id, image:"https://cdnmos-bikeradar.global.ssl.fastly.net/images/news/2017/05/25/canyon-endurance-al-60-06-1493210151001-r4uyy4e6rl1u-1493991204064-1141b06ihkp7d-1495783915049-z0ugfo3fbqjd-630-354.jpg" },
+{user_id: users[0].id , activity_id: activities[3].id, image:"http://i.imgur.com/jMHV9Q5.jpg" },
+{user_id: users[0].id , activity_id: activities[3].id, image:"https://imagesvc.timeincuk.net/v3/keystone/image?url=http://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2016/07/4M1A8675-630x420.jpg&q=82" },
+{user_id: users[0].id , activity_id: activities[4].id, image:"https://i.pinimg.com/originals/fc/55/36/fc55368b92fba2f8da65c35ac9bd0f5b.jpg" },
+{user_id: users[0].id , activity_id: activities[4].id, image:"https://www.roughguides.com/wp-content/uploads/2013/12/01.DeathRoadBolivia-175086482-1680x1050.jpg" },
+{user_id: users[1].id , activity_id: activities[4].id, image:"https://imagesvc.timeincuk.net/v3/keystone/image?url=http://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2015/02/170D9767edit-630x420.jpg&q=82" },
+{user_id: users[2].id , activity_id: activities[7].id, image:"https://www.roughguides.com/wp-content/uploads/2013/12/18.greatOceanRoad-D1KY78-1680x1050.jpg" },
+{user_id: users[3].id , activity_id: activities[5].id, image:"https://img.myswitzerland.com/653403/573" },
+{user_id: users[0].id , activity_id: activities[1].id, image:"http://www.cyclefiesta.com/Images/articles/sacalobra1.jpg" },
+{user_id: users[0].id , activity_id: activities[1].id, image:"https://acadiamagic.com/1200px/cadillac-6546.jpg" }]
 )
 {user_id: 51 , activity_id: 85, image:"http://www.whichtrainingcamp.com/images/Articleimages/CYCLING/TDFCLIMBS/col_du_tourmalet2.jpg" }
 comments = Comment.create(

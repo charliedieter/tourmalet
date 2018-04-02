@@ -21,7 +21,7 @@
   width: 250px;
   height: 300px;
   float: left;
-  margin: -160px 0 0 50px;
+  margin: -160px 0 0 150px;
 }
 
 .user-show-prof-box .img-cont {
@@ -86,7 +86,7 @@
 .routes-follows-box {
   width: 55vw;
   display: inline-block;
-  margin-left: 10%;
+  margin-left: 7%;
 }
 
 .routes-follows-tabs {
