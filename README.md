@@ -8,22 +8,22 @@ Here are a few things you can do in the app (so far):
 
 * #### Draw a route
 
-  ![Draw a Route](https://media.giphy.com/media/8qoARssAjXEXNM9q73/giphy.gif)
+![Draw a Route](https://media.giphy.com/media/8qoARssAjXEXNM9q73/giphy.gif)
 
 * #### Save a route
 
-  ![Save a Route](https://media.giphy.com/media/TFyGom4zRFOgXFHCD3/giphy.gif)
+![Save a Route](https://media.giphy.com/media/TFyGom4zRFOgXFHCD3/giphy.gif)
 
 * #### See the elevation at any point
 
-  ![Elevation Chart](https://media.giphy.com/media/3oeLahBaMpXyq2tUuj/giphy.gif)
+![Elevation Chart](https://media.giphy.com/media/3oeLahBaMpXyq2tUuj/giphy.gif)
 
 * #### Share with friends
 
-  ![Like and Comment](https://media.giphy.com/media/2vq9rcCn7fCgSyGttR/giphy.gif)
+![Like and Comment](https://media.giphy.com/media/2vq9rcCn7fCgSyGttR/giphy.gif)
 
 * #### Set goals
 
-  ![Set Goals](https://media.giphy.com/media/QmEUZbJk31ImftYOcX/giphy.gif)
+![Set Goals](https://media.giphy.com/media/QmEUZbJk31ImftYOcX/giphy.gif)
 
 Mobile tracking and OAuth are in the works. Keep posted for a fully functioning fitness tracker!
