@@ -6,23 +6,23 @@ Tourmalet is a Strava-inspired map-making app built with React/Redux and Ruby on
 
 Here are a few things you can do in the app (so far):
 
-* #### Draw a route
+* ###### Draw a route
 
 ![Draw a Route](https://media.giphy.com/media/8qoARssAjXEXNM9q73/giphy.gif)
 
-* #### Save a route
+* ###### Save a route
 
 ![Save a Route](https://media.giphy.com/media/TFyGom4zRFOgXFHCD3/giphy.gif)
 
-* #### See the elevation at any point
+* ##### See the elevation at any point
 
 ![Elevation Chart](https://media.giphy.com/media/3oeLahBaMpXyq2tUuj/giphy.gif)
 
-* #### Share with friends
+* ###### Share with friends
 
 ![Like and Comment](https://media.giphy.com/media/2vq9rcCn7fCgSyGttR/giphy.gif)
 
-* #### Set goals
+* ###### Chart weekly and yearly goals and activity totals
 
 ![Set Goals](https://media.giphy.com/media/QmEUZbJk31ImftYOcX/giphy.gif)
 
