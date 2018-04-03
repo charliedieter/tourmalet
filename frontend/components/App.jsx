@@ -7,6 +7,7 @@ import ActivityShow from "./activity/show";
 import RouteMap from "./map/route_map";
 import UserShow from "./user/user_show";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import Tracker from "./map/tracker";
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
       <ProtectedRoute path="/routes/new" component={RouteMap} />
       <ProtectedRoute path="/activities/:activityId" component={ActivityShow} />
       <ProtectedRoute path="/users/:userId" component={UserShow} />
+      <ProtectedRoute path="/tracker" component={Tracker} />
       <AuthRoute exact path="/" component={SplashPage} />
     </div>
   );

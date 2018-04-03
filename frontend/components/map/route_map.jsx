@@ -40,11 +40,13 @@ export default class RouteMap extends React.Component {
       this.placeMarker(e.latLng);
     });
     // if (navigator.geolocation) {
+    //   console.log("s");
     //   navigator.geolocation.getCurrentPosition(pos => {
     //     const initialLocation = new google.maps.LatLng(
     //       pos.coords.latitude,
     //       pos.coords.longitude
     //     );
+    //     console.log("e");
     //     this.map.panTo(initialLocation);
     //   });
     // }
