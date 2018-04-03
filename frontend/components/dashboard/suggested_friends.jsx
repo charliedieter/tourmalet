@@ -8,11 +8,14 @@ class SuggestedFriends extends React.Component {
   }
 
   render() {
-    if (!this.props.users) return null;
-    const currentUser = this.props.currentUser.user
-      ? this.props.currentUser.user
-      : this.props.currentUser;
-    const suggested = this.props.users
+    if (!Object.values(this.props.users)[0] || !this.props.currentUser)
+      return null;
+
+    let currentUser = this.props.currentUser.user
+      ? this.props.users[this.props.currentUser.user.id]
+      : this.props.users[this.props.currentUser.id];
+    if (!currentUser) return null;
+    let suggested = Object.values(this.props.users)
       .filter(
         user =>
           user.id !== currentUser.id &&
@@ -28,9 +31,11 @@ class SuggestedFriends extends React.Component {
               <div>
                 <button
                   className="suggested-follow-button"
-                  onClick={() =>
-                    this.props.createFollow(currentUser.id, user.id).then()
-                  }
+                  onClick={() => {
+                    return this.props.createFollow(currentUser.id, user.id);
+                    suggested = suggested.splice(idx, 1);
+                    this.forceUpdate();
+                  }}
                 >
                   Follow
                 </button>
@@ -48,7 +53,7 @@ class SuggestedFriends extends React.Component {
   }
 }
 
-const msp = state => ({ users: Object.values(state.entities.users) });
+const msp = state => ({ users: state.entities.users });
 const mdp = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
   createFollow: (followerId, followedId) =>
@@ -56,5 +61,3 @@ const mdp = dispatch => ({
 });
 
 export default connect(msp, mdp)(SuggestedFriends);
-
-// <button className="remove-suggestion">x</button>

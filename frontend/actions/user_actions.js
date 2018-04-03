@@ -50,7 +50,6 @@ export const createFollow = (follower, followed) => dispatch => {
 
 export const deleteFollow = (followerId, followedId) => dispatch => {
   return API.deleteFollow(followerId, followedId).then(payload => {
-    debugger;
     return dispatch(receiveUsers(payload));
   });
 };

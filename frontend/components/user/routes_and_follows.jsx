@@ -1,7 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import StaticMap from "../map/static_map";
 import Gallery from "react-grid-gallery";
+import {
+  createFollow,
+  deleteFollow,
+  fetchUser
+} from "../../actions/user_actions";
 
 class RoutesAndFollows extends React.Component {
   constructor(props) {
@@ -62,21 +68,46 @@ class RoutesAndFollows extends React.Component {
       })
     );
 
-    const following = this.props.user.followings_with_avatar.map(
-      (user, idx) => {
+    let following =
+      this.props.user.followings_with_avatar &&
+      this.props.user.followings_with_avatar.map((user, idx) => {
         return (
           <div className="following-list-item" key={`following-${idx}`}>
-            <img className="following-avatar" src={user.avatar_url} />
-            <div className="following-name">{user.username}</div>
+            <img
+              className="following-avatar"
+              src={user.avatar_url}
+              onClick={() => this.props.history.push(`/users/${user.id}`)}
+            />
+            <div
+              className="following-name"
+              onClick={() => this.props.history.push(`/users/${user.id}`)}
+            >
+              {user.username}
+            </div>
             {this.props.currentUser.following_ids.includes(user.id) ? (
-              <button className="following-unfollow-button">Unfollow</button>
+              <button
+                className="following-unfollow-button"
+                onClick={() => {
+                  this.props.deleteFollow(this.props.currentUser.id, user.id);
+                  this.props.fetchUser(this.props.user.id);
+                  this.props.fetchUser(this.props.currentUser.id);
+                }}
+              >
+                Unfollow
+              </button>
             ) : user.id === this.props.currentUser.id ? null : (
-              <button className="following-unfollow-button">Follow</button>
+              <button
+                className="following-unfollow-button"
+                onClick={() =>
+                  this.props.createFollow(this.props.currentUser.id, user.id)
+                }
+              >
+                Follow
+              </button>
             )}
           </div>
         );
-      }
-    );
+      });
 
     return (
       <div className="routes-follows-box">
@@ -115,6 +146,15 @@ class RoutesAndFollows extends React.Component {
 }
 
 const msp = state => ({
-  activities: Object.values(state.entities.activities)
+  activities: Object.values(state.entities.activities),
+  currentUser: state.session.currentUser
 });
-export default connect(msp, null)(RoutesAndFollows);
+
+const mdp = dispatch => ({
+  fetchUser: id => dispatch(fetchUser(id)),
+  createFollow: (currentUserId, userId) =>
+    dispatch(createFollow(currentUserId, userId)),
+  deleteFollow: (currentUserId, userId) =>
+    dispatch(deleteFollow(currentUserId, userId))
+});
+export default withRouter(connect(msp, mdp)(RoutesAndFollows));

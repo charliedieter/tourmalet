@@ -22,11 +22,13 @@ class Api::FollowsController < ApplicationController
 
   def destroy
 
-    @follow = Follow.where(followed_id: params[:followedId]).where(follower_id: params[:followed_id] )
-    
-    @follow.destroy!
-    @users = User.where(id: [params[:followerId], params[:followedId]])
-    render 'api/users/show'
+    @follow = Follow.where(followed_id: params[:followedId]).where(follower_id: params[:followerId] )
+
+    @follow[0].destroy!
+
+    @users = User.where(id: [params[:followerId], params[:followedId]]).to_a
+
+    render 'api/users/index'
   end
 
 end

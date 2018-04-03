@@ -16,28 +16,31 @@ class ActivityFeed extends React.Component {
   getActivities() {
     this.props.fetchActivities(this.state.page);
     this.setState({ page: (this.state.page += 1) });
+    console.log(this.state.page);
   }
 
   componentDidMount() {
-    this.getActivities();
+    this.props.fetchActivities(1);
   }
 
   render() {
     if (!this.props.activities) return null;
 
-    const activities = Object.values(this.props.activities).map(act => {
-      return (
-        <li key={`${act.id}`}>
-          <ActivityFeedItem activity={act} />
-        </li>
-      );
-    });
+    const activities = Object.values(this.props.activities)
+      .reverse()
+      .map(act => {
+        return (
+          <li key={`${act.id}`}>
+            <ActivityFeedItem activity={act} />
+          </li>
+        );
+      });
 
     return (
-      <ul className="activity-feed">
-        {activities}
+      <div>
+        <ul className="activity-feed">{activities}</ul>
         <Waypoint onEnter={this.getActivities} />
-      </ul>
+      </div>
     );
   }
 }

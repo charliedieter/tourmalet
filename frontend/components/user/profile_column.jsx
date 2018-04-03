@@ -23,6 +23,8 @@ class ProfileColumn extends React.Component {
       ? this.props.currentUser.user
       : this.props.currentUser;
 
+    if (!this.props.users[currentUser.id]) return null;
+
     let acts;
     if (currentUser.activity_ids) {
       acts = currentUser.activity_ids;
@@ -71,7 +73,9 @@ class ProfileColumn extends React.Component {
                 <li className="line-3-row">
                   <a>
                     <div>Following</div>
-                    <div className="num">{currentUser.followings.length}</div>
+                    <div className="num">
+                      {this.props.users[currentUser.id].followings.length}
+                    </div>
                   </a>
                 </li>
                 <li className="line-3-row">
@@ -100,7 +104,7 @@ class ProfileColumn extends React.Component {
           </div>
         </div>
         <div className="goals-sticky">
-          <Goals currentUser={currentUser} />
+          <Goals currentUser={currentUser} editable={true} />
         </div>
       </div>
     );
@@ -110,7 +114,8 @@ class ProfileColumn extends React.Component {
 const msp = state => {
   return {
     currentUser: state.session.currentUser,
-    activities: state.entities.activities
+    activities: state.entities.activities,
+    users: state.entities.users
   };
 };
 

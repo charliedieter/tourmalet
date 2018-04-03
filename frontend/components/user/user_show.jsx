@@ -8,6 +8,7 @@ import Banner from "./banner";
 import Goals from "./goals";
 import RoutesAndFollows from "./routes_and_follows";
 import { connect } from "react-redux";
+import { fetchImages } from "../../actions/image_actions";
 import {
   fetchUser,
   createFollow,
@@ -19,8 +20,8 @@ class UserShow extends React.Component {
     this.state = {
       modalOpen: false
     };
-
     this.props.fetchUser(this.props.match.params.userId);
+    // this.props.fetchImages(this.props.match.params.userId);
   }
 
   render() {
@@ -56,7 +57,12 @@ class UserShow extends React.Component {
     return (
       <div>
         <MainHeaderContainer className="dash-header" search={true} />
-        <Banner images={this.props.images} user={this.props.user} />
+        <Banner
+          images={Object.values(this.props.images).filter(i =>
+            this.props.user.image_ids.includes(i.id)
+          )}
+          user={this.props.user}
+        />
         <div className="user-show-main">
           <div className="user-show-top-row">
             <div className="user-show-prof-box">
@@ -89,7 +95,10 @@ class UserShow extends React.Component {
             />
 
             <div className="user-show-goals-container">
-              <Goals currentUser={this.props.user} />
+              <Goals
+                currentUser={this.props.user}
+                editable={this.props.user.id === this.props.currentUser.id}
+              />
             </div>
           </div>
         </div>
@@ -110,7 +119,8 @@ const mdp = dispatch => ({
   addFollow: (followerId, followedId) =>
     dispatch(createFollow(followerId, followedId)),
   deleteFollow: (followerId, followedId) =>
-    dispatch(deleteFollow(followerId, followedId))
+    dispatch(deleteFollow(followerId, followedId)),
+  fetchImages: userId => dispatch(fetchImages(userId))
 });
 
 export default connect(msp, mdp)(UserShow);

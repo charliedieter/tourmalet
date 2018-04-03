@@ -34,8 +34,8 @@ export const fetchActivity = (id, currentUser) => dispatch => {
   );
 };
 
-export const fetchActivities = () => dispatch => {
-  return API.fetchActivities().then(acts => {
+export const fetchActivities = page => dispatch => {
+  return API.fetchActivities(page).then(acts => {
     dispatch(receiveActivities(acts));
   });
 };

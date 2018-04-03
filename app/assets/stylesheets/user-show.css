@@ -163,18 +163,21 @@
   height: 60px;
   margin-bottom: 10px;
   border-bottom: 1px solid lightgrey;
+  cursor: pointer;
 }
 
 .following-avatar {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .following-name {
   font-size: 16px;
   color: #007fb6;
   margin: auto 20px;
+  cursor: pointer;
 }
 
 .following-unfollow-button {

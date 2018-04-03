@@ -19,7 +19,7 @@ class MapSaveModal extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-
+    debugger;
     const activity = {
       polyline: this.props.poly,
       title: this.state.title,
@@ -86,11 +86,11 @@ class MapSaveModal extends React.Component {
             </label>
 
             <div className="buttons">
-              <button className="close" onClick={this.close}>
-                Cancel
-              </button>
               <button className="save" onClick={this.handleSave}>
                 Save
+              </button>
+              <button className="close" onClick={this.close}>
+                Cancel
               </button>
             </div>
           </form>

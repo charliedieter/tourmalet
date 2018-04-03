@@ -15,6 +15,7 @@ json.comments activity.comments.each do |c|
   json.created c.creation_in_words
 end
 json.images activity.images.each do |img|
+  json.id img.id
   json.image image_path(img.image.url)
 end
 # json.comments activity.comments

@@ -12,7 +12,13 @@ class Api::ActivitiesController < ApplicationController
 
   def index
 
-      @activities = Activity.all.page(params[:page]).per(5)
+    if params[:page]
+      page = Activity.all.page(1).per(1).total_pages - params[:page].to_i
+      @activities = Activity.all.page(params[:page]).per(1)
+    else
+      @activities = Activity.all
+    end
+
   end
 
   def show

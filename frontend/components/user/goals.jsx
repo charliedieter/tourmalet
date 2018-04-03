@@ -63,15 +63,18 @@ class Goals extends React.Component {
     const type = this.state.selected === 1 ? "Ride" : "Run";
 
     let weekTotal;
-    if (this.state.selected === 3) {
-      weekTotal = Object.values(user.last_weeks_activities)[0]
-        .map(act => parseInt(act.distance))
-        .reduce((a, b) => a + b);
-    } else {
-      weekTotal = Object.values(user.last_weeks_activities)[0]
-        .filter(act => act.type_of === type)
-        .map(act => parseInt(act.distance))
-        .reduce((a, b) => a + b);
+
+    if (user.last_weeks_activities && user.last_weeks_activities[0]) {
+      if (this.state.selected === 3) {
+        weekTotal = Object.values(user.last_weeks_activities)[0]
+          .map(act => parseInt(act.distance))
+          .reduce((a, b) => a + b);
+      } else {
+        weekTotal = Object.values(user.last_weeks_activities)[0]
+          .filter(act => act.type_of === type)
+          .map(act => parseInt(act.distance))
+          .reduce((a, b) => a + b);
+      }
     }
 
     let goalImage, weeklyGoal, yearlyGoal;
@@ -159,7 +162,8 @@ class Goals extends React.Component {
                 {weeklyGoal ? ` / ${weeklyGoal} mi` : " mi"}
               </div>
             </div>
-            {this.state.selected === 1 || this.state.selected === 2 ? (
+            {this.props.editable &&
+            (this.state.selected === 1 || this.state.selected === 2) ? (
               <i
                 className="material-icons"
                 onClick={() => this.setState({ form: true })}

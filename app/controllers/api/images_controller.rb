@@ -11,6 +11,9 @@ class Api::ImagesController < ApplicationController
   end
 
   def index
+
+    @images = Image.where(user_id = params[:userId])
+
   end
 
   def destroy

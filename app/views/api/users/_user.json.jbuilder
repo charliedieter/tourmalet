@@ -18,4 +18,5 @@ json.user do
   json.weeklyCyclingGoal user.weekly_cycling_goal
   json.yearlyRunningGoal user.yearly_running_goal
   json.weeklyRunningGoal user.weekly_running_goal
+  json.image_ids user.images.pluck(:id)
 end
