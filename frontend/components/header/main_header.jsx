@@ -18,7 +18,6 @@ class MainHeader extends React.Component {
           {this.props.search === true && <UserSearch />}
           <div className="dash-training-div">
             <DashboardDropdown className="header-link" />
-            <TrainingDropdown />
           </div>
         </div>
         <div className="main-header-right">
@@ -31,3 +30,4 @@ class MainHeader extends React.Component {
 }
 
 export default withRouter(MainHeader);
+// <TrainingDropdown />
