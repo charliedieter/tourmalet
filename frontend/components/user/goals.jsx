@@ -58,6 +58,7 @@ class Goals extends React.Component {
   }
 
   render() {
+    if (!this.props.currentUser.year_totals) return null;
     const user = this.props.currentUser;
 
     const type = this.state.selected === 1 ? "Ride" : "Run";

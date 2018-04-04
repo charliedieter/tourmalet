@@ -25,7 +25,7 @@ class UserShow extends React.Component {
   }
 
   render() {
-    if (!this.props.user) return null;
+    if (!this.props.user || !this.props.currentUser.following_ids) return null;
     let followEditButton;
     if (this.props.currentUser.following_ids.includes(this.props.user.id)) {
       followEditButton = (
@@ -58,9 +58,13 @@ class UserShow extends React.Component {
       <div>
         <MainHeaderContainer className="dash-header" search={true} />
         <Banner
-          images={Object.values(this.props.images).filter(i =>
-            this.props.user.image_ids.includes(i.id)
-          )}
+          images={
+            this.props.user.image_ids &&
+            this.props.images &&
+            Object.values(this.props.images).filter(i =>
+              this.props.user.image_ids.includes(i.id)
+            )
+          }
           user={this.props.user}
         />
         <div className="user-show-main">

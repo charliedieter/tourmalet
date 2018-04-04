@@ -7,6 +7,7 @@ class Banner extends React.Component {
   }
 
   render() {
+    return <div className="banner-default" />;
     const length = Object.keys(this.props.images).length;
 
     const images = [];
@@ -28,8 +29,6 @@ class Banner extends React.Component {
     //   src={img.url}
     //   key={`banner-img-${idx}`}
     //   />
-
-    if (!images[0]) return <div className="banner-default" />;
 
     return (
       <div className="banner">
