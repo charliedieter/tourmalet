@@ -23,7 +23,11 @@ class RoutesAndFollows extends React.Component {
       .filter(act => this.props.user.activity_ids.includes(act.id))
       .map((route, idx) => {
         return (
-          <div className="user-show-route" key={`map-box-${idx}`}>
+          <div
+            className="user-show-route"
+            key={`map-box-${idx}`}
+            onClick={() => this.props.history.push(`/activities/${route.id}`)}
+          >
             <StaticMap polyline={route.polyline} idx={idx} square={true} />
             <h3 className="user-show-route-title">{route.title}</h3>
             <ul className="user-show-route-stats">

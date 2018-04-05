@@ -131,7 +131,7 @@
 
 .user-show-route {
   width: 280px;
-
+  cursor: pointer;
   margin: 20px;
   display: inline-block;
   background: #f7f7f7;
