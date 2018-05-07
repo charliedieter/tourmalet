@@ -1,6 +1,6 @@
 import React from "react";
 import mapStyle from "./google_maps_styling.js";
-import MapControlContainer from "./map_control_container";
+import MapControl from "./map_control";
 
 export default class RouteMap extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ export default class RouteMap extends React.Component {
 
   componentDidMount() {
     this.initMap();
-    // Map.pinpointMarker.setMap(this.map);
     this.setState({ map: this.map });
   }
 
@@ -31,22 +30,20 @@ export default class RouteMap extends React.Component {
       zoomControlOptions: {
         position: google.maps.ControlPosition.LEFT_TOP
       },
-      bicyclingLayer: false
+      bicyclingLayer: true,
+      draggableCursor: "pointer"
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
-    // new google.maps.BicyclingLayer().setMap(this.map) Toggle on for function > fashion
     google.maps.event.addListener(this.map, "click", e => {
       this.placeMarker(e.latLng);
     });
     // if (navigator.geolocation) {
-    //   console.log("s");
     //   navigator.geolocation.getCurrentPosition(pos => {
     //     const initialLocation = new google.maps.LatLng(
     //       pos.coords.latitude,
     //       pos.coords.longitude
     //     );
-    //     console.log("e");
     //     this.map.panTo(initialLocation);
     //   });
     // }
@@ -80,7 +77,7 @@ export default class RouteMap extends React.Component {
     const start = pts[0].position;
     const end = pts[pts.length - 1].position;
 
-    const waypts = this.makeWayPts(pts.slice(1, -1));
+    const waypts = this.makeWayPts(this.state.waypts.slice(1, -1));
     const polylineOptions = new google.maps.Polyline({
       strokeColor: "#494442",
       strokeOpacity: 1.0,
@@ -171,6 +168,9 @@ export default class RouteMap extends React.Component {
     for (var i = 0; i < this.legs.length; i++) {
       secs += this.legs[i].duration.value;
     }
+    if (this.state.travelMode === "WALKING") {
+      secs = Math.floor(secs / 2);
+    }
 
     let hours = Math.floor(secs / 3600);
     let minutes = Math.floor((secs - hours * 3600) / 60);
@@ -202,8 +202,8 @@ export default class RouteMap extends React.Component {
 
   clearRoute() {
     this.directionsDisplay.setMap(null);
-    this.directionsDisplay.setDirections({ routes: [] }, this.initMap());
-
+    this.directionsDisplay.setDirections({ routes: [] });
+    // , this.initMap()
     this.clearAllWayPts();
     this.setState({
       waypts: [],
@@ -234,7 +234,7 @@ export default class RouteMap extends React.Component {
   render() {
     return (
       <div>
-        <MapControlContainer
+        <MapControl
           map={this.map}
           el={this.state.el}
           time={this.state.time}

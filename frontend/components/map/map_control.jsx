@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import MapSearch from "./map_search";
 import MapFooter from "./map_footer";
 import MapSaveModal from "./map_save_modal";
 
-export default class MapControl extends React.Component {
+class MapControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,7 +53,9 @@ export default class MapControl extends React.Component {
 
         <div className="main-header">
           <div className="header-left">
-            <h1 className="logo">Tourmalet</h1>
+            <h1 className="logo" onClick={() => this.props.history.push("/")}>
+              Tourmalet
+            </h1>
           </div>
           <div className="header-right">
             <Link className="exit-link" to="/dashboard">
@@ -110,6 +112,15 @@ export default class MapControl extends React.Component {
     );
   }
 }
+
+import { connect } from "react-redux";
+import { saveActivity } from "../../actions/activity_actions";
+
+const mdp = dispatch => ({
+  saveActivity: activity => dispatch(saveActivity(activity))
+});
+
+export default withRouter(connect(null, mdp)(MapControl));
 
 // <button onClick={this.props.undoLeg} className="undo">
 //   <i className="material-icons">undo</i>

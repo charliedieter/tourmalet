@@ -1,6 +1,6 @@
 .map-show-body {
   margin-top: 10px;
-  margin-left: 50px;
+  margin-left: 8%;
 }
 
 .map-graph-cont {
@@ -15,8 +15,8 @@
 }
 
 #map-show-container {
-  width: 900px;
-  height: 400px;
+  width: 60vw;
+  height: 60vh;
   /* box-shadow: 0px 8px 24px rgba(13,13,18,0.16); */
 }
 
@@ -63,7 +63,7 @@
 /*  STATS BOX*/
 
 .box-right-cont {
-  margin: 100px auto;
+  margin: 50px auto;
   height: 100;
   width: 300px;
 }

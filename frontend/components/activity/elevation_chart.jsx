@@ -68,10 +68,6 @@ class ElevationChart extends React.Component {
       );
     });
 
-    const chartStyle = {
-      height: this.props.height,
-      width: this.props.width
-    };
     return (
       <div className="elevation-chart-box">
         <ul className="horizontal-graph-bars">
@@ -131,9 +127,7 @@ class ElevationChart extends React.Component {
             <span>{}</span>
           </li>
         </ul>
-        <div style={chartStyle} className="elevation-chart">
-          {bars}
-        </div>
+        <div className="elevation-chart">{bars}</div>
         <div className="ele-label">Elevation </div>
       </div>
     );

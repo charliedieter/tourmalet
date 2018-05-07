@@ -15,14 +15,14 @@ class MainHeader extends React.Component {
           <h1 onClick={() => this.props.history.push("/")} className="logo">
             Tourmalet
           </h1>
-          {this.props.search === true && <UserSearch />}
           <div className="dash-training-div">
             <DashboardDropdown className="header-link" />
           </div>
+          {this.props.search === true && <UserSearch />}
         </div>
         <div className="main-header-right">
-          <ProfileDropdown currentUser={this.props.currentUser} />
           <RouteDropdown />
+          <ProfileDropdown currentUser={this.props.currentUser} />
         </div>
       </div>
     );

@@ -19,7 +19,6 @@ class MapSaveModal extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    debugger;
     const activity = {
       polyline: this.props.poly,
       title: this.state.title,

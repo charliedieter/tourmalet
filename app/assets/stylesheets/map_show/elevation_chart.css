@@ -1,19 +1,20 @@
 .elevation-chart-box {
   height: 130px;
-  width: 898px;
+  width: 60vw;
   padding-top: 30px;
   border: 1px solid lightgrey;
 }
 
 .elevation-chart {
   position: relative;
+  width: 60vw;
 }
 
 .horizontal-graph-bars {
   position: absolute;
   height: 130px;
   margin-top: -30px;
-  width: 897px;
+  width: 60vw;
 }
 
 .horizontal-graph-bars li {
@@ -29,7 +30,7 @@
 .vertical-graph-bars {
   position: absolute;
   display: flex;
-  width: 897px;
+  width: 60vw;
   height: 130px;
   margin-top: -30px;
 }
@@ -42,7 +43,7 @@
 .elevation-chart .bar {
   border-bottom-style: solid;
   border-bottom-color: slategrey;
-  width: 3.515px;
+  width: 0.234375vw;
   height: 100%;
   opacity: 0.4;
   display: inline-block;
@@ -54,18 +55,19 @@
 }
 
 .elevation-chart div.selected {
-  border-bottom-color: black;
+  border-bottom-color: green;
+  opacity: 0.9;
 }
 
 .elevation-chart .bar span {
   font-size: 15px;
-  color: black;
+  color: green;
   height: 20px;
   width: 40px;
   position: absolute;
   font-weight: bold;
   opacity: 0;
-  top: -20px;
+  top: -140px;
 }
 
 .elevation-chart div:hover span {

@@ -68,12 +68,11 @@ export default class SessionForm extends React.Component {
 
     const imgSrc =
       this.props.formType === "Log In" ? window.login : window.signup;
-    const guest =
-      this.props.formType === "Log In" ? (
-        <div className="button-holster">
-          <button onClick={this.loginGuest}>Log In as Guest</button>
-        </div>
-      ) : null;
+    const guest = (
+      <div className="button-holster">
+        <button onClick={this.loginGuest}>Log In as Guest</button>
+      </div>
+    );
 
     return (
       <div>

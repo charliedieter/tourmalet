@@ -70,7 +70,7 @@ h1.logo {
 
 .dash-training-div {
   display: flex;
-  width: 300px;
+  width: 150px;
 }
 
 .outer-search-div ul {
@@ -109,6 +109,7 @@ h1.logo {
   border: none;
   background: none;
   color: gray;
+  margin: auto 30px;
 }
 
 .search-button:hover {

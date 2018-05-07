@@ -39,10 +39,10 @@ class Tracker extends React.Component {
     this.centerMap();
   }
 
-  geoSuccess(pos) {
+  geoSuccess(coords) {
     const initialLocation = new google.maps.LatLng(
-      pos.coords.latitude,
-      pos.coords.longitude
+      coords.latitude,
+      coords.longitude
     );
 
     this.map.panTo(initialLocation);
@@ -50,12 +50,16 @@ class Tracker extends React.Component {
 
   centerMap() {
     navigator.geolocation.getCurrentPosition(
-      pos => this.geoSuccess(pos),
+      pos => {
+        const newCoords = JSON.stringify(pos.coords);
+        localStorage.setItem("coords", newCoords);
+        this.geoSuccess(newCoords);
+      },
       err => console.log(err),
       {
-        maximumAge: 60000,
+        maximumAge: 6000,
         timeout: 5000,
-        enableHighAccuracy: true
+        enableHighAccuracy: false
       }
     );
   }
@@ -81,19 +85,6 @@ class Tracker extends React.Component {
   }
 
   adjustBounds() {
-    // Create the polyline's points
-    for (var i = 0; i < 5; i++) {
-      // Create a random point using the user current position and a random generated number.
-      // The number will be once positive and once negative using based on the parity of i
-      // and to reduce the range the number is divided by 10
-      let position = this.position;
-      this.path.push(
-        new google.maps.LatLng(
-          position.coords.latitude + Math.random() / 10 * (i % 2 ? 1 : -1),
-          position.coords.longitude + Math.random() / 10 * (i % 2 ? 1 : -1)
-        )
-      );
-    }
     for (var i = 0; i < this.path.length; i++) {
       this.latLngBounds.extend(this.path[i]);
     }
