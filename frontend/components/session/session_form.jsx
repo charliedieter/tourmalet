@@ -87,7 +87,6 @@ export default class SessionForm extends React.Component {
                 this.props.errors.map((err, i) => <li key={i}>{err}</li>)}
             </ul>
             <form onSubmit={this.handleSubmit} className="session-form">
-              {newUserForm}
               <label>
                 <input
                   type="email"
@@ -105,6 +104,7 @@ export default class SessionForm extends React.Component {
                   <li>Email {this.props.errors.email}</li>
                 )}
               </label>
+              {newUserForm}
               <label>
                 <input
                   type="password"
